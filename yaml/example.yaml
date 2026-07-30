@@ -1,0 +1,118 @@
+---
+#[Game.asset]
+MonoBehaviour:
+  Units:
+  - ID: 1
+    Name: Tbl_Unit_Name_1     #unit name ref to String.asset
+    Desc: Tbl_Unit_Desc_1
+    Model: 1_Asagi/Unit/prf_1
+    PosX: 1
+    PosZ: 0
+    Scale: 0.8
+    Height: 0.17
+    AniEvent: 1_asagi
+    Weapon: prf_weapon_1_0
+    Icon: 1_Asagi
+    PortalSummonFlag:
+    BookIdx: 2
+    ArenaGroup: 0
+    Disposition: 4
+    Rarity: 5                #Legendary
+    AttributeType: 1         #Power
+    ClassType: 1             #Offense
+    EvolStatID: 1
+    EvolReqID: 3514
+    BuyPrice: 500000
+    BTLPower: 8950
+    BTLRate: 313831
+    HP: 22196                 #Stats
+    ATK: 1360
+    DEF: 1109
+    SPD: 91
+    CRATE: 50
+    CDMG: 575
+    CRES: 0
+    ACC: 0
+    EVD: 0
+    EffTypeInt: 0
+    AcquisitionID: 10002
+    AniGroup: 2
+    SkillAuraID: 100
+    SkillID1: 101             #Ref to skills in same file
+    SkillID2: 102
+    SkillID3: 103
+    SkillID4: 104
+#...
+  UnitSkills:
+  #...
+  - ID: 102
+    Name: Tbl_UnitSkill_Name_102           #ref to skill name in String.asset
+    Desc: Tbl_UnitSkill_Desc_102
+    SkillTypeDesc: Tbl_SkillTypeDesc_2
+    Icon: 102
+    Turn: 4                      #Cooldown
+    SkillBtnType: 0
+    SkillAtkCnt: 5               #Number of hits
+    SkillAddAtkCnt: 0
+    ChgTarFlag: 0
+    SkillCamType: 0
+    SkillCutFlag: 0
+    SkillLevel: '[D:10]/[D:10]/[D:10]/[D:10]/[D:10]'   #skill rank effects - dmg 10%
+    DmgBase: '[ATK]'              #scales with atk
+    BOList: 10201/10202/10203     #Ref to skill effects
+    NeedEvolLv: 0
+    BOCondiCheck:
+    TriggerKeyword: SelfBuff
+    AuraInfo:
+#...
+  BattleOptions:
+  - ID: 10201
+    CheckTimingType: eBOTiming_Action
+    BOFuncType: eBOFunc_Attack        #attack skill
+    BOTarType: eBOTarget_Enemy/1      #targets 1 enemy?
+    BOSelfCondType:
+    BOTarCondType:
+    BOIgnoreCoolTime: 0
+    BOFuncRate: 100             #100% accuracy / "inflict rate" on damage effect
+    BOFuncValue1: 0
+    BOFuncValue2: 0
+    BOFuncValue3: 153.1          #1 hit = 153.1% of atk as dmg
+  - ID: 10202
+    CheckTimingType: eBOTiming_ActionLast
+    BOFuncType: eBOFunc_AddDeBuff/HealRateDown  #healing reduction debuff
+    BOTarType: eBOTarget_HitTargetList
+    BOSelfCondType:
+    BOTarCondType: eBOCond_LessHP/50      #if target under 50%
+    BOIgnoreCoolTime: 0
+    BOFuncRate: 99                        #99% inflict chance
+    BOFuncValue1: 0
+    BOFuncValue2: 2                       #2 turn duration
+    BOFuncValue3: 75                      #75% effect
+  - ID: 10203
+    CheckTimingType: eBOTiming_OnActionCalc
+    BOFuncType: eBOFunc_CriRateBySpdRate  #increases crit rate by portion of speed
+    BOTarType: NONE
+    BOSelfCondType:
+    BOTarCondType:
+    BOIgnoreCoolTime: 0
+    BOFuncRate: 0
+    BOFuncValue1: 0
+    BOFuncValue2: 0
+    BOFuncValue3: 18                      #18% of speed?
+	
+#[String.asset]
+#  - ID: Tbl_Unit_Name_1
+#    Text_KOR: 이가와 아사기
+#    Text_JPN: 井河アサギ
+#    Text_ENG: Igawa Asagi
+#    Text_CHS: 井河阿莎姬
+#    Text_CHT: 井河淺蔥
+#    Text_ESP: Igawa Asagi
+#...
+#  - ID: Tbl_UnitSkill_Name_102
+#    Text_KOR: '[&Color_Cyan]비연화[-]'
+#    Text_JPN: '[&Color_Cyan]飛連華[-]'
+#    Text_ENG: '[&Color_Cyan]Hirenka[-]'
+#    Text_CHS: '[&Color_Cyan]飞连华[-]'
+#    Text_CHT: '[&Color_Cyan]飛連華[-]'
+#    Text_ESP: '[&Color_Cyan]Hirenka[-]'
