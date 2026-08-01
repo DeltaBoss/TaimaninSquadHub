@@ -42,6 +42,86 @@ MonoBehaviour:
     SkillID2: 102
     SkillID3: 103
     SkillID4: 104
+  - ID: 2
+    Name: Tbl_Unit_Name_2
+    Desc: Tbl_Unit_Desc_2
+    Model: 2_Sakuya/Unit/prf_2
+    PosX: 1
+    PosZ: 0
+    Scale: 0.8
+    Height: 0.25
+    AniEvent: 2_sakuya
+    Weapon: prf_weapon_2_0
+    Icon: 1_Asagi #2_Sakuya
+    PortalSummonFlag: 2/4
+    BookIdx: 1
+    ArenaGroup: 1
+    Disposition: 5
+    Rarity: 3
+    AttributeType: 3
+    ClassType: 1
+    EvolStatID: 1
+    EvolReqID: 3335
+    BuyPrice: 100000
+    BTLPower: 7050
+    BTLRate: 294724
+    HP: 16356
+    ATK: 1325
+    DEF: 676
+    SPD: 77
+    CRATE: 50
+    CDMG: 575
+    CRES: 0
+    ACC: 0
+    EVD: 0
+    EffTypeInt: 0
+    AcquisitionID: 10003
+    AniGroup: 2
+    SkillAuraID: 200
+    SkillID1: 201
+    SkillID2: 202
+    SkillID3: 203
+    SkillID4: 0
+  - ID: 3
+    Name: Tbl_Unit_Name_3
+    Desc: Tbl_Unit_Desc_3
+    Model: 3_Shirayuki/Unit/prf_3
+    PosX: 1
+    PosZ: 0
+    Scale: 0.9
+    Height: 0.1
+    AniEvent: 3_shirayuki
+    Weapon: prf_weapon_3_0
+    Icon: 1_Asagi #3_Shirayuki
+    PortalSummonFlag: 2/4
+    BookIdx: 1
+    ArenaGroup: 1
+    Disposition: 7
+    Rarity: 3
+    AttributeType: 3
+    ClassType: 3
+    EvolStatID: 3
+    EvolReqID: 3337
+    BuyPrice: 100000
+    BTLPower: 7050
+    BTLRate: 373528
+    HP: 20868
+    ATK: 987
+    DEF: 789
+    SPD: 76
+    CRATE: 25
+    CDMG: 500
+    CRES: 0
+    ACC: 50
+    EVD: 0
+    EffTypeInt: 0
+    AcquisitionID: 10003
+    AniGroup: 2
+    SkillAuraID: 300
+    SkillID1: 301
+    SkillID2: 302
+    SkillID3: 303
+    SkillID4: 0
 #...
   UnitSkills:
   #...
