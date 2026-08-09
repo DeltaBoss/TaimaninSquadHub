@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+  li{float:left;}
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #c22929;
+  }
+  .ilp {
+    display:inline;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>TaimaninSquadHub<br>Updated</li>
+        <li>Unit Codex</li>
+        <li>Team Creator</li>
+        <li>XP Planner</li>
+        <li>Stat Ranking</li>
+        <li>Settings</li>
+      </ul>
+    </nav>
+  </header>
+  <hr>
+  <div id="UnitCodex">
+    <div>
+      <div style="display: inline-block;">
+        <p>TaimaninSquad Unit Codex</p>
+      </div>
+      <div>
+        <span>{{loadingStatus}}</span>
+      </div>
+      <div style="display: inline-block;">
+        <input type="text" alt="search" id="searchbar">
+      </div>
+    </div>
+    <div>
+      <p class="ilp">[Common|Uncommon|Rare|Epic|Legendary]</p>
+      <p class="ilp">[Offense|Defense|Support]</p>
+      <p class="ilp">[Power|Agility|Technique|Balanced]</p>
+      <p class="ilp">[Moon|Mars|Mercury|Jupiter|Venus|Saturn|Sun]</p>
+    </div>
+    <div>
+      <p>Advanced Filters</p>
+    </div>
+    <div style="height:200px;background-color: aqua;overflow-y: auto;">
+      <div v-for="id in displayedUnits" :key="id" style="display: inline-block;">
+        <img :src="'img/icons/' + unitCache[id].img + unitCache[id].iconSuffix + '.png'" :alt="unitCache[id].name" @error="handleImgError($event, unitCache[id], id)" />
+        <p>{{unitCache[id].name}}</p>
+      </div>
+    </div>
+    <div>
+      <div style="display: inline-block;">
+        <img :src="'img/portraits/' + selectedUnit.img + selectedUnit.iconSuffix + '.png'" alt="portrait" @error="handleImgError($event, selectedUnit, -1)" />
+        <h2>{{selectedUnit.name}}</h2>
+      </div>
+      <div style="display: inline-block;">
+        <div>
+          <p>Type: {{selectedUnit.type}}</p>
+          <p>Role: {{selectedUnit.role}}</p>
+          <p>Trait: {{selectedUnit.trait}}</p>
+          <p>Rarity: {{selectedUnit.rarity}}</p>
+        </div>
+        <div>
+          <p>HP: {{selectedUnit.hp}}</p>
+          <p>ATK: {{selectedUnit.atk}}</p>
+          <p>DEF: {{selectedUnit.def}}</p>
+          <p>SPD: {{selectedUnit.spd}}</p>
+          <p>CRIT RATE: {{selectedUnit.crit_rate}}</p>
+          <p>CRIT DMG: {{selectedUnit.crit_dmg}}</p>
+          <p>CRIT RES: {{selectedUnit.crit_res}}</p>
+          <p>ACC: {{selectedUnit.acc}}</p>
+          <p>EVA: {{selectedUnit.eva}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, reactive, ref } = Vue
+    createApp({
+      setup() {
+        const standardUnit = {
+          id:0,
+          name:"",//yamlUnit.Name,
+          img:"fallback",
+          iconSuffix:"",
+          portraitSuffix:"",
+          type:"",
+          trait:"",
+          role:"",
+          rarity:"",
+          atk:0,
+          def:0,
+          crit_rate:0,
+          crit_dmg:0,
+          crit_res:0,
+          spd:0,
+          acc:0,
+          eva:0
+        }
+
+        //const unitData = {};
+        const stringData = {};
+        const unitCache = {};
+        const displayedUnits = reactive([])
+        const selectedUnit = reactive(standardUnit)
+        const loadingStatus = ref("Init")
+
+        async function loadData() {
+          const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
+          if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
+          const unitData = jsyaml.load(await unitDataReq.text());
+
+          //const stringDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
+          //if (!stringDataReq.ok) throw new Error(`HTTP ${response.status}`)
+          //stringData = jsyaml.load(await stringDataReq.text());
+
+          for (const yamlUnit of unitData.MonoBehaviour.Units) {
+            console.log(yamlUnit);
+            unitCache[yamlUnit.ID] = {
+              id:yamlUnit.ID,
+              name:yamlUnit.Icon,//yamlUnit.Name,
+              img:yamlUnit.Icon,
+              iconSuffix:"",
+              portraitSuffix:"",
+              type:yamlUnit.AttributeType,
+              trait:yamlUnit.Disposition,
+              role:yamlUnit.ClassType,
+              rarity:yamlUnit.Rarity,
+              hp:yamlUnit.HP,
+              atk:yamlUnit.ATK,
+              def:yamlUnit.DEF,
+              crit_rate:yamlUnit.CRATE,
+              crit_dmg:yamlUnit.CDMG,
+              crit_res:yamlUnit.CRES,
+              spd:yamlUnit.SPD,
+              acc:yamlUnit.ACC,
+              eva:yamlUnit.EVD            
+            };
+            console.log(unitCache[yamlUnit.ID]);
+            displayedUnits.push(yamlUnit.ID);
+          }
+          
+          //console.log(unitData);
+          //console.log(unitCache);
+          if(Object.keys(unitCache).length > 0) {
+            Object.assign(selectedUnit, unitCache[Object.keys(unitCache)[0]]);
+            //console.log(selectedUnit);
+          }
+          loadingStatus.value = "Finished loading"
+        }
+
+        function handleImgError(event, unit, unitId) {
+          const suffixOrder = ['', '_4', '_3', '_2', '_1', '_0']
+          const currentSuffix = unitId != -1 ? unit.iconSuffix : unit.portraitSuffix ?? suffixOrder[0]
+          const nextIndex = suffixOrder.indexOf(currentSuffix) + 1
+
+          if (nextIndex < suffixOrder.length) {
+            if(unitId != -1) {
+              unitCache[unitId].iconSuffix = suffixOrder[nextIndex]
+              event.target.src = `img/icons/${unit.img}${unit.iconSuffix}.png`
+            } else {
+              unitCache[unit.id].portraitSuffix = suffixOrder[nextIndex]
+              unit.portraitSuffix = suffixOrder[nextIndex]
+              event.target.src = `img/portraits/${unit.img}${unit.portraitSuffix}.png`
+            }
+          } else {
+            event.target.src = unitId == -1 ? "img/portraits/fallback.png" : 'img/icons/fallback.png' // fallback
+          }
+        }
+        
+        loadData()
+        return { selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError }
+      }
+    }).mount('#UnitCodex')
+  </script>
+  <hr>
+  <footer>
+    Footer
+  </footer>
+</body>
+</html>

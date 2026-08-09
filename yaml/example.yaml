@@ -52,7 +52,7 @@ MonoBehaviour:
     Height: 0.25
     AniEvent: 2_sakuya
     Weapon: prf_weapon_2_0
-    Icon: 1_Asagi #2_Sakuya
+    Icon: 2_Sakuya
     PortalSummonFlag: 2/4
     BookIdx: 1
     ArenaGroup: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
     Height: 0.1
     AniEvent: 3_shirayuki
     Weapon: prf_weapon_3_0
-    Icon: 1_Asagi #3_Shirayuki
+    Icon: 3_Shirayuki
     PortalSummonFlag: 2/4
     BookIdx: 1
     ArenaGroup: 1
