@@ -18,6 +18,14 @@
   .unitSelected {
     border-style: groove;
   }
+  .inlineIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .unitIcon {
+    width: 100px;
+    height: 100px;
+  }
   </style>
 </head>
 <body>
@@ -44,7 +52,7 @@
       </div>
       <div style="display: inline-block;">
         <input type="text" alt="search" id="searchbar">
-        <span>Ordering [A-Z] [ID]</span>
+        <button @click="toggleDisplayOrder">Sort</button>
       </div>
     </div>
     <div>
@@ -58,7 +66,7 @@
     </div>
     <div style="height:200px;background-color: aqua;overflow-y: auto;">
       <div v-for="id in displayedUnits" :key="id" style="display: inline-block; text-align: center;" :class="{ unitSelected: id === selectedUnit.id }" @click="selectNewUnit(id)">
-        <img :src="'img/icons/' + unitCache[id].img + unitCache[id].iconSuffix + '.png'" :alt="unitCache[id].name" @error="handleImgError($event, unitCache[id], true)" /><br>
+        <img :src="'img/icons/' + unitCache[id].img + unitCache[id].iconSuffix + '.png'" :alt="unitCache[id].name" class="unitIcon" @error="handleImgError($event, unitCache[id], true)" /><br>
         <span>{{unitCache[id].name}}</span>
       </div>
     </div>
@@ -69,10 +77,15 @@
       </div>
       <div style="display: inline-block;">
         <div>
-          <p>Type: {{selectedUnit.type}}</p>
-          <p>Role: {{selectedUnit.role}}</p>
-          <p>Trait: {{selectedUnit.trait}}</p>
-          <p>Rarity: {{selectedUnit.rarity}}</p>
+          <span>
+            {{rarityLookup.text}}
+            <img :src="'img/type_'+ typeLookup.img + '.png'" :alt="typeLookup.text" class="inlineIcon" />
+            {{typeLookup.text}}
+            <img :src="'img/role_'+ roleLookup.img + '.png'" :alt="roleLookup.text" class="inlineIcon" />
+            {{roleLookup.text}}
+            <img :src="'img/UnitDisPosition_'+ traitLookup.img + '_Big.png'" :alt="traitLookup.text" class="inlineIcon" />
+            {{traitLookup.text}}
+          </span>
         </div>
         <div>
           <p>HP: {{selectedUnit.hp}}</p>
@@ -90,9 +103,48 @@
   </div>
 
   <script>
-    const { createApp, reactive, ref } = Vue
+    const { createApp, reactive, ref, computed } = Vue
     createApp({
       setup() {
+        const TYPE_LOOKUP = {
+          1: { img: 'pow', text: 'Power' },
+          2: { img: 'tec', text: 'Technique' },
+          3: { img: 'agi', text: 'Agility' },
+          4: { img: 'bal', text: '???' }
+        }
+        const DEFAULT_TYPE = { img: 'bal', text: 'Balanced' }
+        const typeLookup = computed(() => TYPE_LOOKUP[selectedUnit.type] ?? DEFAULT_TYPE)
+
+        const ROLE_LOOKUP = {
+          1: { img: 'off', text: 'Offense' },
+          2: { img: 'def', text: 'Defense' },
+          3: { img: 'sup', text: 'Support' }
+        }
+        const DEFAULT_ROLE = { img: 'sup', text: '???' }
+        const roleLookup = computed(() => ROLE_LOOKUP[selectedUnit.role] ?? DEFAULT_ROLE)
+
+        const TRAIT_LOOKUP = {
+          1: { img: '1', text: 'Moon' },
+          2: { img: '2', text: 'Mars' },
+          3: { img: '3', text: 'Mercury' },
+          4: { img: '4', text: 'Jupiter' },
+          5: { img: '5', text: 'Venus' },
+          6: { img: '6', text: 'Saturn' },
+          7: { img: '7', text: 'Sun' }
+        }
+        const DEFAULT_TRAIT = { img: '7', text: '???' }
+        const traitLookup = computed(() => TRAIT_LOOKUP[selectedUnit.role] ?? DEFAULT_TRAIT)
+
+        const RARITY_LOOKUP = {
+          1: { img: '1', text: 'Common' },
+          2: { img: '2', text: 'Uncommon' },
+          3: { img: '3', text: 'Rare' },
+          4: { img: '4', text: 'Epic' },
+          5: { img: '5', text: 'Legendary' }
+        }
+        const DEFAULT_RARITY = { img: '5', text: '???' }
+        const rarityLookup = computed(() => RARITY_LOOKUP[selectedUnit.rarity] ?? DEFAULT_RARITY)
+
         const standardUnit = {
           id:0,
           name:"",//yamlUnit.Name,
@@ -118,6 +170,7 @@
         const displayedUnits = reactive([])
         const selectedUnit = reactive(standardUnit)
         const loadingStatus = ref("Init")
+        let sortingIsAZ = false
 
         async function loadData() {
           const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
@@ -184,16 +237,20 @@
         }
 
         function selectNewUnit(id) {
-          // +highlighting
           Object.assign(selectedUnit, unitCache[id]);
         }
 
-        function toggleOrder() {
-          
+        function toggleDisplayOrder() {
+          if(sortingIsAZ) {
+            displayedUnits.sort((a,b) => a - b);
+          } else {
+            displayedUnits.sort((a,b) => unitCache[a].name.localeCompare(unitCache[b].name));
+          }
+          sortingIsAZ = !sortingIsAZ
         }
         
         loadData()
-        return { selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit }
+        return { typeLookup, roleLookup, traitLookup, rarityLookup, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit }
       }
     }).mount('#UnitCodex')
   </script>
