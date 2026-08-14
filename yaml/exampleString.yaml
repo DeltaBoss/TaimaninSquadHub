@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbabab5dbdc81ff39ccc4d1b0a3e1295, type: 3}
+  m_Name: String
+  m_EditorClassIdentifier:
+  Strings:
+  - ID: Msg_IAP_NoneProduct
+    Text_KOR: 구매 가능한 상품이 없습니다.
+    Text_JPN: 購入できる商品が存在しません。
+    Text_ENG: No items available for purchase.
+    Text_CHS: 没有可购买的商品。
+    Text_CHT: 沒有可購買的商品。
+    Text_ESP: No hay productos para comprar.
+  - ID: Tbl_Unit_Name_1
+    Text_KOR: 이가와 아사기
+    Text_JPN: 井河アサギ
+    Text_ENG: Igawa Asagi
+    Text_CHS: 井河阿莎姬
+    Text_CHT: 井河淺蔥
+    Text_ESP: Igawa Asagi
+  - ID: Tbl_Unit_Name_2
+    Text_KOR: 이가와 사쿠야
+    Text_JPN: 井河咲夜
+    Text_ENG: Igawa Sakuya
+    Text_CHS: 井河咲夜
+    Text_CHT: 井河咲夜
+    Text_ESP: Igawa Sakuya
+  - ID: Tbl_Unit_Name_3
+    Text_KOR: 시라유키
+    Text_JPN: シラユキ
+    Text_ENG: Shirayuki
+    Text_CHS: 白雪
+    Text_CHT: 白雪
+    Text_ESP: Shirayuki
+  - ID: Tbl_UnitSkill_Name_SPD
+    Text_KOR: '[&Color_Orange][&SPD] 오라[-]'
+    Text_JPN: '[&Color_Orange][&SPD]オーラ[-]'
+    Text_ENG: '[&Color_Orange][&SPD] Aura[-]'
+    Text_CHS: '[&Color_Orange][&SPD]光环[-]'
+    Text_CHT: '[&Color_Orange][&SPD]光環[-]'
+    Text_ESP: '[&Color_Orange][&SPD] de Aura[-]'
+  - ID: Tbl_UnitSkill_Name_CRI_RATE
+    Text_KOR: '[&Color_Orange][&CRI_RATE] 오라[-]'
+    Text_JPN: '[&Color_Orange][&CRI_RATE]オーラ[-]'
+    Text_ENG: '[&Color_Orange][&CRI_RATE] Aura[-]'
+    Text_CHS: '[&Color_Orange][&CRI_RATE]光环[-]'
+    Text_CHT: '[&Color_Orange][&CRI_RATE]光環[-]'
+    Text_ESP: '[&Color_Orange][&CRI_RATE] de Aura[-]'
+  - ID: Tbl_UnitSkill_Name_CRI_RES
+    Text_KOR: '[&Color_Orange][&CRI_RES] 오라[-]'
+    Text_JPN: '[&Color_Orange][&CRI_RES]オーラ[-]'
+    Text_ENG: '[&Color_Orange][&CRI_RES] Aura[-]'
+    Text_CHS: '[&Color_Orange][&CRI_RES]光环[-]'
+    Text_CHT: '[&Color_Orange][&CRI_RES]光環[-]'
+    Text_ESP: '[&Color_Orange][&CRI_RES] de Aura[-]'
+  - ID: Tbl_UnitSkill_Name_101
+    Text_KOR: '[&Color_Cyan]대마살법-매의 참격[-]'
+    Text_JPN: '[&Color_Cyan]対魔殺法・隼の斬撃[-]'
+    Text_ENG: '[&Color_Cyan]Taimanin Art: Hawk Slash[-]'
+    Text_CHS: '[&Color_Cyan]对魔杀法・隼之斩击[-]'
+    Text_CHT: '[&Color_Cyan]對魔殺法・隼之斬擊[-]'
+    Text_ESP: '[&Color_Cyan]Arte Taimanin-Corte del Halcón[-]'
+  - ID: Tbl_UnitSkill_Name_102
+    Text_KOR: '[&Color_Cyan]비연화[-]'
+    Text_JPN: '[&Color_Cyan]飛連華[-]'
+    Text_ENG: '[&Color_Cyan]Hirenka[-]'
+    Text_CHS: '[&Color_Cyan]飞连华[-]'
+    Text_CHT: '[&Color_Cyan]飛連華[-]'
+    Text_ESP: '[&Color_Cyan]Hirenka[-]'
+  - ID: Tbl_UnitSkill_Name_103
+    Text_KOR: '[&Color_Cyan]광진참화[-]'
+    Text_JPN: '[&Color_Cyan]光陣懺華[-]'
+    Text_ENG: '[&Color_Cyan]Koujin Zanka[-]'
+    Text_CHS: '[&Color_Cyan]光阵忏华[-]'
+    Text_CHT: '[&Color_Cyan]光陣懺華[-]'
+    Text_ESP: '[&Color_Cyan]Koujin Zanka[-]'
+  - ID: Tbl_UnitSkill_Name_104
+    Text_KOR: '[&Color_Cyan]최강의 대마인[-]'
+    Text_JPN: '[&Color_Cyan]最強の対魔忍[-]'
+    Text_ENG: '[&Color_Cyan]Almighty Taimanin[-]'
+    Text_CHS: '[&Color_Cyan]最强对魔忍[-]'
+    Text_CHT: '[&Color_Cyan]最強對魔忍[-]'
+    Text_ESP: '[&Color_Cyan]La Todopoderosa[-]'
+  - ID: Tbl_UnitSkill_Name_201
+    Text_KOR: '[&Color_Cyan]대마살법-음월격[-]'
+    Text_JPN: '[&Color_Cyan]対魔殺法・陰月撃[-]'
+    Text_ENG: '[&Color_Cyan]Taimanin Art: Dark Moon Slash[-]'
+    Text_CHS: '[&Color_Cyan]对魔杀法・阴月击[-]'
+    Text_CHT: '[&Color_Cyan]對魔殺法・陰月擊[-]'
+    Text_ESP: '[&Color_Cyan]Arte Taimanin-Golpe Lunar[-]'
+  - ID: Tbl_UnitSkill_Name_202
+    Text_KOR: '[&Color_Cyan]월영[-]'
+    Text_JPN: '[&Color_Cyan]月影[-]'
+    Text_ENG: '[&Color_Cyan]Moon Shadow[-]'
+    Text_CHS: '[&Color_Cyan]月影[-]'
+    Text_CHT: '[&Color_Cyan]月影[-]'
+    Text_ESP: '[&Color_Cyan]Sombra de Luna[-]'
+  - ID: Tbl_UnitSkill_Name_203
+    Text_KOR: '[&Color_Cyan]낙오된 천재[-]'
+    Text_JPN: '[&Color_Cyan]落ちこぼれた天才[-]'
+    Text_ENG: '[&Color_Cyan]Straggling Genius[-]'
+    Text_CHS: '[&Color_Cyan]不及格的天才[-]'
+    Text_CHT: '[&Color_Cyan]不及格的天才[-]'
+    Text_ESP: '[&Color_Cyan]Genio Caído[-]'
+  - ID: Tbl_UnitSkill_Name_301
+    Text_KOR: '[&Color_Cyan]빙괴탄[-]'
+    Text_JPN: '[&Color_Cyan]氷塊弾[-]'
+    Text_ENG: '[&Color_Cyan]Cluster Ice Blaster[-]'
+    Text_CHS: '[&Color_Cyan]冰块弹[-]'
+    Text_CHT: '[&Color_Cyan]冰塊彈[-]'
+    Text_ESP: '[&Color_Cyan]Proyectil de Hielo[-]'
+  - ID: Tbl_UnitSkill_Name_302
+    Text_KOR: '[&Color_Cyan]아이스 레이저[-]'
+    Text_JPN: '[&Color_Cyan]アイスレーザー[-]'
+    Text_ENG: '[&Color_Cyan]Ice Laser[-]'
+    Text_CHS: '[&Color_Cyan]冰击炮[-]'
+    Text_CHT: '[&Color_Cyan]冰擊炮[-]'
+    Text_ESP: '[&Color_Cyan]Rayo de Hielo[-]'
+  - ID: Tbl_UnitSkill_Name_303
+    Text_KOR: '[&Color_Cyan]아이스 폴[-]'
+    Text_JPN: '[&Color_Cyan]アイスフォール[-]'
+    Text_ENG: '[&Color_Cyan]Ice Fall[-]'
+    Text_CHS: '[&Color_Cyan]冰降瀑[-]'
+    Text_CHT: '[&Color_Cyan]冰降瀑[-]'
+    Text_ESP: '[&Color_Cyan]Caída de Hielo[-]'
