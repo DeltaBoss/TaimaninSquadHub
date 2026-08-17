@@ -62,6 +62,13 @@ MonoBehaviour:
     Text_CHS: '[&Color_Orange][&CRI_RES]光环[-]'
     Text_CHT: '[&Color_Orange][&CRI_RES]光環[-]'
     Text_ESP: '[&Color_Orange][&CRI_RES] de Aura[-]'
+  - ID: Tbl_UnitSkill_Desc_101
+    Text_KOR: "검을 가로로 크게 휘둘러 적을 베어냅니다.\n[&Common_Word_Skill_ATKSPD]"
+    Text_JPN: "剣を横に大きく振って敵を切る\n[&Common_Word_Skill_ATKSPD]"
+    Text_ENG: "Swings the sword horizontally and slashes the enemy.\n[&Common_Word_Skill_ATKSPD]"
+    Text_CHS: "横向大幅挥剑，斩击敌人。\n[&Common_Word_Skill_ATKSPD]"
+    Text_CHT: "橫向大幅揮劍，斬擊敵人。\n[&Common_Word_Skill_ATKSPD]"
+    Text_ESP: "Blande la espada en un amplio arco horizontal para cortar al enemigo.\n[&Common_Word_Skill_ATKSPD]"
   - ID: Tbl_UnitSkill_Name_101
     Text_KOR: '[&Color_Cyan]대마살법-매의 참격[-]'
     Text_JPN: '[&Color_Cyan]対魔殺法・隼の斬撃[-]'

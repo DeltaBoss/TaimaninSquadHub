@@ -372,6 +372,91 @@ MonoBehaviour:
     BOCondiCheck:
     TriggerKeyword:
     AuraInfo:
+  UnitWeapons:
+  - ID: 101
+    UnitID: 1
+    Name: Tbl_UnitWeapon_Name_101
+    Icon: Weapon_101.png
+    LargeIcon: Weapon_101_m.png
+    LongIcon: Weapon_101_l.png
+    AttachModel: prf_weapon_1_1
+    OptType: 10 #hp
+    OptValue: 47
+    NeedFrag: 0
+    ItemReqID: 0
+    CreateBtnString: Tbl_UnitWeapon_MakeBtnStr_1
+    PortalSummonFlag:
+    BookIdx: 2
+    ProductType: 3
+    ProductValue: 20
+    Rarity: 5
+    WeaponType: 1
+    SkillSlot: 103
+    SkillID: 113
+    AcquisitionID: 0
+  - ID: 102
+    UnitID: 1
+    Name: Tbl_UnitWeapon_Name_102
+    Icon: Weapon_102.png
+    LargeIcon: Weapon_102_m.png
+    LongIcon: Weapon_102_l.png
+    AttachModel: prf_weapon_1_2
+    OptType: 5 #c rate
+    OptValue: 35
+    NeedFrag: 0
+    ItemReqID: 6154
+    CreateBtnString:
+    PortalSummonFlag:
+    BookIdx: 2
+    ProductType: 3
+    ProductValue: 20
+    Rarity: 5
+    WeaponType: 1
+    SkillSlot: 102
+    SkillID: 112
+    AcquisitionID: 0
+  - ID: 201
+    UnitID: 2
+    Name: Tbl_UnitWeapon_Name_201
+    Icon: Weapon_201.png
+    LargeIcon: Weapon_201_m.png
+    LongIcon: Weapon_201_l.png
+    AttachModel: prf_weapon_2_1
+    OptType: 12
+    OptValue: 47
+    NeedFrag: 0
+    ItemReqID: 6035
+    CreateBtnString:
+    PortalSummonFlag: 1
+    BookIdx: 1
+    ProductType: 3
+    ProductValue: 10
+    Rarity: 3
+    WeaponType: 2
+    SkillSlot: 202
+    SkillID: 212
+    AcquisitionID: 0
+  - ID: 301
+    UnitID: 3
+    Name: Tbl_UnitWeapon_Name_301
+    Icon: Weapon_301.png
+    LargeIcon: Weapon_301_m.png
+    LongIcon: Weapon_301_l.png
+    AttachModel: prf_weapon_3_1
+    OptType: 13
+    OptValue: 24
+    NeedFrag: 0
+    ItemReqID: 6037
+    CreateBtnString:
+    PortalSummonFlag: 1
+    BookIdx: 1
+    ProductType: 3
+    ProductValue: 10
+    Rarity: 3
+    WeaponType: 3
+    SkillSlot: 303
+    SkillID: 313
+    AcquisitionID: 0
 #...
   BattleOptions:
   - ID: 10001
