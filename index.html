@@ -52,7 +52,7 @@
       </div>
       <div style="display: inline-block;">
         <input type="text" alt="search" id="searchbar">
-        <button @click="toggleDisplayOrder">Sort</button>
+        <button @click="toggleDisplayOrder">{{sortingIsAZ ? "A-Z" : "Id"}}</button>
       </div>
     </div>
     <div>
@@ -72,7 +72,7 @@
     </div>
     <div>
       <div style="display: inline-block;">
-        <img :src="'img/portraits/' + unitCache[selectedUnit.id].img + unitCache[selectedUnit.id].portraitSuffix + '.png'" alt="portrait" @error="handleImgError($event, selectedUnit, false)" />
+        <img :src="'img/portraits/' + selectedUnit.img + selectedUnit.portraitSuffix + '.png'" alt="portrait" @error="handleImgError($event, selectedUnit, false)" />
         <h2>{{selectedUnit.name}}</h2>
       </div>
       <div style="display: inline-block;">
@@ -98,6 +98,16 @@
           <p>ACC: {{selectedUnit.acc}}</p>
           <p>EVA: {{selectedUnit.eva}}</p>
         </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <span>Aura</span><span>{{ selectedUnit.aura.value }}%</span><span>{{ selectedUnit.aura.stat }}</span><span>for {{ selectedUnit.aura.allyTarget }} units</span><span>in {{ selectedUnit.aura.location }} mode(s)</span>
+      </div>
+      <div v-for="skill in selectedUnit.skills" :key="skill">
+        <p>{{ skill.name }} {{ skill.isPassive ? "[Passive]" : "" }}</p>
+        <p>Cooldown: {{ skill.cooldown }} Number of hits: {{ skill.numAttacks }} Scales with: {{ skill.statScaling }}</p>
+        <p><span v-for="level in skill.SkillLevels">level</span></p>
       </div>
     </div>
   </div>
@@ -147,7 +157,7 @@
 
         const standardUnit = {
           id:0,
-          name:"",//yamlUnit.Name,
+          name:"",
           img:"fallback",
           iconSuffix:"",
           portraitSuffix:"",
@@ -162,56 +172,196 @@
           crit_res:0,
           spd:0,
           acc:0,
-          eva:0
+          eva:0,
+          aura:{
+            value:0,
+            location:"",
+            allyTarget:"",
+            stat:"",
+          },
+          skills:[],
+          weapons:[]
         }
 
-        const stringData = {};
+        const standardSkill = {
+          id:0,
+          isPassive:false,
+          name:"",
+          desc:"",
+          icon:"",
+          cooldown:0,
+          numAttacks:0,
+          skillLevels:["","","","",""],
+          statScaling:[""],
+          effectReferences:[]
+        }
+
+        const standardWeapon = {
+          id:0,
+          unitTarget:0,
+          name:"",
+          icon:"",
+          skillId:0,
+          skillTarget:0,
+          bonusStat:0, //10=hp, 5=crate, 
+          bonusValue:0
+        }
+
         const unitCache = {};
         const displayedUnits = reactive([])
         const selectedUnit = reactive(standardUnit)
         const loadingStatus = ref("Init")
-        let sortingIsAZ = false
+        const sortingIsAZ = ref(false)
 
         async function loadData() {
+          const UnityTagType = new jsyaml.Type('tag:unity3d.com,2011:114', {
+            kind: 'mapping',
+            construct: (data) => data // just pass the mapping through as-is
+          })
+          const UNITY_SCHEMA = jsyaml.DEFAULT_SCHEMA.extend([UnityTagType])
+
           const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
           if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
-          const unitData = jsyaml.load(await unitDataReq.text());
+          const unitData = jsyaml.load(await unitDataReq.text(), { schema: UNITY_SCHEMA });
+          unitData.MonoBehaviour.UnitSkills = unitData.MonoBehaviour.UnitSkills.reduce((acc, entry) => {
+            acc[entry.ID] = entry
+            return acc
+          }, {});
+          unitData.MonoBehaviour.BattleOptions = unitData.MonoBehaviour.BattleOptions.reduce((acc, entry) => {
+            acc[entry.ID] = entry
+            return acc
+          }, {});
 
-          //const stringDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
-          //if (!stringDataReq.ok) throw new Error(`HTTP ${response.status}`)
-          //stringData = jsyaml.load(await stringDataReq.text());
+          const stringDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/exampleString.yaml');
+          if (!stringDataReq.ok) throw new Error(`HTTP ${response.status}`)
+          const stringData = jsyaml.load(await stringDataReq.text(), { schema: UNITY_SCHEMA });
+          const stringsById = stringData.MonoBehaviour.Strings.reduce((acc, entry) => {
+            acc[entry.ID] = entry
+            return acc
+          }, {});
+
+          console.log(unitData);
+          console.log(stringsById);
+
+          const weaponStatLookup = {
+            5:"HP",
+            10:"ATK"
+          };
 
           for (const yamlUnit of unitData.MonoBehaviour.Units) {
             console.log(yamlUnit);
-            unitCache[yamlUnit.ID] = {
-              id:yamlUnit.ID,
-              name:yamlUnit.Icon,//yamlUnit.Name,
-              img:yamlUnit.Icon,
-              iconSuffix:"",
-              portraitSuffix:"",
-              type:yamlUnit.AttributeType,
-              trait:yamlUnit.Disposition,
-              role:yamlUnit.ClassType,
-              rarity:yamlUnit.Rarity,
-              hp:yamlUnit.HP,
-              atk:yamlUnit.ATK,
-              def:yamlUnit.DEF,
-              crit_rate:yamlUnit.CRATE,
-              crit_dmg:yamlUnit.CDMG,
-              crit_res:yamlUnit.CRES,
-              spd:yamlUnit.SPD,
-              acc:yamlUnit.ACC,
-              eva:yamlUnit.EVD            
-            };
+            unitCache[yamlUnit.ID] = structuredClone(standardUnit);
+            unitCache[yamlUnit.ID].id = yamlUnit.ID;
+            unitCache[yamlUnit.ID].name = stringsById[yamlUnit.Name].Text_ENG;
+            unitCache[yamlUnit.ID].img = yamlUnit.Icon;
+            unitCache[yamlUnit.ID].iconSuffix = "";
+            unitCache[yamlUnit.ID].portraitSuffix = "";
+            unitCache[yamlUnit.ID].type = yamlUnit.AttributeType;
+            unitCache[yamlUnit.ID].trait = yamlUnit.Disposition;
+            unitCache[yamlUnit.ID].role = yamlUnit.ClassType;
+            unitCache[yamlUnit.ID].rarity = yamlUnit.Rarity;
+            unitCache[yamlUnit.ID].hp = yamlUnit.HP;
+            unitCache[yamlUnit.ID].atk = yamlUnit.ATK;
+            unitCache[yamlUnit.ID].def = yamlUnit.DEF;
+            unitCache[yamlUnit.ID].crit_rate = yamlUnit.CRATE;
+            unitCache[yamlUnit.ID].crit_dmg = yamlUnit.CDMG;
+            unitCache[yamlUnit.ID].crit_res = yamlUnit.CRES;
+            unitCache[yamlUnit.ID].spd = yamlUnit.SPD;
+            unitCache[yamlUnit.ID].acc = yamlUnit.ACC;
+            unitCache[yamlUnit.ID].eva = yamlUnit.EVD;
+            const auraData = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillAuraID].AuraInfo.split(",");
+            unitCache[yamlUnit.ID].aura.value = Number(auraData[0]);
+            unitCache[yamlUnit.ID].aura.allyTarget = auraData[2];
+            unitCache[yamlUnit.ID].aura.location = auraData[1];
+            unitCache[yamlUnit.ID].aura.stat = auraData[3];
+            if(yamlUnit.SkillID1) {
+              const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID1];
+              const skill1 = {
+                ...standardSkill,
+                id:yamlUnit.SkillID1,
+                isPassive:skillYaml.SkillBtnType == -1,
+                name:stringsById[skillYaml.Name].Text_ENG,
+                desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "",
+                icon:skillYaml.Icon,
+                cooldown:skillYaml.Turn,
+                numAttacks:skillYaml.SkillAtkCnt,
+                skillLevels:skillYaml.SkillLevel?.split("/") ?? "",
+                statScaling:skillYaml.DmgBase?.split("/") ?? "",
+                effectReferences: typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/")
+              };
+              unitCache[yamlUnit.ID].skills.push(skill1);
+            }
+            if(yamlUnit.SkillID2) {
+              const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID2];
+              const skill2 = {
+                ...standardSkill,
+                id:yamlUnit.SkillID2,
+                isPassive:skillYaml.SkillBtnType == -1,
+                name:stringsById[skillYaml.Name].Text_ENG,
+                desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "",
+                icon:skillYaml.Icon,
+                cooldown:skillYaml.Turn,
+                numAttacks:skillYaml.SkillAtkCnt,
+                skillLevels:skillYaml.SkillLevel?.split("/") ?? "",
+                statScaling:skillYaml.DmgBase?.split("/") ?? "",
+                effectReferences: typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/")
+              };
+              unitCache[yamlUnit.ID].skills.push(skill2);
+            }
+            if(yamlUnit.SkillID3) {
+              const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID3];
+              const skill3 = {
+                ...standardSkill,
+                id:yamlUnit.SkillID3,
+                isPassive:skillYaml.SkillBtnType == -1,
+                name:stringsById[skillYaml.Name].Text_ENG,
+                desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "",
+                icon:skillYaml.Icon,
+                cooldown:skillYaml.Turn,
+                numAttacks:skillYaml.SkillAtkCnt,
+                skillLevels:skillYaml.SkillLevel?.split("/") ?? "",
+                statScaling:skillYaml.DmgBase?.split("/") ?? "",
+                effectReferences: typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/")
+              };
+              unitCache[yamlUnit.ID].skills.push(skill3);
+            }
+            if(yamlUnit.SkillID4) {
+              const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID4];
+              const skill4 = {
+                ...standardSkill,
+                id:yamlUnit.SkillID4,
+                isPassive:skillYaml.SkillBtnType == -1,
+                name:stringsById[skillYaml.Name].Text_ENG,
+                desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "",
+                icon:skillYaml.Icon,
+                cooldown:skillYaml.Turn,
+                numAttacks:skillYaml.SkillAtkCnt,
+                skillLevels:skillYaml.SkillLevel?.split("/") ?? "",
+                statScaling:skillYaml.DmgBase?.split("/") ?? "",
+                effectReferences: typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/")
+              };
+              unitCache[yamlUnit.ID].skills.push(skill4);
+            }
             console.log(unitCache[yamlUnit.ID]);
             displayedUnits.push(yamlUnit.ID);
           }
+
+          for(const weapon of unitData.MonoBehaviour.UnitWeapons) {
+            unitCache[weapon.UnitID].weapons.push({
+              ...standardWeapon,
+              id:weapon.ID,
+              unitTarget:weapon.UnitID,
+              name:stringsById[weapon.Name],
+              icon:weapon.Icon ?? "",
+              skillId:weapon.SkillID,
+              skillTarget:weapon.SkillSlot,
+              bonusStat:weaponStatLookup[weapon.OptType] ?? "? Stat", //10=hp, 5=crate, 
+              bonusValue:weapon.OptValue
+            });
+          }
           
-          //console.log(unitData);
-          //console.log(unitCache);
           if(Object.keys(unitCache).length > 0) {
             Object.assign(selectedUnit, unitCache[Object.keys(unitCache)[0]]);
-            //console.log(selectedUnit);
           }
           loadingStatus.value = "Finished loading"
         }
@@ -241,16 +391,16 @@
         }
 
         function toggleDisplayOrder() {
-          if(sortingIsAZ) {
+          if(sortingIsAZ.value) {
             displayedUnits.sort((a,b) => a - b);
           } else {
             displayedUnits.sort((a,b) => unitCache[a].name.localeCompare(unitCache[b].name));
           }
-          sortingIsAZ = !sortingIsAZ
+          sortingIsAZ.value = !sortingIsAZ.value
         }
         
         loadData()
-        return { typeLookup, roleLookup, traitLookup, rarityLookup, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit }
+        return { sortingIsAZ, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit }
       }
     }).mount('#UnitCodex')
   </script>
