@@ -220,6 +220,44 @@ MonoBehaviour:
     BOCondiCheck: 10499
     TriggerKeyword:
     AuraInfo:
+  - ID: 112
+    Name: Tbl_UnitSkill_Name_112
+    Desc: Tbl_UnitSkill_Desc_112
+    SkillTypeDesc: Tbl_SkillTypeDesc_2
+    Icon: 112
+    Turn: 4
+    SkillBtnType: 0
+    SkillAtkCnt: 5
+    SkillAddAtkCnt: 0
+    ChgTarFlag: 0
+    SkillCamType: 0
+    SkillCutFlag: 0
+    SkillLevel: '[D:10]/[D:10]/[D:10]/[D:10]/[D:10]'
+    DmgBase: '[ATK]'
+    BOList: 11201/11202/11203
+    NeedEvolLv: 0
+    BOCondiCheck:
+    TriggerKeyword: SelfBuff
+    AuraInfo:
+  - ID: 113
+    Name: Tbl_UnitSkill_Name_113
+    Desc: Tbl_UnitSkill_Desc_113
+    SkillTypeDesc: Tbl_SkillTypeDesc_5
+    Icon: 113
+    Turn: 5
+    SkillBtnType: 0
+    SkillAtkCnt: 6
+    SkillAddAtkCnt: 0
+    ChgTarFlag: 0
+    SkillCamType: 0
+    SkillCutFlag: 2
+    SkillLevel: '[D:10]/[D:10]/[D:10]/[D:10]/[D:10]'
+    DmgBase: '[ATK]/[SPD]'
+    BOList: 11301/11302/11303
+    NeedEvolLv: 1
+    BOCondiCheck:
+    TriggerKeyword: CutSkill
+    AuraInfo:
   - ID: 200
     Name: Tbl_UnitSkill_Name_CRI_RATE
     Desc: Tbl_UnitSkill_Desc_Aura
@@ -296,6 +334,25 @@ MonoBehaviour:
     BOCondiCheck:
     TriggerKeyword: CutSkill
     AuraInfo:
+  - ID: 212
+    Name: Tbl_UnitSkill_Name_212
+    Desc: Tbl_UnitSkill_Desc_212
+    SkillTypeDesc: Tbl_SkillTypeDesc_4
+    Icon: 212
+    Turn: 4
+    SkillBtnType: -1
+    SkillAtkCnt: 1
+    SkillAddAtkCnt: 0
+    ChgTarFlag: 0
+    SkillCamType: 0
+    SkillCutFlag: 0
+    SkillLevel:
+    DmgBase:
+    BOList: 21201
+    NeedEvolLv: 0
+    BOCondiCheck: 21299
+    TriggerKeyword: SelfBuff
+    AuraInfo:
   - ID: 300
     Name: Tbl_UnitSkill_Name_CRI_RES
     Desc: Tbl_UnitSkill_Desc_Aura
@@ -368,6 +425,25 @@ MonoBehaviour:
     SkillLevel: '[D:10]/[P:10]/[D:10]/[P:10]/[D:10]'
     DmgBase: '[ATK]'
     BOList: 30301/30302/30303
+    NeedEvolLv: 1
+    BOCondiCheck:
+    TriggerKeyword:
+    AuraInfo:
+  - ID: 313
+    Name: Tbl_UnitSkill_Name_313
+    Desc: Tbl_UnitSkill_Desc_313
+    SkillTypeDesc: Tbl_SkillTypeDesc_2
+    Icon: 313
+    Turn: 5
+    SkillBtnType: 0
+    SkillAtkCnt: 1
+    SkillAddAtkCnt: 0
+    ChgTarFlag: 0
+    SkillCamType: 0
+    SkillCutFlag: 0
+    SkillLevel: '[D:10]/[P:10]/[D:10]/[P:10]/[D:10]'
+    DmgBase: '[ATK]'
+    BOList: 31301/31302/31303
     NeedEvolLv: 1
     BOCondiCheck:
     TriggerKeyword:
