@@ -97,11 +97,11 @@
           <p>ATK: {{selectedUnit.atk}}</p>
           <p>DEF: {{selectedUnit.def}}</p>
           <p>SPD: {{selectedUnit.spd}}</p>
-          <p>CRIT RATE: {{selectedUnit.crit_rate}}</p>
-          <p>CRIT DMG: {{selectedUnit.crit_dmg}}</p>
-          <p>CRIT RES: {{selectedUnit.crit_res}}</p>
-          <p>ACC: {{selectedUnit.acc}}</p>
-          <p>EVA: {{selectedUnit.eva}}</p>
+          <p>CRIT RATE: {{selectedUnit.crit_rate}}%</p>
+          <p>CRIT DMG: {{selectedUnit.crit_dmg}}%</p>
+          <p>CRIT RES: {{selectedUnit.crit_res}}%</p>
+          <p>ACC: {{selectedUnit.acc}}%</p>
+          <p>EVA: {{selectedUnit.eva}}%</p>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@
         <div style="display:inline-block">
           <p>{{ skill.name }} {{ skill.isPassive ? "[Passive]" : "" }}</p>
           <p>Cooldown: {{ skill.cooldown }} Number of hits: {{ skill.numAttacks }} Scales with: {{ skill.statScaling }}</p>
-          <p><span v-for="level in skill.SkillLevels">level</span></p>
+          <p><span v-for="level in skill.skillLevels">{{level}}</span></p>
         </div>
       </div>
       <div v-for="weap in selectedUnit.weapons" :key="weap">
@@ -123,7 +123,7 @@
         <div style="display:inline-block">
           <p>{{ weap.skill.name }} {{ weap.skill.isPassive ? "[Passive]" : "" }}</p>
           <p>Cooldown: {{ weap.skill.cooldown }} Number of hits: {{ weap.skill.numAttacks }} Scales with: {{ weap.skill.statScaling }}</p>
-          <p><span v-for="level in weap.skill.SkillLevels">level</span></p>
+          <p><span v-for="level in weap.skill.skillLevels">{{level}}</span></p>
         </div>
       </div>
     </div>
@@ -298,12 +298,12 @@
             unitCache[yamlUnit.ID].hp = yamlUnit.HP;
             unitCache[yamlUnit.ID].atk = yamlUnit.ATK;
             unitCache[yamlUnit.ID].def = yamlUnit.DEF;
-            unitCache[yamlUnit.ID].crit_rate = yamlUnit.CRATE;
-            unitCache[yamlUnit.ID].crit_dmg = yamlUnit.CDMG;
-            unitCache[yamlUnit.ID].crit_res = yamlUnit.CRES;
+            unitCache[yamlUnit.ID].crit_rate = yamlUnit.CRATE/10;
+            unitCache[yamlUnit.ID].crit_dmg = yamlUnit.CDMG/10;
+            unitCache[yamlUnit.ID].crit_res = yamlUnit.CRES/10;
             unitCache[yamlUnit.ID].spd = yamlUnit.SPD;
-            unitCache[yamlUnit.ID].acc = yamlUnit.ACC;
-            unitCache[yamlUnit.ID].eva = yamlUnit.EVD;
+            unitCache[yamlUnit.ID].acc = yamlUnit.ACC/10;
+            unitCache[yamlUnit.ID].eva = yamlUnit.EVD/10;
             const auraData = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillAuraID].AuraInfo.split(",");
             unitCache[yamlUnit.ID].aura.value = Number(auraData[0]);
             unitCache[yamlUnit.ID].aura.allyTarget = auraData[2];
