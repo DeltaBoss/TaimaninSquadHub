@@ -1,0 +1,449 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Igawa Asagi",
+    "img": "1_Asagi",
+    "iconSuffix": "_4",
+    "portraitSuffix": "_1",
+    "type": 1,
+    "trait": 4,
+    "role": 1,
+    "rarity": 5,
+    "atk": 1360,
+    "def": 1109,
+    "crit_rate": 5,
+    "crit_dmg": 57.5,
+    "crit_res": 0,
+    "spd": 91,
+    "acc": 0,
+    "eva": 0,
+    "aura": {
+      "value": 7.5,
+      "location": "QUEST_ALL",
+      "allyTarget": "Destruction",
+      "stat": "SpdRate"
+    },
+    "skills": [
+      {
+        "id": 101,
+        "isPassive": false,
+        "name": "Taimanin Art: Hawk Slash",
+        "desc": "Swings the sword horizontally and slashes the enemy.\n[&Common_Word_Skill_ATKSPD]",
+        "icon": 101,
+        "cooldown": 0,
+        "numAttacks": 1,
+        "skillLevels": [
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]",
+          "[SPD]"
+        ],
+        "effectReferences": "10101"
+      },
+      {
+        "id": 102,
+        "isPassive": false,
+        "name": "Hirenka",
+        "desc": "SKILL_DESC",
+        "icon": 102,
+        "cooldown": 4,
+        "numAttacks": 5,
+        "skillLevels": [
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]"
+        ],
+        "effectReferences": [
+          "10201",
+          "10202",
+          "10203"
+        ]
+      },
+      {
+        "id": 103,
+        "isPassive": false,
+        "name": "Koujin Zanka",
+        "desc": "SKILL_DESC",
+        "icon": 103,
+        "cooldown": 5,
+        "numAttacks": 6,
+        "skillLevels": [
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]",
+          "[SPD]"
+        ],
+        "effectReferences": [
+          "10301",
+          "10302",
+          "10303"
+        ]
+      },
+      {
+        "id": 104,
+        "isPassive": true,
+        "name": "Almighty Taimanin",
+        "desc": "SKILL_DESC",
+        "icon": 104,
+        "cooldown": 0,
+        "numAttacks": 0,
+        "skillLevels": "",
+        "statScaling": "",
+        "effectReferences": "10401"
+      }
+    ],
+    "weapons": [
+      {
+        "id": 101,
+        "unitTarget": 1,
+        "name": {
+          "ID": "Tbl_UnitWeapon_Name_101",
+          "Text_KOR": "[&Color_Orange]암살닌자도 토키자키[-]",
+          "Text_JPN": "[&Color_Orange]暗殺忍者刀・瞬裂[-]",
+          "Text_ENG": "[&Color_Orange]Tokizaki[-]",
+          "Text_CHS": "[&Color_Orange]暗杀忍者刀・瞬裂[-]",
+          "Text_CHT": "[&Color_Orange]暗殺忍者刀・瞬裂[-]",
+          "Text_ESP": "[&Color_Orange]Cuchilla Ninja Asesina Tokizaki[-]"
+        },
+        "icon": "Weapon_101.png",
+        "skillId": 113,
+        "skillTarget": 103,
+        "skill": {
+          "id": 113,
+          "isPassive": false,
+          "name": "<Tokizaki> Koujin Zanka",
+          "desc": "SKILL_DESC",
+          "icon": 113,
+          "cooldown": 5,
+          "numAttacks": 6,
+          "skillLevels": [
+            "[D:10]",
+            "[D:10]",
+            "[D:10]",
+            "[D:10]",
+            "[D:10]"
+          ],
+          "statScaling": [
+            "[ATK]",
+            "[SPD]"
+          ],
+          "effectReferences": [
+            "11301",
+            "11302",
+            "11303"
+          ]
+        },
+        "bonusStat": "ATK",
+        "bonusValue": 47
+      },
+      {
+        "id": 102,
+        "unitTarget": 1,
+        "name": {
+          "ID": "Tbl_UnitWeapon_Name_102",
+          "Text_KOR": "[&Color_Orange]대마닌자도 구렌[-]",
+          "Text_JPN": "[&Color_Orange]対魔忍者刀・紅蓮[-]",
+          "Text_ENG": "[&Color_Orange]Gurren[-]",
+          "Text_CHS": "[&Color_Orange]对魔忍者刀・红莲[-]",
+          "Text_CHT": "[&Color_Orange]對魔忍者刀・紅蓮[-]",
+          "Text_ESP": "[&Color_Orange]Cuchilla Taimanin Guren[-]"
+        },
+        "icon": "Weapon_102.png",
+        "skillId": 112,
+        "skillTarget": 102,
+        "skill": {
+          "id": 112,
+          "isPassive": false,
+          "name": "<Gurren> Hirenka",
+          "desc": "SKILL_DESC",
+          "icon": 112,
+          "cooldown": 4,
+          "numAttacks": 5,
+          "skillLevels": [
+            "[D:10]",
+            "[D:10]",
+            "[D:10]",
+            "[D:10]",
+            "[D:10]"
+          ],
+          "statScaling": [
+            "[ATK]"
+          ],
+          "effectReferences": [
+            "11201",
+            "11202",
+            "11203"
+          ]
+        },
+        "bonusStat": "HP",
+        "bonusValue": 35
+      }
+    ],
+    "hp": 22196
+  },
+  "2": {
+    "id": 2,
+    "name": "Igawa Sakuya",
+    "img": "2_Sakuya",
+    "iconSuffix": "",
+    "portraitSuffix": "",
+    "type": 3,
+    "trait": 5,
+    "role": 1,
+    "rarity": 3,
+    "atk": 1325,
+    "def": 676,
+    "crit_rate": 5,
+    "crit_dmg": 57.5,
+    "crit_res": 0,
+    "spd": 77,
+    "acc": 0,
+    "eva": 0,
+    "aura": {
+      "value": 27.5,
+      "location": "QUEST_TACTICS_ANALYSIS",
+      "allyTarget": "Agility",
+      "stat": "CriRate"
+    },
+    "skills": [
+      {
+        "id": 201,
+        "isPassive": false,
+        "name": "Taimanin Art: Dark Moon Slash",
+        "desc": "SKILL_DESC",
+        "icon": 201,
+        "cooldown": 0,
+        "numAttacks": 2,
+        "skillLevels": [
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]"
+        ],
+        "effectReferences": [
+          "20101",
+          "20102",
+          "20103"
+        ]
+      },
+      {
+        "id": 202,
+        "isPassive": false,
+        "name": "Moon Shadow",
+        "desc": "SKILL_DESC",
+        "icon": 202,
+        "cooldown": 3,
+        "numAttacks": 1,
+        "skillLevels": "",
+        "statScaling": "",
+        "effectReferences": "20201"
+      },
+      {
+        "id": 203,
+        "isPassive": true,
+        "name": "Straggling Genius",
+        "desc": "SKILL_DESC",
+        "icon": 203,
+        "cooldown": 0,
+        "numAttacks": 0,
+        "skillLevels": "",
+        "statScaling": "",
+        "effectReferences": "20301"
+      }
+    ],
+    "weapons": [
+      {
+        "id": 201,
+        "unitTarget": 2,
+        "name": {
+          "ID": "Tbl_UnitWeapon_Name_201",
+          "Text_KOR": "[&Color_Orange]리버레이터&소닉 블레이드[-]",
+          "Text_JPN": "[&Color_Orange]リベレーター＆ソニックブレイド[-]",
+          "Text_ENG": "[&Color_Orange]Liberator & Sonic Blade[-]",
+          "Text_CHS": "[&Color_Orange]解放者&音速刃[-]",
+          "Text_CHT": "[&Color_Orange]解放者&音速刃[-]",
+          "Text_ESP": "[&Color_Orange]Liberador & Espada Sónica[-]"
+        },
+        "icon": "Weapon_201.png",
+        "skillId": 212,
+        "skillTarget": 202,
+        "skill": {
+          "id": 212,
+          "isPassive": true,
+          "name": "",
+          "desc": "SKILL_DESC",
+          "icon": 212,
+          "cooldown": 4,
+          "numAttacks": 1,
+          "skillLevels": "",
+          "statScaling": "",
+          "effectReferences": "21201"
+        },
+        "bonusStat": "? Stat",
+        "bonusValue": 47
+      }
+    ],
+    "hp": 16356
+  },
+  "3": {
+    "id": 3,
+    "name": "Shirayuki",
+    "img": "3_Shirayuki",
+    "iconSuffix": "_2",
+    "portraitSuffix": "",
+    "type": 3,
+    "trait": 7,
+    "role": 3,
+    "rarity": 3,
+    "atk": 987,
+    "def": 789,
+    "crit_rate": 2.5,
+    "crit_dmg": 50,
+    "crit_res": 0,
+    "spd": 76,
+    "acc": 5,
+    "eva": 0,
+    "aura": {
+      "value": 15,
+      "location": "QUEST_ALL",
+      "allyTarget": "AllUnit",
+      "stat": "CriRes"
+    },
+    "skills": [
+      {
+        "id": 301,
+        "isPassive": false,
+        "name": "Cluster Ice Blaster",
+        "desc": "SKILL_DESC",
+        "icon": 301,
+        "cooldown": 0,
+        "numAttacks": 1,
+        "skillLevels": [
+          "[D:10]",
+          "[P:10]",
+          "[D:10]",
+          "[P:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]"
+        ],
+        "effectReferences": [
+          "30101",
+          "30102"
+        ]
+      },
+      {
+        "id": 302,
+        "isPassive": false,
+        "name": "Ice Laser",
+        "desc": "SKILL_DESC",
+        "icon": 302,
+        "cooldown": 3,
+        "numAttacks": 1,
+        "skillLevels": [
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]"
+        ],
+        "effectReferences": [
+          "30201",
+          "30202"
+        ]
+      },
+      {
+        "id": 303,
+        "isPassive": false,
+        "name": "Ice Fall",
+        "desc": "SKILL_DESC",
+        "icon": 303,
+        "cooldown": 5,
+        "numAttacks": 1,
+        "skillLevels": [
+          "[D:10]",
+          "[P:10]",
+          "[D:10]",
+          "[P:10]",
+          "[D:10]"
+        ],
+        "statScaling": [
+          "[ATK]"
+        ],
+        "effectReferences": [
+          "30301",
+          "30302",
+          "30303"
+        ]
+      }
+    ],
+    "weapons": [
+      {
+        "id": 301,
+        "unitTarget": 3,
+        "name": {
+          "ID": "Tbl_UnitWeapon_Name_301",
+          "Text_KOR": "[&Color_Orange]크리스탈 스태프[-]",
+          "Text_JPN": "[&Color_Orange]クリスタルスタッフ[-]",
+          "Text_ENG": "[&Color_Orange]Crystal Staff[-]",
+          "Text_CHS": "[&Color_Orange]水晶法杖[-]",
+          "Text_CHT": "[&Color_Orange]水晶法杖[-]",
+          "Text_ESP": "[&Color_Orange]Báculo de Cristal[-]"
+        },
+        "icon": "Weapon_301.png",
+        "skillId": 313,
+        "skillTarget": 303,
+        "skill": {
+          "id": 313,
+          "isPassive": false,
+          "name": "<Crystal Staff> Ice Fall",
+          "desc": "SKILL_DESC",
+          "icon": 313,
+          "cooldown": 5,
+          "numAttacks": 1,
+          "skillLevels": [
+            "[D:10]",
+            "[P:10]",
+            "[D:10]",
+            "[P:10]",
+            "[D:10]"
+          ],
+          "statScaling": [
+            "[ATK]"
+          ],
+          "effectReferences": [
+            "31301",
+            "31302",
+            "31303"
+          ]
+        },
+        "bonusStat": "? Stat",
+        "bonusValue": 24
+      }
+    ],
+    "hp": 20868
+  }
+}

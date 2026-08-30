@@ -31,6 +31,17 @@
     height:100px;
     display:inline-block;
   }
+  .simpleFilterButton {
+    filter:brightness(100%);
+    background-color: darkgreen;
+  }
+  .simpleFilterButtonInactive {
+    background-color: darkgrey;
+    filter: brightness(50%);
+  }
+  .simpleFilterButtonImage {
+    height: 40px;
+  }
   </style>
 </head>
 <body>
@@ -49,22 +60,36 @@
   <hr>
   <div id="UnitCodex">
     <div>
-      <div style="display: inline-block;">
-        <p>TaimaninSquad Unit Codex</p>
-      </div>
       <div>
-        <span>{{loadingStatus}}</span>
+        <span>TaimaninSquad Unit Codex</span>
+        <div style="float: right;">
+          <span>{{loadingStatus}}</span>
+          <button @click="exportUnitCache">Export Unit Data</button>
+        </div>
       </div>
-      <div style="display: inline-block;">
+      <div style="display: block;">
         <input type="text" alt="search" id="searchbar">
         <button @click="toggleDisplayOrder">{{sortingIsAZ ? "A-Z" : "Id"}}</button>
       </div>
     </div>
     <div>
-      <p class="ilp">[Common|Uncommon|Rare|Epic|Legendary]</p>
-      <p class="ilp">[Offense|Defense|Support]</p>
-      <p class="ilp">[Power|Agility|Technique|Balanced]</p>
-      <p class="ilp">[Moon|Mars|Mercury|Jupiter|Venus|Saturn|Sun]</p>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.commonFilter}" @click="toggleSimpleFilter('commonFilter')">Common</button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.uncommonFilter}" @click="toggleSimpleFilter('uncommonFilter')">Uncommon</button><button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.rareFilter}" @click="toggleSimpleFilter('rareFilter')">Rare</button><button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.epicFilter}" @click="toggleSimpleFilter('epicFilter')">Epic</button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.legendaryFilter}" @click="toggleSimpleFilter('legendaryFilter')">Legendary</button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.offenseFilter}" @click="toggleSimpleFilter('offenseFilter')"><img src="img/role_off.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.defenseFilter}" @click="toggleSimpleFilter('defenseFilter')"><img src="img/role_def.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.supportFilter}" @click="toggleSimpleFilter('supportFilter')"><img src="img/role_sup.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.powerFilter}" @click="toggleSimpleFilter('powerFilter')"><img src="img/type_pow.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.techniqueFilter}" @click="toggleSimpleFilter('techniqueFilter')"><img src="img/type_tec.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.agilityFilter}" @click="toggleSimpleFilter('agilityFilter')"><img src="img/type_agi.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.balancedFilter}" @click="toggleSimpleFilter('balancedFilter')"><img src="img/type_bal.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.moonFilter}" @click="toggleSimpleFilter('moonFilter')"><img src="img/UnitDisPosition_1_Big.png" class="simpleFilterButtonImage" /></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.marsFilter}" @click="toggleSimpleFilter('marsFilter')"><img src="img/UnitDisPosition_2_Big.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.mercuryFilter}" @click="toggleSimpleFilter('mercuryFilter')"><img src="img/UnitDisPosition_3_Big.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.jupiterFilter}" @click="toggleSimpleFilter('jupiterFilter')"><img src="img/UnitDisPosition_4_Big.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.venusFilter}" @click="toggleSimpleFilter('venusFilter')"><img src="img/UnitDisPosition_5_Big.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.saturnFilter}" @click="toggleSimpleFilter('saturnFilter')"><img src="img/UnitDisPosition_6_Big.png" class="simpleFilterButtonImage"/></button>
+      <button class="simpleFilterButton" :class="{simpleFilterButtonInactive:!simpleFilterStates.sunFilter}" @click="toggleSimpleFilter('sunFilter')"><img src="img/UnitDisPosition_7_Big.png" class="simpleFilterButtonImage"/></button>
     </div>
     <div>
       <p>Advanced Filters</p>
@@ -106,15 +131,20 @@
       </div>
     </div>
     <div>
-      <div>
-        <span>Aura</span><span>{{ selectedUnit.aura.value }}%</span><span>{{ selectedUnit.aura.stat }}</span><span>for {{ selectedUnit.aura.allyTarget }} units</span><span>in {{ selectedUnit.aura.location }} mode(s)</span>
+      <div style="display: inline-flex; gap: 8px;">
+        <span>Aura</span><span>{{ selectedUnit.aura.value }}%</span><span>{{ SKILL_LOOKUP[selectedUnit.aura.stat]??selectedUnit.aura.stat }}</span><span>for {{ SKILL_LOOKUP[selectedUnit.aura.allyTarget]??selectedUnit.aura.allyTarget }} units</span><span>in {{ SKILL_LOOKUP[selectedUnit.aura.location]??selectedUnit.aura.location }} mode(s)</span>
       </div>
       <div v-for="skill in selectedUnit.skills" :key="skill">
         <img :src="'img/skills/'+skill.id+'.png'" :alt="skill.name" class="skillImg" />
         <div style="display:inline-block">
           <p>{{ skill.name }} {{ skill.isPassive ? "[Passive]" : "" }}</p>
           <p>Cooldown: {{ skill.cooldown }} Number of hits: {{ skill.numAttacks }} Scales with: {{ skill.statScaling }}</p>
-          <p><span v-for="level in skill.skillLevels">{{level}}</span></p>
+          <p>
+            <template v-for="(level, index) in skill.skillLevels" :key="index">
+              <span>{{ SKILL_LOOKUP[level] ?? level }}</span>
+              <span v-if="index < skill.skillLevels.length - 1"> => </span>
+            </template>
+          </p>
         </div>
       </div>
       <div v-for="weap in selectedUnit.weapons" :key="weap">
@@ -172,6 +202,32 @@
         const DEFAULT_RARITY = { img: '5', text: '???' }
         const rarityLookup = computed(() => RARITY_LOOKUP[selectedUnit.rarity] ?? DEFAULT_RARITY)
 
+        const SKILL_LOOKUP = {
+          "HpRate": "Health",
+          "AtkRate": "Attack",
+          "DefRate": "Defense",
+          "SpdRate": "Speed",
+          "CriRate": "Crit Rate",
+          "CriRes": "Crit Resistance",
+          "CriDmg": "Crit Damage",
+          "Acc": "Accuracy",
+          "Evd":"Evasion",
+          "Destruction": "Power",
+          "AllUnit": "all units",
+          "QUEST_ALL": "all",
+          "QUEST_TACTICS_ANALYSIS": "tactical",
+          "[D:10]": "+10% Damage",
+          "[P:10]": "+10% Chance",
+          "[B:10]": "+10% Buff/Debuff",
+          "[H:10]": "+10% Healing",
+          "CriRes": "Crit Resistance",
+          "Destruction": "Power",
+          "AllUnit": "all units",
+          "QUEST_ALL": "all",
+          "QUEST_TACTICS_ANALYSIS": "tactical training",
+          "asd":"asdgf"
+        }
+
         const standardUnit = {
           id:0,
           name:"",
@@ -181,7 +237,7 @@
           type:"",
           trait:"",
           role:"",
-          rarity:"",
+          rarity:0,
           atk:0,
           def:0,
           crit_rate:0,
@@ -213,13 +269,34 @@
           effectReferences:[]
         }
 
+        const standardSkillEffect = {
+          effect:"",
+          trigger:"",
+          target:"",
+          inflictRate:0,
+          val1:0,
+          val2:0,
+          val3:0
+        }
+
+        //insert weapon name, cut color codes
+        function cleanString(str) {
+          if(str[0] === "<") {
+            const closingTag = str.indexOf(">");
+            const weapon = cleanString(stringsById[str.substring(3,closingTag-1)]?.Text_ENG ?? "WEAPON_NAME");
+            const skill = cleanString(stringsById[str.substring(str.lastIndexOf("[&")+2,str.lastIndexOf("]"))]?.Text_ENG ?? "SKILL_NAME");
+            return "<" + weapon + "> " + skill;
+          }
+          return str.substring(str.indexOf("]") + 1, str.lastIndexOf("["));
+        }
+
         function skillYamlToObj(skillYaml, skillId) {
           return {
             ...standardSkill,
             id:skillId,
             isPassive:skillYaml.SkillBtnType == -1,
-            name:stringsById[skillYaml.Name]?.Text_ENG ?? "SKILL NAME",
-            desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "SKILL DESC",
+            name:cleanString(stringsById[skillYaml.Name]?.Text_ENG ?? "SKILL_NAME"),
+            desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "SKILL_DESC",
             icon:skillYaml.Icon,
             cooldown:skillYaml.Turn,
             numAttacks:skillYaml.SkillAtkCnt,
@@ -246,14 +323,40 @@
         const selectedUnit = reactive(standardUnit)
         const loadingStatus = ref("Init")
         const sortingIsAZ = ref(false)
+        const simpleFilterStates = ref({
+          powerFilter:true,
+          techniqueFilter:true,
+          agilityFilter:true,
+          balancedFilter:true,
+          offenseFilter:true,
+          defenseFilter:true,
+          supportFilter:true,
+          moonFilter:true,
+          marsFilter:true,
+          mercuryFilter:true,
+          jupiterFilter:true,
+          venusFilter:true,
+          saturnFilter:true,
+          sunFilter:true,
+          commonFilter:true,
+          uncommonFilter:true,
+          rareFilter:true,
+          epicFilter:true,
+          legendaryFilter:true
+        })
 
         let stringsById = null;
-        async function loadData() {
+        async function loadData(loadFromJSON = false) {
+          if(loadFromJSON) {
+            
+          } else {
           const UnityTagType = new jsyaml.Type('tag:unity3d.com,2011:114', {
             kind: 'mapping',
             construct: (data) => data // just pass the mapping through as-is
           })
           const UNITY_SCHEMA = jsyaml.DEFAULT_SCHEMA.extend([UnityTagType])
+
+          loadingStatus.value = "Getting data from GitHub...";
 
           const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/example.yaml');
           if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
@@ -275,15 +378,16 @@
             return acc
           }, {});
 
-          console.log(unitData);
-          console.log(stringsById);
-
           const weaponStatLookup = {
             5:"HP",
             10:"ATK"
           };
 
+          loadingStatus.value = "Building unit cache...";
+          let counter = 1;
+          const numUnits = Object.keys(unitData.MonoBehaviour.Units).length;
           for (const yamlUnit of unitData.MonoBehaviour.Units) {
+            loadingStatus.value = "Caching: " + counter + "/" + numUnits;
             console.log(yamlUnit);
             unitCache[yamlUnit.ID] = structuredClone(standardUnit);
             unitCache[yamlUnit.ID].id = yamlUnit.ID;
@@ -328,7 +432,7 @@
             console.log(unitCache[yamlUnit.ID]);
             displayedUnits.push(yamlUnit.ID);
           }
-
+          loadingStatus.value = "Caching weapons..."
           for(const weapon of unitData.MonoBehaviour.UnitWeapons) {
             unitCache[weapon.UnitID].weapons.push({
               ...standardWeapon,
@@ -343,11 +447,13 @@
               bonusValue:weapon.OptValue
             });
           }
+        }
           
           if(Object.keys(unitCache).length > 0) {
             Object.assign(selectedUnit, unitCache[Object.keys(unitCache)[0]]);
           }
-          loadingStatus.value = "Finished loading"
+
+          loadingStatus.value = "Finished loading."
         }
 
         function handleImgError(event, unitObj, isIcon) {
@@ -370,6 +476,112 @@
           }
         }
 
+        const simpleFilters = {
+          commonFilter: (unit) => unit.rarity == 1,
+          uncommonFilter: (unit) => unit.rarity == 2,
+          rareFilter: (unit) => unit.rarity == 3,
+          epicFilter: (unit) => unit.rarity == 4,
+          legendaryFilter: (unit) => unit.rarity == 5,
+          offenseFilter: (unit) => unit.role == 1,
+          defenseFilter: (unit) => unit.role == 2,
+          supportFilter: (unit) => unit.role == 3,
+          powerFilter: (unit) => unit.type == 1,
+          techniqueFilter: (unit) => unit.type == 2,
+          agilityFilter: (unit) => unit.type == 3,
+          balancedFilter: (unit) => unit.type == 4,
+          moonFilter: (unit) => unit.trait == 1,
+          marsFilter: (unit) => unit.trait == 2,
+          mercuryFilter: (unit) => unit.trait == 3,
+          jupiterFilter: (unit) => unit.trait == 4,
+          venusFilter: (unit) => unit.trait == 5,
+          saturnFilter: (unit) => unit.trait == 6,
+          sunFilter: (unit) => unit.trait == 7
+        };
+
+        const advancedFilters = [];
+
+        function noSimpleFilterActive() {
+          return Object.values(simpleFilterStates.value).every(v => v === true);
+        }
+
+        function noTypeFilterActive() {
+          return simpleFilterStates.value.powerFilter && simpleFilterStates.value.techniqueFilter && simpleFilterStates.value.agilityFilter && simpleFilterStates.value.balancedFilter;
+        }
+
+        function noRoleFilterActive() {
+          return simpleFilterStates.value.offenseFilter && simpleFilterStates.value.defenseFilter && simpleFilterStates.value.supportFilter;
+        }
+
+        function noRarityFilterActive() {
+          return simpleFilterStates.value.commonFilter && simpleFilterStates.value.uncommonFilter && simpleFilterStates.value.rareFilter && simpleFilterStates.value.epicFilter && simpleFilterStates.value.legendaryFilter;
+        }
+
+        function noTraitFilterActive() {
+          return simpleFilterStates.value.moonFilter && simpleFilterStates.value.marsFilter && simpleFilterStates.value.mercuryFilter && simpleFilterStates.value.jupiterFilter && simpleFilterStates.value.venusFilter && simpleFilterStates.value.saturnFilter && simpleFilterStates.value.sunFilter;
+        }
+
+        function applyFilters() {
+          let newDisplay = [];
+          
+          if(!noSimpleFilterActive() || advancedFilters.length !== 0) {
+            for(const unit of Object.values(unitCache)) {
+              let reject = false;
+              if(!noRarityFilterActive()) {
+                if(!(
+                  (simpleFilterStates.value.commonFilter && simpleFilters.commonFilter(unit)) || 
+                  (simpleFilterStates.value.uncommonFilter && simpleFilters.uncommonFilter(unit)) || 
+                  (simpleFilterStates.value.rareFilter && simpleFilters.rareFilter(unit)) || 
+                  (simpleFilterStates.value.epicFilter && simpleFilters.epicFilter(unit)) || 
+                  (simpleFilterStates.value.legendaryFilter && simpleFilters.legendaryFilter(unit)))
+                  ) {
+                  continue;
+                }
+              }
+              if(!noTypeFilterActive()) {
+                if(!(
+                  (simpleFilterStates.value.powerFilter && simpleFilters.powerFilter(unit)) || 
+                  (simpleFilterStates.value.techniqueFilter && simpleFilters.techniqueFilter(unit)) || 
+                  (simpleFilterStates.value.agilityFilter && simpleFilters.agilityFilter(unit)) || 
+                  (simpleFilterStates.value.balancedFilter && simpleFilters.balancedFilter(unit)))
+                  ) {
+                  continue;
+                }
+              }
+              if(!noRoleFilterActive()) {
+                if(!(
+                  (simpleFilterStates.value.offenseFilter && simpleFilters.offenseFilter(unit)) || 
+                  (simpleFilterStates.value.defenseFilter && simpleFilters.defenseFilter(unit)) || 
+                  (simpleFilterStates.value.supportFilter && simpleFilters.supportFilter(unit)))
+                  ) {
+                  continue;
+                }
+              }
+              if(!noTraitFilterActive()) {
+                if(!(
+                  (simpleFilterStates.value.moonFilter && simpleFilters.moonFilter(unit)) || 
+                  (simpleFilterStates.value.marsFilter && simpleFilters.marsFilter(unit)) || 
+                  (simpleFilterStates.value.mercuryFilter && simpleFilters.mercuryFilter(unit)) || 
+                  (simpleFilterStates.value.venusFilter && simpleFilters.venusFilter(unit)) || 
+                  (simpleFilterStates.value.jupiterFilter && simpleFilters.jupiterFilter(unit)) || 
+                  (simpleFilterStates.value.saturnFilter && simpleFilters.saturnFilter(unit)) || 
+                  (simpleFilterStates.value.sunFilter && simpleFilters.sunFilter(unit))
+                  )) {
+                  continue;
+                }
+              }
+              if(!reject) {
+                newDisplay.push(unit.id);
+              }
+            }
+          } else {
+            newDisplay = Object.values(unitCache).map(unit => unit.id);
+          }
+          if(sortingIsAZ.value) {
+            newDisplay.sort((a,b) => unitCache[a].name.localeCompare(unitCache[b].name));
+          }
+          displayedUnits.splice(0, displayedUnits.length, ...newDisplay)
+        }
+
         function selectNewUnit(id) {
           Object.assign(selectedUnit, unitCache[id]);
         }
@@ -382,9 +594,29 @@
           }
           sortingIsAZ.value = !sortingIsAZ.value
         }
+
+        function toggleSimpleFilter(filter) {
+          simpleFilterStates.value[filter] = !simpleFilterStates.value[filter];
+          applyFilters();
+        }
+
+        function exportUnitCache() {
+          const json = JSON.stringify(unitCache, null, 2)
+          const blob = new Blob([json], { type: 'application/json' })
+          const url = URL.createObjectURL(blob)
+
+          const link = document.createElement('a')
+          link.href = url
+          link.download = 'unitCache.json'
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+
+          URL.revokeObjectURL(url)
+        }
         
         loadData()
-        return { sortingIsAZ, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit }
+        return { sortingIsAZ, simpleFilterStates, toggleSimpleFilter, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup,  SKILL_LOOKUP, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit, exportUnitCache }
       }
     }).mount('#UnitCodex')
   </script>
