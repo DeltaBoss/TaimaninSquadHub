@@ -3,13 +3,13 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {m_FileID: 0, m_PathID: 0, m_TargetClassID: 18}
-  m_PrefabInstance: {m_FileID: 0, m_PathID: 0, m_TargetClassID: 1001}
-  m_PrefabAsset: {m_FileID: 0, m_PathID: 0, m_TargetClassID: 1001480554}
-  m_GameObject: {m_FileID: 0, m_PathID: 0, m_TargetClassID: 1}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {m_FileID: 0, m_PathID: -8138109164220262880, m_TargetClassID: 115}
+  m_Script: {fileID: 11500000, guid: dbabab5dbdc81ff39ccc4d1b0a3e1295, type: 3}
   m_Name: String
   m_EditorClassIdentifier:
   Strings:
@@ -12871,7 +12871,7 @@ MonoBehaviour:
     Text_ENG: Exchange Blueprint
     Text_CHS: 设计图交换
     Text_CHT: 設計圖交換
-    Text_ESP: |Intercambiar Plano
+    Text_ESP: Intercambiar Plano
   - ID: WeaponCreate_FilterOptionDesc
     Text_KOR: '[&Artifact_FilterSubOptionDesc]'
     Text_JPN: '[&Artifact_FilterSubOptionDesc]'

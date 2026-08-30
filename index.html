@@ -436,6 +436,7 @@
               }
               console.log(unitCache[yamlUnit.ID]);
               displayedUnits.push(yamlUnit.ID);
+              counter++;
             }
             loadingStatus.value = "Caching weapons..."
             for(const weapon of unitData.MonoBehaviour.UnitWeapons) {
