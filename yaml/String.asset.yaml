@@ -12871,7 +12871,7 @@ MonoBehaviour:
     Text_ENG: Exchange Blueprint
     Text_CHS: 设计图交换
     Text_CHT: 設計圖交換
-    Text_ESP: |Intercambiar Plano
+    Text_ESP: Intercambiar Plano
   - ID: WeaponCreate_FilterOptionDesc
     Text_KOR: '[&Artifact_FilterSubOptionDesc]'
     Text_JPN: '[&Artifact_FilterSubOptionDesc]'
