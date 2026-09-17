@@ -243,12 +243,12 @@
 
         //insert weapon name, cut color codes
         function cleanString(str) {
-          if(str[0] === "<") {
+          /*if(str[0] === "<") {
             const closingTag = str.indexOf(">");
-            const weapon = cleanString(stringsById[str.substring(3,closingTag-1)]?.Text_ENG ?? "WEAPON_NAME");
-            const skill = cleanString(stringsById[str.substring(str.lastIndexOf("[&")+2,str.lastIndexOf("]"))]?.Text_ENG ?? "SKILL_NAME");
+            const weapon = cleanString(str.substring(3,closingTag-1) ?? "WEAPON_NAME");
+            const skill = cleanString(str.substring(str.lastIndexOf("[&")+2,str.lastIndexOf("]")) ?? "SKILL_NAME");
             return "<" + weapon + "> " + skill;
-          }
+          }*/
           return str.substring(str.indexOf("]") + 1, str.lastIndexOf("["));
         }
 
@@ -257,8 +257,8 @@
             ...standardSkill,
             id:skillId,
             isPassive:skillYaml.SkillBtnType == -1,
-            name:cleanString(stringsById[skillYaml.Name]?.Text_ENG ?? "SKILL_NAME"),
-            desc:stringsById[skillYaml.Desc]?.Text_ENG ?? "SKILL_DESC",
+            name:cleanString(skillYaml.DisplayName ?? "SKILL_NAME"),
+            desc:skillYaml.DisplayDesc ?? "SKILL_DESC",
             icon:skillYaml.Icon,
             cooldown:skillYaml.Turn,
             numAttacks:skillYaml.SkillAtkCnt,
@@ -308,8 +308,8 @@
         })
 
         let stringsById = null;
-        async function loadData(loadFromJSON = false) {
-          if(loadFromJSON) {
+        async function loadData(loadCached = false) {
+          if(loadCached) {
             loadingStatus.value = "Getting JSON from GitHub...";
 
             const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/unitCache.json');
@@ -317,30 +317,30 @@
             Object.assign(unitCache, JSON.parse(await unitDataReq.text()));
             displayedUnits.push(...Object.values(unitCache).map(unit => unit.id));
           } else {
-            const UnityTagType = new jsyaml.Type('tag:unity3d.com,2011:114', {
-              kind: 'mapping',
-              construct: (data) => data // just pass the mapping through as-is
-            })
-            const UNITY_SCHEMA = jsyaml.DEFAULT_SCHEMA.extend([UnityTagType])
 
-            loadingStatus.value = "Getting YAMLs from GitHub...";
+            loadingStatus.value = "Getting raw JSONs from GitHub...";
 
-            const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/Game.asset.yaml');
+            const unitDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/json/TaimaninSquad_AllUnits.json');
             if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
-            const unitData = jsyaml.load(await unitDataReq.text(), { schema: UNITY_SCHEMA });
-            unitData.MonoBehaviour.UnitSkills = unitData.MonoBehaviour.UnitSkills.reduce((acc, entry) => {
-              acc[entry.ID] = entry
-              return acc
-            }, {});
-            unitData.MonoBehaviour.BattleOptions = unitData.MonoBehaviour.BattleOptions.reduce((acc, entry) => {
-              acc[entry.ID] = entry
-              return acc
-            }, {});
+            const unitData = JSON.parse(await unitDataReq.text());
 
-            const stringDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/yaml/String.asset.yaml');
-            if (!stringDataReq.ok) throw new Error(`HTTP ${response.status}`)
-            const stringData = jsyaml.load(await stringDataReq.text(), { schema: UNITY_SCHEMA });
-            stringsById = stringData.MonoBehaviour.Strings.reduce((acc, entry) => {
+            const skillDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/json/TaimaninSquad_AllSkills.json');
+            if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
+            let skillData = JSON.parse(await skillDataReq.text());
+
+            const weaponDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/json/TaimaninSquad_AllWeapons.json');
+            if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
+            const weaponData = JSON.parse(await weaponDataReq.text());
+
+            const battleOptionDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/json/TaimaninSquad_AllBOs.json');
+            if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
+            let battleOptionData = JSON.parse(await battleOptionDataReq.text());
+
+            skillData = skillData.reduce((acc, entry) => {
+              acc[entry.ID] = entry
+              return acc
+            }, {});
+            battleOptionData = battleOptionData.reduce((acc, entry) => {
               acc[entry.ID] = entry
               return acc
             }, {});
@@ -352,70 +352,72 @@
 
             loadingStatus.value = "Building unit cache...";
             let counter = 1;
-            const numUnits = Object.keys(unitData.MonoBehaviour.Units).length;
-            for (const yamlUnit of unitData.MonoBehaviour.Units) {
+            const numUnits = unitData.length;
+            for (const unit of unitData) {
               loadingStatus.value = "Caching: " + counter + "/" + numUnits;
-              console.log(yamlUnit);
-              unitCache[yamlUnit.ID] = structuredClone(standardUnit);
-              unitCache[yamlUnit.ID].id = yamlUnit.ID;
-              unitCache[yamlUnit.ID].name = stringsById[yamlUnit.Name]?.Text_ENG ?? "NA";
-              unitCache[yamlUnit.ID].img = yamlUnit.Icon;
-              unitCache[yamlUnit.ID].iconSuffix = "";
-              unitCache[yamlUnit.ID].portraitSuffix = "";
-              unitCache[yamlUnit.ID].type = yamlUnit.AttributeType;
-              unitCache[yamlUnit.ID].trait = yamlUnit.Disposition;
-              unitCache[yamlUnit.ID].role = yamlUnit.ClassType;
-              unitCache[yamlUnit.ID].rarity = yamlUnit.Rarity;
-              unitCache[yamlUnit.ID].hp = yamlUnit.HP;
-              unitCache[yamlUnit.ID].atk = yamlUnit.ATK;
-              unitCache[yamlUnit.ID].def = yamlUnit.DEF;
-              unitCache[yamlUnit.ID].crit_rate = yamlUnit.CRATE/10;
-              unitCache[yamlUnit.ID].crit_dmg = yamlUnit.CDMG/10;
-              unitCache[yamlUnit.ID].crit_res = yamlUnit.CRES/10;
-              unitCache[yamlUnit.ID].spd = yamlUnit.SPD;
-              unitCache[yamlUnit.ID].acc = yamlUnit.ACC/10;
-              unitCache[yamlUnit.ID].eva = yamlUnit.EVD/10;
-              if(yamlUnit.SkillAuraID > 0) {
-                const auraData = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillAuraID].AuraInfo.split(",");
-                unitCache[yamlUnit.ID].aura.value = Number(auraData[0]);
-                unitCache[yamlUnit.ID].aura.allyTarget = auraData[2];
-                unitCache[yamlUnit.ID].aura.location = auraData[1];
-                unitCache[yamlUnit.ID].aura.stat = auraData[3];
+              console.log(unit);
+              unitCache[unit.ID] = structuredClone(standardUnit);
+              unitCache[unit.ID].id = unit.ID;
+              unitCache[unit.ID].name = unit.DisplayName ?? "NA";
+              unitCache[unit.ID].img = unit.Icon;
+              unitCache[unit.ID].iconSuffix = "";
+              unitCache[unit.ID].portraitSuffix = "";
+              unitCache[unit.ID].type = unit.AttributeType;
+              unitCache[unit.ID].trait = unit.Disposition;
+              unitCache[unit.ID].role = unit.ClassType;
+              unitCache[unit.ID].rarity = unit.Rarity;
+              unitCache[unit.ID].hp = unit.HP;
+              unitCache[unit.ID].atk = unit.ATK;
+              unitCache[unit.ID].def = unit.DEF;
+              unitCache[unit.ID].crit_rate = unit.CRATE/10;
+              unitCache[unit.ID].crit_dmg = unit.CDMG/10;
+              unitCache[unit.ID].crit_res = unit.CRES/10;
+              unitCache[unit.ID].spd = unit.SPD;
+              unitCache[unit.ID].acc = unit.ACC/10;
+              unitCache[unit.ID].eva = unit.EVD/10;
+              if(unit.SkillAuraID > 0) {
+                const auraData = skillData[unit.SkillAuraID].AuraInfo.split(",");
+                unitCache[unit.ID].aura.value = Number(auraData[0]);
+                unitCache[unit.ID].aura.allyTarget = auraData[2];
+                unitCache[unit.ID].aura.location = auraData[1];
+                unitCache[unit.ID].aura.stat = auraData[3];
               }
-              if(yamlUnit.SkillID1) {
-                const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID1];
-                unitCache[yamlUnit.ID].skills.push(skillYamlToObj(skillYaml, yamlUnit.SkillID1));
+              if(unit.SkillID1) {
+                const skillYaml = skillData[unit.SkillID1];
+                unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID1));
               }
-              if(yamlUnit.SkillID2) {
-                const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID2];
-                unitCache[yamlUnit.ID].skills.push(skillYamlToObj(skillYaml, yamlUnit.SkillID2));
+              if(unit.SkillID2) {
+                const skillYaml = skillData[unit.SkillID2];
+                unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID2));
               }
-              if(yamlUnit.SkillID3) {
-                const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID3];
-                unitCache[yamlUnit.ID].skills.push(skillYamlToObj(skillYaml, yamlUnit.SkillID3));
+              if(unit.SkillID3) {
+                const skillYaml = skillData[unit.SkillID3];
+                unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID3));
               }
-              if(yamlUnit.SkillID4) {
-                const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID4];
-                unitCache[yamlUnit.ID].skills.push(skillYamlToObj(skillYaml, yamlUnit.SkillID4));
+              if(unit.SkillID4) {
+                const skillYaml = skillData[unit.SkillID4];
+                unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID4));
               }
-              console.log(unitCache[yamlUnit.ID]);
-              displayedUnits.push(yamlUnit.ID);
+              console.log(unitCache[unit.ID]);
+              displayedUnits.push(unit.ID);
               counter++;
             }
             loadingStatus.value = "Caching weapons..."
-            for(const weapon of unitData.MonoBehaviour.UnitWeapons) {
-              unitCache[weapon.UnitID].weapons.push({
+            for(const weapon of weaponData) {
+              const tmpWeap = {
                 ...standardWeapon,
                 id:weapon.ID,
                 unitTarget:weapon.UnitID,
-                name:stringsById[weapon.Name],
+                name:weapon.DisplayName,
                 icon:weapon.Icon ?? "",
                 skillId:weapon.SkillID,
-                skill:skillYamlToObj(unitData.MonoBehaviour.UnitSkills[weapon.SkillID], weapon.SkillID),
+                skill:skillYamlToObj(skillData[weapon.SkillID], weapon.SkillID),
                 skillTarget:weapon.SkillSlot,
                 bonusStat:weaponStatLookup[weapon.OptType] ?? "? Stat", //10=hp, 5=crate, 
                 bonusValue:weapon.OptValue
-              });
+              };
+              tmpWeap.skill.name = "<" + cleanString(weapon.DisplayName) + "> " + cleanString(skillData[weapon.SkillSlot].DisplayName);
+              unitCache[weapon.UnitID].weapons.push(tmpWeap);
             }
           }
           if(Object.keys(unitCache).length > 0) {
