@@ -1,0 +1,73 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+li {
+    float:left;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #c22929;
+}
+.ilp {
+    display:inline;
+}
+
+.inlineIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.skillImg {
+    width:100px;
+    height:100px;
+    display:inline-block;
+}
+.weapImg {
+    width:50px;
+    height:100px;
+    display:inline-block;
+}
+.simpleFilterButton {
+    filter:brightness(100%);
+    background-color: darkgreen;
+}
+.simpleFilterButtonInactive {
+    background-color: darkgrey;
+    filter: brightness(50%);
+}
+.simpleFilterButtonImage {
+    height: 40px;
+}
+
+#selectorField {
+    height:250px;
+    background-color: aqua;
+    overflow-y: auto;
+}
+
+.selectorElement {
+    display: inline-block;
+  width: 100px;
+  height: 140px;
+  text-align: center;
+  font-size: 1em;
+  /*border: 2px solid transparent;*/ 
+}
+.unitSelected {
+    outline: 3px solid black;
+  outline-offset: -3px;
+}
+.unitIcon {
+    width: 100px;
+    height: 100px;
+}
+.unitSelectorText {
+    display: block;
+    height: 2.4em;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}

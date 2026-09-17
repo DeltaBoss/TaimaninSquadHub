@@ -3,46 +3,7 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <style>
-  li{float:left;}
-  ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #c22929;
-  }
-  .ilp {
-    display:inline;
-  }
-  .unitSelected {
-    border-style: groove;
-  }
-  .inlineIcon {
-    width: 40px;
-    height: 40px;
-  }
-  .unitIcon {
-    width: 100px;
-    height: 100px;
-  }
-  .skillImg {
-    width:100px;
-    height:100px;
-    display:inline-block;
-  }
-  .simpleFilterButton {
-    filter:brightness(100%);
-    background-color: darkgreen;
-  }
-  .simpleFilterButtonInactive {
-    background-color: darkgrey;
-    filter: brightness(50%);
-  }
-  .simpleFilterButtonImage {
-    height: 40px;
-  }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -94,10 +55,10 @@
     <div>
       <p>Advanced Filters</p>
     </div>
-    <div style="height:200px;background-color: aqua;overflow-y: auto;">
-      <div v-for="id in displayedUnits" :key="id" style="display: inline-block; text-align: center;" :class="{ unitSelected: id === selectedUnit.id }" @click="selectNewUnit(id)">
+    <div id="selectorField">
+      <div v-for="id in displayedUnits" :key="id" class="selectorElement" :class="{ unitSelected: id === selectedUnit.id }" @click="selectNewUnit(id)">
         <img :src="'img/icons/' + unitCache[id].img + unitCache[id].iconSuffix + '.png'" :alt="unitCache[id].name" class="unitIcon" @error="handleImgError($event, unitCache[id], true)" /><br>
-        <span>{{unitCache[id].name}}</span>
+        <span class="unitSelectorText">{{unitCache[id].name}}</span>
       </div>
     </div>
     <div>
@@ -108,6 +69,7 @@
       <div style="display: inline-block;">
         <div>
           <span>
+            ID:{{ selectedUnit.id }} 
             {{rarityLookup.text}}
             <img :src="'img/type_'+ typeLookup.img + '.png'" :alt="typeLookup.text" class="inlineIcon" />
             {{typeLookup.text}}
@@ -148,7 +110,7 @@
         </div>
       </div>
       <div v-for="weap in selectedUnit.weapons" :key="weap">
-        <img :src="'img/weapons/Weapon_' + weap.id + '_l.png'" :alt="weap.name" class="skillImg" />
+        <img :src="'img/weapons/Weapon_' + weap.id + '_l.png'" :alt="weap.name" class="weapImg" />
         <img :src="'img/skills/'+weap.skillId+'.png'" :alt="weap.skillId" class="skillImg" />
         <div style="display:inline-block">
           <p>{{ weap.skill.name }} {{ weap.skill.isPassive ? "[Passive]" : "" }}</p>
@@ -167,9 +129,9 @@
           1: { img: 'pow', text: 'Power' },
           2: { img: 'tec', text: 'Technique' },
           3: { img: 'agi', text: 'Agility' },
-          4: { img: 'bal', text: '???' }
+          4: { img: 'bal', text: 'Balanced' }
         }
-        const DEFAULT_TYPE = { img: 'bal', text: 'Balanced' }
+        const DEFAULT_TYPE = { img: 'bal', text: '???' }
         const typeLookup = computed(() => TYPE_LOOKUP[selectedUnit.type] ?? DEFAULT_TYPE)
 
         const ROLE_LOOKUP = {
@@ -248,9 +210,9 @@
           eva:0,
           aura:{
             value:0,
-            location:"",
-            allyTarget:"",
-            stat:"",
+            location:"NA",
+            allyTarget:"NA",
+            stat:"NA",
           },
           skills:[],
           weapons:[]
@@ -396,7 +358,7 @@
               console.log(yamlUnit);
               unitCache[yamlUnit.ID] = structuredClone(standardUnit);
               unitCache[yamlUnit.ID].id = yamlUnit.ID;
-              unitCache[yamlUnit.ID].name = stringsById[yamlUnit.Name].Text_ENG;
+              unitCache[yamlUnit.ID].name = stringsById[yamlUnit.Name]?.Text_ENG ?? "NA";
               unitCache[yamlUnit.ID].img = yamlUnit.Icon;
               unitCache[yamlUnit.ID].iconSuffix = "";
               unitCache[yamlUnit.ID].portraitSuffix = "";
@@ -413,11 +375,13 @@
               unitCache[yamlUnit.ID].spd = yamlUnit.SPD;
               unitCache[yamlUnit.ID].acc = yamlUnit.ACC/10;
               unitCache[yamlUnit.ID].eva = yamlUnit.EVD/10;
-              const auraData = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillAuraID].AuraInfo.split(",");
-              unitCache[yamlUnit.ID].aura.value = Number(auraData[0]);
-              unitCache[yamlUnit.ID].aura.allyTarget = auraData[2];
-              unitCache[yamlUnit.ID].aura.location = auraData[1];
-              unitCache[yamlUnit.ID].aura.stat = auraData[3];
+              if(yamlUnit.SkillAuraID > 0) {
+                const auraData = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillAuraID].AuraInfo.split(",");
+                unitCache[yamlUnit.ID].aura.value = Number(auraData[0]);
+                unitCache[yamlUnit.ID].aura.allyTarget = auraData[2];
+                unitCache[yamlUnit.ID].aura.location = auraData[1];
+                unitCache[yamlUnit.ID].aura.stat = auraData[3];
+              }
               if(yamlUnit.SkillID1) {
                 const skillYaml = unitData.MonoBehaviour.UnitSkills[yamlUnit.SkillID1];
                 unitCache[yamlUnit.ID].skills.push(skillYamlToObj(skillYaml, yamlUnit.SkillID1));
@@ -476,7 +440,7 @@
               event.target.src = `img/portraits/${unitObj.img}${unitObj.portraitSuffix}.png`
             }
           } else {
-            event.target.src = unitId == -1 ? "img/portraits/fallback.png" : 'img/icons/fallback.png' // fallback
+            event.target.src = isIcon ? "img/icons/fallback.png" : "img/portraits/fallback.png" // fallback
           }
         }
 
@@ -619,7 +583,7 @@
           URL.revokeObjectURL(url)
         }
         
-        loadData()
+        loadData().then(() => toggleDisplayOrder())
         return { sortingIsAZ, simpleFilterStates, toggleSimpleFilter, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup,  SKILL_LOOKUP, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit, exportUnitCache }
       }
     }).mount('#UnitCodex')
