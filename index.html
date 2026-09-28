@@ -7,9 +7,9 @@
 </head>
 <body>
   <header>
+    <h2>TaimaninSquadHub</h2>
     <nav>
       <ul>
-        <li>TaimaninSquadHub<br>Updated</li>
         <li>Unit Codex</li>
         <li>Team Creator</li>
         <li>XP Planner</li>
@@ -100,12 +100,22 @@
         <img :src="'img/skills/'+skill.id+'.png'" :alt="skill.name" class="skillImg" />
         <div style="display:inline-block">
           <p>{{ skill.name }} {{ skill.isPassive ? "[Passive]" : "" }}</p>
-          <p>Cooldown: {{ skill.cooldown }} Number of hits: {{ skill.numAttacks }} Scales with: {{ skill.statScaling }}</p>
+          <p>Cooldown: {{ skill.cooldown }} Number of hits: {{ skill.numAttacks }} {{ skill.statScaling.length > 0 && skill.statScaling[0] !== "" ? ("Scales with: "+ skill.statScaling.join(", ")):"" }}</p>
           <p>
             <template v-for="(level, index) in skill.skillLevels" :key="index">
               <span>{{ SKILL_LOOKUP[level] ?? level }}</span>
               <span v-if="index < skill.skillLevels.length - 1"> => </span>
             </template>
+          </p>
+          <p>Effects:</p>
+          <p v-for="(skillEffect, index) in skill.effectObjects" :key="index">
+            {{index+1}}) Trigger: {{skillEffect.trigger}} || Effect: {{skillEffect.effect}}{{skillEffect.target === "NONE" ? "" : " || Target: "+skillEffect.target}}
+            {{skillEffect.conditionSelf === "" ? "" : " || Condition(self): "+skillEffect.conditionSelf}}
+            {{skillEffect.conditionTarget === "" ? "" : " || Condition(target): "+skillEffect.conditionTarget}}
+            {{skillEffect.inflictRate === 0 ? "" : " || Chance: "+(skillEffect.inflictRate < 0 ? "fixed "+Math.abs(skillEffect.inflictRate):skillEffect.inflictRate)+"%"}}
+            {{skillEffect.val1 === 0 ? "" : " || V1: "+skillEffect.val1}}
+            {{skillEffect.val2 === 0 ? "" : skillEffect.effect === "Damage" || skillEffect.effect === "Performs an attack" ? (skill.statScaling.size == 1 ? "" : " || "+skill.statScaling[1]+" scaling: "+String(Math.round(skillEffect.val2*10)/10))+"%" : " || Effect duration: "+skillEffect.val2}}
+            {{skillEffect.val3 === 0 ? "" : skillEffect.effect === "Damage" || skillEffect.effect === "Performs an attack" ? " || "+skill.statScaling[0]+" scaling: "+String(Math.round(skillEffect.val3*10)/10)+"%" : " || Effect strength: "+skillEffect.val3}}
           </p>
         </div>
       </div>
@@ -115,7 +125,16 @@
         <div style="display:inline-block">
           <p>{{ weap.skill.name }} {{ weap.skill.isPassive ? "[Passive]" : "" }}</p>
           <p>Cooldown: {{ weap.skill.cooldown }} Number of hits: {{ weap.skill.numAttacks }} Scales with: {{ weap.skill.statScaling }}</p>
-          <p><span v-for="level in weap.skill.skillLevels">{{level}}</span></p>
+          <p>
+            <template v-for="(level, index) in weap.skill.skillLevels" :key="index">
+              <span>{{ SKILL_LOOKUP[level] ?? level }}</span>
+              <span v-if="index < weap.skill.skillLevels.length - 1"> => </span>
+            </template>
+          </p>
+          <p>Effects:</p>
+          <p v-for="(skillEffect, index) in weap.skill.effectObjects" :key="index">
+            {{index+1}}) Trigger: {{skillEffect.trigger}} || Effect: {{skillEffect.effect}} || Target: {{skillEffect.target}} || Condition(self): {{skillEffect.conditionSelf}} || Condition(target): {{skillEffect.conditionTarget}} || Chance: {{skillEffect.inflictRate}} || v1: {{skillEffect.val1}} || v2: {{skillEffect.val2}} || v3: {{skillEffect.val3}}
+          </p>
         </div>
       </div>
     </div>
@@ -178,12 +197,15 @@
           "AllUnit": "all units",
           "QUEST_ALL": "all",
           "QUEST_TACTICS_ANALYSIS": "tactical",
+          "QUEST_CAMPAIGN": "main story",
+          "QUEST_DUNGEON": "extermination",
+          "QUEST_ARENA_ALL": "arena and tower",
           "[D:10]": "+10% Damage",
           "[P:10]": "+10% Chance",
           "[B:10]": "+10% Buff/Debuff",
           "[H:10]": "+10% Healing",
           "CriRes": "Crit Resistance",
-          "Destruction": "Power",
+          "Class_DEF": "Defense",
           "AllUnit": "all units",
           "QUEST_ALL": "all",
           "QUEST_TACTICS_ANALYSIS": "tactical training",
@@ -227,32 +249,598 @@
           cooldown:0,
           numAttacks:0,
           skillLevels:["","","","",""],
-          statScaling:[""],
-          effectReferences:[]
+          statScaling:[],
+          effectObjects:[]
+        }
+
+        const TRIGGER_LOOKUP = {
+          "eBOTiming_Action": "With skill use",
+          "eBOTiming_ActionAfter": "After the action",
+          "eBOTiming_ActionBefore": "Before the attack",
+          "eBOTiming_ActionLast": "After last attack",
+          "eBOTiming_CalcAura": "",
+          "eBOTiming_CalcStat": "",
+          "eBOTiming_EtcActionAfter": "",
+          "eBOTiming_JoinSkill": "",
+          "eBOTiming_OnAction": "On hit",
+          "eBOTiming_OnActionCalc": "In calculation",
+          "eBOTiming_OnActionLast": "After any own action",
+          "eBOTiming_OnAttack": "On attack",
+          "eBOTiming_OnAttackCalc": "On attack calculation",
+          "eBOTiming_OnBuff": "",
+          "eBOTiming_OnDeBuff": "",
+          "eBOTiming_OnDie": "On death by attack",
+          "eBOTiming_OnEvade": "",
+          "eBOTiming_OnHit": "On received hit",
+          "eBOTiming_OnHitCalc": "On received hit calculation",
+          "eBOTiming_OnPassive": "",
+          "eBOTiming_PostActionAfter": "",
+          "eBOTiming_RoundStart": "On round start",
+          "eBOTiming_TurnStart": "On turn start",
+        }
+
+        const EFFECT_LOOKUP = {
+          "eBOFunc_Acc": "",
+          "eBOFunc_ActionSkill/2": "",
+          "eBOFunc_ActionSkill/3": "",
+          "eBOFunc_ActionSkill/4": "",
+          "eBOFunc_ActionSkill/5": "",
+          "eBOFunc_AddAttack": "Perform 1 additional attack",
+          "eBOFunc_AddAttack/1": "",
+          "eBOFunc_AddBuff/AccUp": "Accuracy buff",
+          "eBOFunc_AddBuff/AllyProtection": "",
+          "eBOFunc_AddBuff/Athanasia": "Immortal buff",
+          "eBOFunc_AddBuff/AtkUp": "Attack buff",
+          "eBOFunc_AddBuff/BloodBond": "Blood bond buff",
+          "eBOFunc_AddBuff/CountAttack": "Counterattack buff",
+          "eBOFunc_AddBuff/CriDmgUp": "Crit damage buff",
+          "eBOFunc_AddBuff/CriRateUp": "Crit rate buff",
+          "eBOFunc_AddBuff/CriResUp": "Crit res buff",
+          "eBOFunc_AddBuff/DeBuffBlock": "Debuff block",
+          "eBOFunc_AddBuff/DefUp": "Defense buff",
+          "eBOFunc_AddBuff/DmgBlock": "",
+          "eBOFunc_AddBuff/DmgBlockCount": "Protective shields buff",
+          "eBOFunc_AddBuff/DmgReflect": "Damage reflect buff",
+          "eBOFunc_AddBuff/EvdUp": "Evasion buff",
+          "eBOFunc_AddBuff/HealTurn": "Heal over time buff",
+          "eBOFunc_AddBuff/OverCharge": "",
+          "eBOFunc_AddBuff/Shield": "",
+          "eBOFunc_AddBuff/ShieldDef": "",
+          "eBOFunc_AddBuff/ShieldHp": "",
+          "eBOFunc_AddBuff/SpdUp": "Speed buff",
+          "eBOFunc_AddBuff/Stealth": "Stealth buff",
+          "eBOFunc_AddBuff/Strengthen": "Power up buff",
+          "eBOFunc_AddDeBuff/Absorb": "",
+          "eBOFunc_AddDeBuff/AccDown": "Accuracy debuff",
+          "eBOFunc_AddDeBuff/ActiveSkillBlock": "Active skill disabled debuff",
+          "eBOFunc_AddDeBuff/AtkDown": "Attack debuff",
+          "eBOFunc_AddDeBuff/Bleeding": "Bleeding debuff",
+          "eBOFunc_AddDeBuff/BleedingDmg": "Bleeding vulnerability debuff",
+          "eBOFunc_AddDeBuff/BloodMark": "Blood mark debuff",
+          "eBOFunc_AddDeBuff/BuffBlock": "Buff disabled debuff",
+          "eBOFunc_AddDeBuff/Burn": "Burn debuff",
+          "eBOFunc_AddDeBuff/BurnDmg": "Burn vulnerability debuff",
+          "eBOFunc_AddDeBuff/Confuse": "Confusion debuff",
+          "eBOFunc_AddDeBuff/CriDmgDown": "Crit damage debuff",
+          "eBOFunc_AddDeBuff/CriRateDown": "Crit rate debuff",
+          "eBOFunc_AddDeBuff/CriResDown": "Crit resistance debuff",
+          "eBOFunc_AddDeBuff/DefDown": "Defense debuff",
+          "eBOFunc_AddDeBuff/Dispositionboss": "",
+          "eBOFunc_AddDeBuff/ElecShock": "Electrocuted debuff",
+          "eBOFunc_AddDeBuff/EvdDown": "Evasion debuff",
+          "eBOFunc_AddDeBuff/Freeze": "Freeze debuff",
+          "eBOFunc_AddDeBuff/HealRateDown": "Heal reduction debuff",
+          "eBOFunc_AddDeBuff/Monboss": "",
+          "eBOFunc_AddDeBuff/PassiveSkillBlock": "Passive skill block debuff",
+          "eBOFunc_AddDeBuff/Poison": "Poison debuff",
+          "eBOFunc_AddDeBuff/PoisonDmg": "",
+          "eBOFunc_AddDeBuff/Provocation": "Taunt debuff",
+          "eBOFunc_AddDeBuff/Restraint": "Immobilized debuff",
+          "eBOFunc_AddDeBuff/Sleep": "Sleep debuff",
+          "eBOFunc_AddDeBuff/SpdDown": "Speed debuff",
+          "eBOFunc_AddDeBuff/Stun": "Faint debuff",
+          "eBOFunc_AddDeBuff/Target": "",
+          "eBOFunc_AddDeBuff/Weaken": "Weaken debuff",
+          "eBOFunc_AddTurn": "Gain additional turn",
+          "eBOFunc_AllBuffGroupClear/GroupDmgBlock": "",
+          "eBOFunc_AllDeBuffGroupClear/GroupForcedTarget": "Removes any target manipulation debuff",
+          "eBOFunc_AllDeBuffGroupClear/GroupUnitNotControl": "Removes any incapacitation debuff",
+          "eBOFunc_AllDeBuffGroupTurn/GroupSkillBlock": "",
+          "eBOFunc_AllDeBuffGroupTurn/GroupUnitNotControl": "",
+          "eBOFunc_AtkRate": "Attack increase",
+          "eBOFunc_Attack": "Damage",
+          "eBOFunc_Attack/1": "Performs an attack",
+          "eBOFunc_Attack/2": "",
+          "eBOFunc_BuffClear/All": "Removes all buffs",
+          "eBOFunc_BuffClear/AllyProtection": "Remove protect ally buff",
+          "eBOFunc_BuffClear/Athanasia": "Remove immortal buff",
+          "eBOFunc_BuffClear/DeBuffBlock": "Remove debuff block buff",
+          "eBOFunc_BuffClear/DefUp": "Remove defense buff",
+          "eBOFunc_BuffClear/DmgBlock": "",
+          "eBOFunc_BuffClear/DmgBlockCount": "Remove protective shields",
+          "eBOFunc_BuffClear/Rnd": "Removes random buff",
+          "eBOFunc_BuffClear/Shield": "Remove shield buff",
+          "eBOFunc_BuffClear/Stealth": "Remove stealth buff",
+          "eBOFunc_BuffClear/Strengthen": "Remove power up buff",
+          "eBOFunc_BuffCopy/Rnd": "Copies random buff",
+          "eBOFunc_BuffCopySelf/All": "",
+          "eBOFunc_BuffCopySelf/Rnd": "",
+          "eBOFunc_BuffSnatch/All": "Steal all buffs",
+          "eBOFunc_BuffSnatch/Athanasia": "Steal immortal buff",
+          "eBOFunc_BuffSnatch/DmgBlock": "Steal damage block buff",
+          "eBOFunc_BuffSnatch/DmgBlockCount": "Steal protective shields",
+          "eBOFunc_BuffSnatch/Rnd": "Steal random buff(s)",
+          "eBOFunc_BuffSnatch/Shield": "Steal shield buff",
+          "eBOFunc_BuffSnatch/SpdUp": "Steal speed buff",
+          "eBOFunc_BuffSnatch/Stealth": "Steal stealth buff",
+          "eBOFunc_BuffTurn/All": "Increase all buff durations",
+          "eBOFunc_BuffTurn/DeBuffBlock": "",
+          "eBOFunc_BuffTurn/HealTurn": "",
+          "eBOFunc_BuffTurn/Rnd": "Increase duration of random buff(s)",
+          "eBOFunc_BuffTurn/Shield": "",
+          "eBOFunc_BuffTurn/SpdUp": "",
+          "eBOFunc_BuffValue/AllyProtection": "",
+          "eBOFunc_BuffValue/AtkUp": "",
+          "eBOFunc_BuffValue/CriRateUp": "",
+          "eBOFunc_BuffValue/DmgBlockCount": "",
+          "eBOFunc_BuffValue/Shield": "",
+          "eBOFunc_BuffValue/SpdUp": "",
+          "eBOFunc_BuffValue/Strengthen": "",
+          "eBOFunc_CoolTimeClear/2": "Resets colldown of 2nd skill",
+          "eBOFunc_CoolTimeClear/3": "Resets cooldown of 3rd skill",
+          "eBOFunc_CoolTimeClear/4": "Resets cooldown of 4th skill",
+          "eBOFunc_CoolTimeClear/All": "",
+          "eBOFunc_CoolTimeTurn/2": "Changes cooldown of 2nd skill",
+          "eBOFunc_CoolTimeTurn/3": "Changes cooldown of 3rd skill",
+          "eBOFunc_CoolTimeTurn/4": "Changes cooldown of 4th skill",
+          "eBOFunc_CoolTimeTurn/5": "Changes cooldown of 5th skill",
+          "eBOFunc_CoolTimeTurn/All": "",
+          "eBOFunc_CoolTimeTurn/Rnd": "",
+          "eBOFunc_CriDmg": "Crit damage increase",
+          "eBOFunc_CriRate": "Crit rate increase",
+          "eBOFunc_CriRateByCriRes": "",
+          "eBOFunc_CriRateBySpdRate": "Increases crit rate by [v?]% of speed",
+          "eBOFunc_CriRes": "Crit resistance increase",
+          "eBOFunc_DeBuffClear/All": "Removes all debuffs",
+          "eBOFunc_DeBuffClear/Bleeding": "Removes bleeding debuffs",
+          "eBOFunc_DeBuffClear/Burn": "Removes burn debuffs",
+          "eBOFunc_DeBuffClear/DefDown": "Removes defense debuffs",
+          "eBOFunc_DeBuffClear/DmgBlockCount": "",
+          "eBOFunc_DeBuffClear/ElecShock": "Removes electrocuted debuffs",
+          "eBOFunc_DeBuffClear/Freeze": "Removes freeze debuffs",
+          "eBOFunc_DeBuffClear/Poison": "Removes poison debuffs",
+          "eBOFunc_DeBuffClear/Rnd": "Removes random debuff",
+          "eBOFunc_DeBuffClear/Shield": "",
+          "eBOFunc_DeBuffClear/SpdDown": "Removes speed debuffs",
+          "eBOFunc_DeBuffGiveRateUp": "",
+          "eBOFunc_DeBuffTakeRateDown": "",
+          "eBOFunc_DeBuffTurn/Absorb": "",
+          "eBOFunc_DeBuffTurn/ActiveSkillBlock": "",
+          "eBOFunc_DeBuffTurn/All": "Reduces debuffs by 1 turn",
+          "eBOFunc_DeBuffTurn/Bleeding": "Changes bleeding debuff duration",
+          "eBOFunc_DeBuffTurn/Burn": "Changes burn debuff duration",
+          "eBOFunc_DeBuffTurn/Dispositionboss": "",
+          "eBOFunc_DeBuffTurn/ElecShock": "Changes electrocuted debuff duration",
+          "eBOFunc_DeBuffTurn/Freeze": "Changes freeze debuff duration",
+          "eBOFunc_DeBuffTurn/PassiveSkillBlock": "Changes passives disabled debuff duration",
+          "eBOFunc_DeBuffTurn/Rnd": "Increase random debuff duration(s)",
+          "eBOFunc_DeBuffValue/Absorb": "",
+          "eBOFunc_DeBuffValue/Bleeding": "Increase bleeding debuff effect by %",
+          "eBOFunc_DeBuffValue/Burn": "Increase burn debuff effect by %",
+          "eBOFunc_DeBuffValue/DefDown": "Increase defense debuff effect by %",
+          "eBOFunc_DeBuffValue/Freeze": "Increase freeze debuff effect by %",
+          "eBOFunc_DeBuffValue/Poison": "Increase poison debuff effect by %",
+          "eBOFunc_DeBuffValue/SpdDown": "Increase speed debuff effect by %",
+          "eBOFunc_DefPenetrate": "% defense penetration",
+          "eBOFunc_DefRate": "Defense increase",
+          "eBOFunc_DmgAddShield": "",
+          "eBOFunc_DmgDrainHp": "Lifesteal",
+          "eBOFunc_DmgRate/CostHp": "Increase damage by % of target's lost health",
+          "eBOFunc_DmgRate/MaxHp": "Increase damage by % of target's max health",
+          "eBOFunc_DmgRate/Normal": "% damage increase",
+          "eBOFunc_DmgRate/NowHp": "",
+          "eBOFunc_DmgRateByStatGap/SPD": "",
+          "eBOFunc_DmgRateByTurn": "",
+          "eBOFunc_DmgRateDeBuffCnt/Bleeding": "% damage increase per bleeding debuff",
+          "eBOFunc_DmgRateDeBuffCnt/Burn": "% damage increase per burn debuff",
+          "eBOFunc_DmgRateDeBuffCnt/Monboss": "",
+          "eBOFunc_DmgRateDeBuffCnt/Poison": "% damage increase per poison debuff",
+          "eBOFunc_DmgRateDeBuffValue/DefDown": "",
+          "eBOFunc_DmgRateShieldValueSelf": "",
+          "eBOFunc_DotBuffBurst/Bleeding": "",
+          "eBOFunc_DotBuffBurst/Burn": "",
+          "eBOFunc_DotBuffBurst/Poison": "",
+          "eBOFunc_Evd": "",
+          "eBOFunc_FixMaxDmgByOneShot": "",
+          "eBOFunc_FixMaxHPByHPBaseDmg": "",
+          "eBOFunc_ForceKill": "Instant death",
+          "eBOFunc_Heal/CostHp": "",
+          "eBOFunc_Heal/MaxHp": "Heal % of max health",
+          "eBOFunc_Heal/NowHp": "Change % of current health",
+          "eBOFunc_HealRate": "Heal % of max health",
+          "eBOFunc_HealSender/MaxHp": "",
+          "eBOFunc_HpRate": "",
+          "eBOFunc_ImmuneDeBuff/All": "",
+          "eBOFunc_ImmuneDeBuff/Burn": "",
+          "eBOFunc_ImmuneDeBuff/ElecShock": "",
+          "eBOFunc_ImmuneDeBuff/Freeze": "",
+          "eBOFunc_ImmuneDeBuff/GroupAllActionControl": "",
+          "eBOFunc_ImmuneDeBuff/GroupAllDeBuff": "",
+          "eBOFunc_ImmuneDeBuff/GroupForcedTarget": "",
+          "eBOFunc_ImmuneDeBuff/GroupUnitNotControl": "",
+          "eBOFunc_ImmuneDeBuff/Poison": "",
+          "eBOFunc_ImmuneDeBuff/SpdDown": "",
+          "eBOFunc_ImmuneDotDmg/Burn": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_AddDeBuff/Freeze": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_AddDeBuff/Sleep": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_AddDeBuff/Stun": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_CoolTimeClear": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_CoolTimeTurn": "",
+          "eBOFunc_ImmuneSkill/eBOFunc_TurnGaugeDown": "",
+          "eBOFunc_JoinUseSkill/eBOTarget_AllyOther": "",
+          "eBOFunc_JoinUseSkill/eBOTarget_AtkMoreAllyOther": "",
+          "eBOFunc_JoinUseSkill/eBOTarget_UnitTID": "",
+          "eBOFunc_RelationGaugeRate": "",
+          "eBOFunc_RelationGaugeSet": "",
+          "eBOFunc_RelationGaugeUp": "",
+          "eBOFunc_RelationGaugeUpByTurn": "",
+          "eBOFunc_Resurrection": "Resurrection",
+          "eBOFunc_RndAddGroupDeBuff/GroupForcedTarget": "",
+          "eBOFunc_SetHp": "Sets health to %",
+          "eBOFunc_ShieldPenetrate": "Shield penetration",
+          "eBOFunc_SpdRate": "",
+          "eBOFunc_TurnGaugeDown": "Reduces turn gauge",
+          "eBOFunc_TurnGaugeDrain": "",
+          "eBOFunc_TurnGaugeUp": "% fill turn gauge",
+        }
+
+        const TARGET_LOOKUP = {
+          "eBOTarget_Ally/1": "Any unit on team",
+          "eBOTarget_Ally/All": "All units on team",
+          "eBOTarget_AllyDead/All": "All dead units on team",
+          "eBOTarget_AllyDeadRnd/1": "",
+          "eBOTarget_AllyOther": "Any other unit on team",
+          "eBOTarget_AllyOther/1": "1 ally",
+          "eBOTarget_AllyOther/2": "2 allies",
+          "eBOTarget_AllyOther/All": "All other units on team",
+          "eBOTarget_AllyRnd/1": "1 random ally",
+          "eBOTarget_AllyRnd/2": "2 random allies",
+          "eBOTarget_AtkMoreAlly/1": "",
+          "eBOTarget_AtkMoreAllyOther": "Ally with highest attack",
+          "eBOTarget_AtkMoreAllyOther/1": "",
+          "eBOTarget_AtkMoreEnemy/1": "",
+          "eBOTarget_AtkMoreEnemy/2": "",
+          "eBOTarget_Attacker": "Any attacker",
+          "eBOTarget_DefMoreEnemy/1": "",
+          "eBOTarget_Enemy/1": "1 enemy",
+          "eBOTarget_Enemy/All": "All enemies",
+          "eBOTarget_EnemyRnd/1": "1 random enemy",
+          "eBOTarget_EnemyRnd/2": "2 random enemies",
+          "eBOTarget_HitTarget": "Target hit",
+          "eBOTarget_HitTargetList": "Target(s) hit/affected",
+          "eBOTarget_HpLessAlly": "",
+          "eBOTarget_HpLessAlly/1": "",
+          "eBOTarget_HpLessAllyOther/1": "",
+          "eBOTarget_HpLessAllyOther/2": "",
+          "eBOTarget_HpLessEnemy": "",
+          "eBOTarget_HpLessEnemy/1": "",
+          "eBOTarget_HpMoreEnemy/1": "",
+          "eBOTarget_Self": "This unit",
+          "eBOTarget_SelfOther": "This unit and 1 ally",
+          "eBOTarget_SpdMoreAllUnit/2": "",
+          "eBOTarget_SpdMoreEnemy/1": "",
+          "eBOTarget_TurnGaugeMoreEnemy/1": "",
+          "eBOTarget_TurnOwnerUnit": "",
+        }
+
+        const CONDITION_SELF_LOOKUP = {
+          "eBOCond_AllyHasBuffMoreCnt3/Poison": "",
+          "eBOCond_EnemyHasBuffMoreCnt3/GroupAllBuff": "",
+          "eBOCond_EnemyHasBuffMoreCnt3/Poison": "",
+          "eBOCond_EnemyHasBuffMoreCnt4/GroupAllBuff": "",
+          "eBOCond_EnemyHasBuffMoreCnt4/Poison": "",
+          "eBOCond_EnemyHasBuffMoreCnt5/GroupAllBuff": "",
+          "eBOCond_EnemyHasBuffMoreCnt5/Poison": "",
+          "eBOCond_HasBuff/All": "",
+          "eBOCond_HasBuff/Athanasia": "Has immortal buff",
+          "eBOCond_HasBuff/AtkUp": "Has attack buff",
+          "eBOCond_HasBuff/AtkUp&&eBOCond_HasNotBuff/OverCharge": "Has attack buff and not overclock buff",
+          "eBOCond_HasBuff/CountAttack": "Has counterattack buff",
+          "eBOCond_HasBuff/CriRateUp": "Has critical rate buff",
+          "eBOCond_HasBuff/DefUp": "Has defense buff",
+          "eBOCond_HasBuff/DmgBlock": "",
+          "eBOCond_HasBuff/DmgBlockCount": "Has protective shields",
+          "eBOCond_HasBuff/DmgReflect": "Has damage reflect buff",
+          "eBOCond_HasBuff/OverCharge": "Has overclock buff",
+          "eBOCond_HasBuff/Shield": "Has shield buff",
+          "eBOCond_HasBuff/SpdUp": "Has speed buff",
+          "eBOCond_HasBuff/Stealth": "Has stealth buff",
+          "eBOCond_HasBuffMoreCnt/1": "Has 1 or more buffs",
+          "eBOCond_HasBuffMoreCnt/2": "Has 2 or more buffs",
+          "eBOCond_HasBuffMoreCnt/3": "Has 3 or more buffs",
+          "eBOCond_HasBuffMoreCnt/3&&eBOCond_HasNotBuff/OverCharge": "Has 3 or more buffs and does not have overclock buff",
+          "eBOCond_HasBuffMoreCnt/5": "Has 5 or more buffs",
+          "eBOCond_HasDeBuff/All": "",
+          "eBOCond_HasDeBuff/Burn": "Has burn debuff",
+          "eBOCond_HasDeBuff/ElecShock": "Has electrocute debuff",
+          "eBOCond_HasDeBuff/SpdDown": "Has speed debuff",
+          "eBOCond_HasDeBuff/Stun": "Has faint debuff",
+          "eBOCond_HasDeBuffMoreCnt/2": "",
+          "eBOCond_HasDeBuffMoreCnt/3": "",
+          "eBOCond_HasGroupBuff/GroupDmgBlock": "",
+          "eBOCond_HasNotBuff/All": "",
+          "eBOCond_HasNotBuff/Athanasia": "Does not have immortal buff",
+          "eBOCond_HasNotBuff/AtkUp": "Does not have attack buff",
+          "eBOCond_HasNotBuff/CriRateUp": "Does not have critical rate buff",
+          "eBOCond_HasNotBuff/Stealth": "Does not have stealth buff",
+          "eBOCond_HasNotDeBuff": "",
+          "eBOCond_HasNotDeBuff/All": "",
+          "eBOCond_HasNotDeBuff/Dispositionboss": "",
+          "eBOCond_HasNotGroupBuff/GroupDmgBlock": "",
+          "eBOCond_HasUnitTID/1": "Igawa Asagi is on team",
+          "eBOCond_HasUnitTID/253&&eBOCond_IsDmgTypeByJudge/CriAtk": "[Wedding] Igawa Asagi is on team and is critical attack",
+          "eBOCond_HasUnitTID/302&&eBOCond_IsAttack": "",
+          "eBOCond_HasUnitTID/32": "Uehara Rin is on team",
+          "eBOCond_HasUnitTID/54": "Fuuma Kotaro is on team",
+          "eBOCond_HasUnitTID/66": "Edwin Black is on team",
+          "eBOCond_HasUnitTID/72": "Lilim is on team",
+          "eBOCond_IsActiveSKill": "",
+          "eBOCond_IsAllySameAttrMoreCnt/2": "",
+          "eBOCond_IsAllySameAttrMoreCnt/3": "",
+          "eBOCond_IsAllyTeamDie": "",
+          "eBOCond_IsAttack": "",
+          "eBOCond_IsBoss": "",
+          "eBOCond_IsCoolTime/2": "2nd skill is on cooldown",
+          "eBOCond_IsCoolTime/3": "3rd skill is on cooldown",
+          "eBOCond_IsCoolTime/3&&eBOCond_IsSkill/1": "",
+          "eBOCond_IsCoolTime/3&&eBOCond_IsSkill/2": "",
+          "eBOCond_IsCoolTime/4": "4th skill is on cooldown",
+          "eBOCond_IsCriAtkMoreCntByAction/3": "",
+          "eBOCond_IsCriAtkMoreCntByAction/4": "",
+          "eBOCond_IsDeckSlot/2": "",
+          "eBOCond_IsDeckSlot/3": "",
+          "eBOCond_IsDeckSlot/4": "",
+          "eBOCond_IsDie": "",
+          "eBOCond_IsDmgTypeByAction/AddAtk": "Is extra attack",
+          "eBOCond_IsDmgTypeByAction/CriAtk": "",
+          "eBOCond_IsDmgTypeByJudge/AddAtk": "",
+          "eBOCond_IsDmgTypeByJudge/AllHit": "",
+          "eBOCond_IsDmgTypeByJudge/CriAtk": "Is critical attack",
+          "eBOCond_IsDmgTypeByJudge/CriHit": "Is critical hit",
+          "eBOCond_IsDmgTypeByJudge/FirstAtk": "",
+          "eBOCond_IsDmgTypeByTurn/AllHit": "",
+          "eBOCond_IsDmgTypeByTurn/NotAllHit": "",
+          "eBOCond_IsEnemyHasBuff/AccDown": "",
+          "eBOCond_IsEnemyHasBuff/Confuse": "",
+          "eBOCond_IsEnemyHasBuff/Poison": "",
+          "eBOCond_IsEnemySameAttrMoreCnt/1": "",
+          "eBOCond_IsEnemySameAttrMoreCnt/2": "",
+          "eBOCond_IsEnemySameAttrMoreCnt/3": "",
+          "eBOCond_IsEnemyTeamDie": "",
+          "eBOCond_IsEnemyTurn": "",
+          "eBOCond_IsEnemyTurn&&eBOCond_IsNotHit": "",
+          "eBOCond_IsEnemyUseBuff/AtkUp": "",
+          "eBOCond_IsEnemyUseBuff/DeBuffBlock": "",
+          "eBOCond_IsEnemyUseDeBuff/All": "",
+          "eBOCond_IsHit": "",
+          "eBOCond_IsKill": "If an enemy was killed",
+          "eBOCond_IsNotBoss": "",
+          "eBOCond_IsNotCoolTime/2": "2nd skill is not on cooldown",
+          "eBOCond_IsNotCoolTime/3": "3rd skill is not on cooldown",
+          "eBOCond_IsNotCoolTime/4": "4th skill is not on cooldown",
+          "eBOCond_IsNotHit": "",
+          "eBOCond_IsNotSolo": "",
+          "eBOCond_IsSelfReceiveBuff/All": "",
+          "eBOCond_IsSelfReceiveBuff/OverCharge": "",
+          "eBOCond_IsSelfReceiveDeBuff/All": "",
+          "eBOCond_IsSelfReceiveDeBuff/SpdDown": "",
+          "eBOCond_IsSkill/1": "",
+          "eBOCond_IsSkill/2": "",
+          "eBOCond_IsSkill/3": "",
+          "eBOCond_IsSkill/4": "",
+          "eBOCond_IsSolo": "",
+          "eBOCond_IsUnitClass/Class_ATK": "",
+          "eBOCond_IsUnitClass/Class_DEF": "",
+          "eBOCond_IsUnitClass/Class_SPT": "",
+          "eBOCond_LessHP/20": "Less than 20% health",
+          "eBOCond_LessHP/30": "Less than 30% health",
+          "eBOCond_LessHP/40": "Less than 40% health",
+          "eBOCond_LessHP/50": "Less than 50% health",
+          "eBOCond_LessHP/50&&eBOCond_IsNotCoolTime/4": "",
+          "eBOCond_LessHP/60": "Less than 60% health",
+          "eBOCond_LessHP/70": "Less than 70% health",
+          "eBOCond_LessHP/75": "Less than 75% health",
+          "eBOCond_LessHP/80&&eBOCond_IsSkill/2": "",
+          "eBOCond_MoreHP/40": "More than 40% health",
+          "eBOCond_MoreHP/50": "More than 50% health",
+          "eBOCond_MoreHP/60": "More than 60% health",
+          "eBOCond_MoreHP/70": "More than 70% health",
+          "eBOCond_MoreHP/75": "More than 75% health",
+          "eBOCond_MoreHP/80": "More than 80% health",
+          "eBOCond_MoreHP/90": "More than 90% health",
+          "eBOCond_MoreTurn/2": "",
+          "eBOCond_MoreTurn/5": "",
+          "eBOCond_StageMode/QUEST_ARENA_BATTLE": "",
+          "eBOCond_StageMode/QUEST_CAMPAIGN": "",
+          "eBOCond_StageMode/QUEST_DISPOSITION": "",
+          "eBOCond_StageMode/QUEST_DUNGEON": "",
+          "eBOCond_StageMode/QUEST_TACTICS_ANALYSIS": "",
+        }
+
+        const CONDITION_TARGET_LOOKUP = {
+          "eBOCond_AllyHasBuffUnitCnt1/Bleeding": "1 unit on team has bleeding",
+          "eBOCond_AllyHasBuffUnitCnt2/Bleeding": "2 units on team have bleeding",
+          "eBOCond_AllyHasBuffUnitCnt3/Bleeding": "3 units on team have bleeding",
+          "eBOCond_AllyHasBuffUnitCnt4/Bleeding": "4 units on team have bleeding",
+          "eBOCond_EnemyHasBuffMoreCnt3/Poison": "",
+          "eBOCond_HasBuff/All": "",
+          "eBOCond_HasBuff/AllyProtection": "",
+          "eBOCond_HasBuff/AtkUp": "Has attack buff",
+          "eBOCond_HasBuff/DefUp": "Has defense buff",
+          "eBOCond_HasBuff/Shield": "Has shield buff",
+          "eBOCond_HasBuff/Stealth": "Has stealth buff",
+          "eBOCond_HasBuffLessCnt/1": "",
+          "eBOCond_HasBuffLessCnt/2": "",
+          "eBOCond_HasBuffMoreCnt/1": "",
+          "eBOCond_HasBuffMoreCnt/2": "",
+          "eBOCond_HasBuffMoreCnt/3": "",
+          "eBOCond_HasBuffMoreCnt/4": "",
+          "eBOCond_HasBuffMoreCnt/5": "",
+          "eBOCond_HasDeBuff/AccDown": "Has accuracy debuff",
+          "eBOCond_HasDeBuff/All": "",
+          "eBOCond_HasDeBuff/AtkDown": "Has attack debuff",
+          "eBOCond_HasDeBuff/Bleeding": "Has bleeding debuff",
+          "eBOCond_HasDeBuff/Bleeding&&eBOCond_IsDmgTypeByJudge/CriHit": "",
+          "eBOCond_HasDeBuff/BleedingDmg": "Has bleeding vulnerability debuff",
+          "eBOCond_HasDeBuff/BuffBlock": "Has debuff block debuff",
+          "eBOCond_HasDeBuff/Burn": "Has burn debuff",
+          "eBOCond_HasDeBuff/Confuse": "Has confusion debuff",
+          "eBOCond_HasDeBuff/DefDown": "Has defense debuff",
+          "eBOCond_HasDeBuff/ElecShock": "Has electrocuted debuff",
+          "eBOCond_HasDeBuff/EvdDown": "Has evasion debuff",
+          "eBOCond_HasDeBuff/Freeze": "Has freeze debuff",
+          "eBOCond_HasDeBuff/HealRateDown": "Has healing reduction debuff",
+          "eBOCond_HasDeBuff/Poison": "Has poison debuff",
+          "eBOCond_HasDeBuff/Provocation": "",
+          "eBOCond_HasDeBuff/Restraint": "",
+          "eBOCond_HasDeBuff/Sleep": "Has sleep debuff",
+          "eBOCond_HasDeBuff/SpdDown": "Has speed debuff",
+          "eBOCond_HasDeBuff/Stun": "Has faint debuff",
+          "eBOCond_HasDeBuff/Weaken": "Has weaken debuff",
+          "eBOCond_HasDeBuffLessCnt/1": "",
+          "eBOCond_HasDeBuffLessCnt/2": "",
+          "eBOCond_HasDeBuffMoreCnt/1": "Has 1 or more debuffs",
+          "eBOCond_HasDeBuffMoreCnt/2": "Has 2 or more debuffs",
+          "eBOCond_HasDeBuffMoreCnt/2&&eBOCond_HasDeBuff/Poison": "",
+          "eBOCond_HasDeBuffMoreCnt/3": "Has 3 or more debuffs",
+          "eBOCond_HasDeBuffMoreCnt/3&&eBOCond_HasDeBuff/Poison": "",
+          "eBOCond_HasDeBuffMoreCnt/4": "Has 4 or more debuffs",
+          "eBOCond_HasDeBuffMoreCnt/5": "Has 5 or more debuffs",
+          "eBOCond_HasGroupBuff/GroupDotDmg": "",
+          "eBOCond_HasGroupBuff/GroupUnitNotControl": "",
+          "eBOCond_HasNotBuff/All": "",
+          "eBOCond_HasNotBuff/Sleep": "",
+          "eBOCond_HasNotDeBuff/Absorb": "",
+          "eBOCond_HasNotDeBuff/All": "Does not have any debuff",
+          "eBOCond_HasNotDeBuff/BleedingDmg": "",
+          "eBOCond_HasNotDeBuff/Burn": "",
+          "eBOCond_HasNotDeBuff/Freeze": "",
+          "eBOCond_HasNotDeBuff/Poison": "",
+          "eBOCond_HasNotDeBuff/Provocation": "",
+          "eBOCond_IsActiveSKill": "",
+          "eBOCond_IsAddBuffDebuff/Athanasia": "Received immortal buff",
+          "eBOCond_IsAddBuffDebuff/AtkUp": "Received attack buff",
+          "eBOCond_IsAddBuffDebuff/DmgReflect": "Received damage reflect buff",
+          "eBOCond_IsAddBuffDebuff/HealTurn": "Received heal over time buff",
+          "eBOCond_IsAddBuffDebuff/SpdUp": "Received speed buff",
+          "eBOCond_IsAllyDeadCnt/2": "",
+          "eBOCond_IsBattleActionType/StrongDamage": "",
+          "eBOCond_IsBoss": "Is boss",
+          "eBOCond_IsDmgTypeByAction/CriHit": "",
+          "eBOCond_IsDmgTypeByJudge/CriHit": "",
+          "eBOCond_IsHit": "",
+          "eBOCond_IsKill": "",
+          "eBOCond_IsLessStatCompareUnit/SPD": "",
+          "eBOCond_IsMoreStatCompareUnit/SPD": "",
+          "eBOCond_IsNotBoss": "Is not boss",
+          "eBOCond_IsNotSolo": "",
+          "eBOCond_IsNotUnitAttr/Destruction": "",
+          "eBOCond_IsNotUnitAttr/Destruction&&eBOCond_IsNotUnitAttr/Balance": "",
+          "eBOCond_IsNotUnitAttr/Technique": "",
+          "eBOCond_IsNotUnitDisposition/Mon": "",
+          "eBOCond_IsRemoveBuffDebuff/SpdDown": "",
+          "eBOCond_IsSkill/1": "",
+          "eBOCond_IsSkill/2": "",
+          "eBOCond_IsSkill/3": "",
+          "eBOCond_IsSolo": "Is last alive",
+          "eBOCond_IsUnitAttr/Agility": "Is agility type",
+          "eBOCond_IsUnitAttr/Balance": "Is balanced type",
+          "eBOCond_IsUnitAttr/Destruction": "Is power type",
+          "eBOCond_IsUnitAttr/Technique": "Is technique type",
+          "eBOCond_IsUnitClass/Class_ATK": "",
+          "eBOCond_IsUnitClass/Class_DEF": "",
+          "eBOCond_IsUnitClass/Class_SPT": "",
+          "eBOCond_IsUnitDisposition/Fri": "",
+          "eBOCond_IsUnitDisposition/Mon": "",
+          "eBOCond_IsUnitDisposition/Sat": "",
+          "eBOCond_IsUnitDisposition/Sun": "",
+          "eBOCond_IsUnitDisposition/Thu": "",
+          "eBOCond_IsUnitDisposition/Tue": "",
+          "eBOCond_IsUnitDisposition/Wed": "",
+          "eBOCond_IsUnitTID/11": "Is Akiyama Rinko",
+          "eBOCond_IsUnitTID/12": "Is Akiyama Tatsuro",
+          "eBOCond_IsUnitTID/19": "Is Yatsu Murasaki",
+          "eBOCond_IsUnitTID/21": "Is Shinganji Kurenai",
+          "eBOCond_LessHP/10": "Under 10% HP",
+          "eBOCond_LessHP/15": "Under 15% HP",
+          "eBOCond_LessHP/20": "Under 20% HP",
+          "eBOCond_LessHP/30": "Under 30% HP",
+          "eBOCond_LessHP/35": "Under 35% HP",
+          "eBOCond_LessHP/40": "Under 40% HP",
+          "eBOCond_LessHP/50": "Under 50% HP",
+          "eBOCond_LessHP/60": "Under 60% HP",
+          "eBOCond_LessHP/70": "Under 70% HP",
+          "eBOCond_LessHP/75": "Under 75% HP",
+          "eBOCond_LessHP/80": "Under 80% HP",
+          "eBOCond_LessTurnGauge/0": "",
+          "eBOCond_LessTurnGauge/10": "",
+          "eBOCond_LessTurnGauge/30": "",
+          "eBOCond_LessTurnGauge/60": "",
+          "eBOCond_MoreHP/100": "",
+          "eBOCond_MoreHP/35": "",
+          "eBOCond_MoreHP/50": "",
+          "eBOCond_MoreHP/65": "",
+          "eBOCond_MoreHP/70": "",
+          "eBOCond_MoreHP/75": "",
+          "eBOCond_MoreHP/80": "",
+          "eBOCond_MoreTurnGauge/70": "",
         }
 
         const standardSkillEffect = {
+          id: 0,
           effect:"",
           trigger:"",
           target:"",
+          conditionSelf:"",
+          conditionTarget:"",
+          ignoreCD: 0,
           inflictRate:0,
           val1:0,
           val2:0,
           val3:0
         }
 
+        const ABBREVIATION_LOOKUP = {
+          "hp": "Health",
+          "atk": "Attack",
+          "def": "Defense",
+          "spd": "Speed",
+          "acc": "Accuracy",
+          "evd": "Evasion",
+          "crate": "Crit rate",
+          "cdmg": "Crit damage",
+          "cres": "Crit resistance"
+        }
+
         //insert weapon name, cut color codes
         function cleanString(str) {
-          /*if(str[0] === "<") {
-            const closingTag = str.indexOf(">");
-            const weapon = cleanString(str.substring(3,closingTag-1) ?? "WEAPON_NAME");
-            const skill = cleanString(str.substring(str.lastIndexOf("[&")+2,str.lastIndexOf("]")) ?? "SKILL_NAME");
-            return "<" + weapon + "> " + skill;
-          }*/
           return str.substring(str.indexOf("]") + 1, str.lastIndexOf("["));
         }
 
+        function swapUnitNameAndSpec(str) {
+          if(str[0] !== "[") {
+            return str;
+          }
+          const closingTag = str.indexOf("]");
+          return str.substring(closingTag + 1) + " " + str.substring(0, closingTag+1);
+        }
+
         function skillYamlToObj(skillYaml, skillId) {
+          const effectReferences = typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/");
+          const effectObjects = []
+          for(effectId of effectReferences) {
+            effectObjects.push(battleOptionToObj(battleOptionData[effectId]))
+          }
           return {
             ...standardSkill,
             id:skillId,
@@ -263,8 +851,29 @@
             cooldown:skillYaml.Turn,
             numAttacks:skillYaml.SkillAtkCnt,
             skillLevels:skillYaml.SkillLevel?.split("/") ?? "",
-            statScaling:skillYaml.DmgBase?.split("/") ?? "",
-            effectReferences: typeof(skillYaml.BOList) == "number" ? String(skillYaml.BOList) : skillYaml.BOList.split("/")
+            statScaling:skillYaml.DmgBase?.split("/").map(orig => ABBREVIATION_LOOKUP[orig.toLowerCase().replace("[","").replace("]","")] ?? orig) ?? [],
+            effectObjects: effectObjects
+          };
+        }
+
+        function lookup(dict, key) {
+          return key === "" || key === "NONE" ? key : dict[key] ?? `[UNMAPPED: ${key}]`;
+        }
+
+        function battleOptionToObj(json) {
+          return {
+            ...standardSkillEffect,
+            id:json.ID,
+            trigger: lookup(TRIGGER_LOOKUP, json.CheckTimingType),
+            effect: lookup(EFFECT_LOOKUP, json.BOFuncType),
+            target: lookup(TARGET_LOOKUP, json.BOTarType),
+            conditionSelf: lookup(CONDITION_SELF_LOOKUP, json.BOSelfCondType),
+            conditionTarget: lookup(CONDITION_TARGET_LOOKUP, json.BOTarCondType),
+            ignoreCD: json.BOIgnoreCoolTime,
+            inflictRate: json.BOFuncRate,
+            val1: json.BOFuncValue1,
+            val2: json.BOFuncValue2,
+            val3: json.BOFuncValue3
           };
         }
 
@@ -307,7 +916,25 @@
           legendaryFilter:true
         })
 
-        let stringsById = null;
+        /*function buildLookup(effects, key) {
+          return effects.reduce((acc, effect) => {
+            const value = effect[key];
+            if (value !== undefined && value !== null && value !== "" && value !== "NONE") {
+              acc[value] = ""; // fill in the translated string later
+            }
+            return acc;
+          }, {});
+        }
+
+        // Optional: dump them sorted, ready to paste into your source file
+        function printLookup(name, lookup) {
+          const keys = Object.keys(lookup).sort();
+          console.log(`const ${name} = {`);
+          keys.forEach(k => console.log(`  "${k}": "",`));
+          console.log(`}`);
+        }*/
+
+        let battleOptionData = null;
         async function loadData(loadCached = false) {
           if(loadCached) {
             loadingStatus.value = "Getting JSON from GitHub...";
@@ -334,7 +961,7 @@
 
             const battleOptionDataReq = await fetch('https://raw.githubusercontent.com/DeltaBoss/TaimaninSquadHub/refs/heads/main/json/TaimaninSquad_AllBOs.json');
             if (!unitDataReq.ok) throw new Error(`HTTP ${response.status}`)
-            let battleOptionData = JSON.parse(await battleOptionDataReq.text());
+            battleOptionData = JSON.parse(await battleOptionDataReq.text());
 
             skillData = skillData.reduce((acc, entry) => {
               acc[entry.ID] = entry
@@ -355,10 +982,10 @@
             const numUnits = unitData.length;
             for (const unit of unitData) {
               loadingStatus.value = "Caching: " + counter + "/" + numUnits;
-              console.log(unit);
+              //console.log(unit);
               unitCache[unit.ID] = structuredClone(standardUnit);
               unitCache[unit.ID].id = unit.ID;
-              unitCache[unit.ID].name = unit.DisplayName ?? "NA";
+              unitCache[unit.ID].name = swapUnitNameAndSpec(unit.DisplayName) ?? "NA";
               unitCache[unit.ID].img = unit.Icon;
               unitCache[unit.ID].iconSuffix = "";
               unitCache[unit.ID].portraitSuffix = "";
@@ -398,7 +1025,7 @@
                 const skillYaml = skillData[unit.SkillID4];
                 unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID4));
               }
-              console.log(unitCache[unit.ID]);
+              //console.log(unitCache[unit.ID]);
               displayedUnits.push(unit.ID);
               counter++;
             }
@@ -419,6 +1046,18 @@
               tmpWeap.skill.name = "<" + cleanString(weapon.DisplayName) + "> " + cleanString(skillData[weapon.SkillSlot].DisplayName);
               unitCache[weapon.UnitID].weapons.push(tmpWeap);
             }
+            /*loadingStatus.value = "Building BO."
+            // effects = your parsed JSON array of skill-effect objects
+            const trig = buildLookup(battleOptionData, "CheckTimingType");
+            const eff = buildLookup(battleOptionData, "BOFuncType");
+            const tar = buildLookup(battleOptionData, "BOTarType");
+            const self = buildLookup(battleOptionData, "BOSelfCondType");
+            const targ = buildLookup(battleOptionData, "BOTarCondType");
+            printLookup("TRIGGER_LOOKUP", trig);
+            printLookup("EFFECT_LOOKUP", eff);
+            printLookup("TARGET_LOOKUP", tar);
+            printLookup("CONDITION_SELF_LOOKUP", self);
+            printLookup("CONDITION_TARGET_LOOKUP", targ);*/
           }
           if(Object.keys(unitCache).length > 0) {
             Object.assign(selectedUnit, unitCache[Object.keys(unitCache)[0]]);
@@ -546,9 +1185,9 @@
           } else {
             newDisplay = Object.values(unitCache).map(unit => unit.id);
           }
-          if(sortingIsAZ.value) {
+          /*if(sortingIsAZ.value) {
             newDisplay.sort((a,b) => unitCache[a].name.localeCompare(unitCache[b].name));
-          }
+          }*/
           displayedUnits.splice(0, displayedUnits.length, ...newDisplay)
         }
 
@@ -586,13 +1225,16 @@
         }
         
         loadData().then(() => toggleDisplayOrder())
+
+        
+
         return { sortingIsAZ, simpleFilterStates, toggleSimpleFilter, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup,  SKILL_LOOKUP, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit, exportUnitCache }
       }
     }).mount('#UnitCodex')
   </script>
   <hr>
   <footer>
-    Footer
+    TaimaninSquadHub is a fan project. All assets are owned by Gremory Games. This site does not use cookies.
   </footer>
 </body>
 </html>
