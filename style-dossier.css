@@ -133,6 +133,9 @@ button, input { font: inherit; color: inherit; }
 }
 .btn:hover { background: var(--ink); color: var(--sheet); }
 
+.unreleasedToggle { display: inline-flex; align-items: center; gap: 0.4rem; user-select: none; }
+.unreleasedToggle input { margin: 0; cursor: pointer; }
+
 /* ---------- Filters ---------- */
 
 .filterBar { display: flex; flex-wrap: wrap; gap: 0.75rem; }

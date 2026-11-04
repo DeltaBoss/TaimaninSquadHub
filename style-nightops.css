@@ -1,0 +1,362 @@
+/* =========================================================
+   TaimaninSquadHub — Design 2: "Night Ops"
+   Dark navy HUD: cut-corner panels, condensed Noto Sans, cyan signal.
+   ========================================================= */
+
+:root {
+  --bg:     #10182A;
+  --panel:  #18233A;
+  --panel2: #1F2C48;
+  --line:   #2F3F62;
+  --text:   #DCE5F5;
+  --muted:  #8C9AB8;
+  --cyan:   #43D3E3;
+  --hot:    #F0507F;
+
+  --r-common:    #7D8AA6;
+  --r-uncommon:  #4FC78A;
+  --r-rare:      #4D9BFF;
+  --r-epic:      #B07CFF;
+  --r-legendary: #FFB547;
+
+  --cut: 14px;
+  --cut-shape: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)),
+                       calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  scrollbar-color: var(--line) var(--bg);
+}
+
+button, input { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+/* ---------- Header ---------- */
+
+.siteHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding: 1rem clamp(1rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.siteTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+  margin: 0;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  font-stretch: 62.5%;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.titleImg { height: 1.25em; width: auto; }
+
+.mainNav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mainNav a,
+.mainNav .navSoon span {
+  display: block;
+  padding: 0.45rem 1.1rem;
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.mainNav a { color: var(--text); background: var(--panel2); }
+.mainNav a:hover { background: var(--line); }
+.mainNav a.active { color: var(--bg); background: var(--cyan); }
+.mainNav .navSoon span { color: var(--muted); background: var(--panel); cursor: default; }
+
+/* ---------- Page ---------- */
+
+.pageContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 2.5rem;
+}
+
+#UnitCodex {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+/* ---------- Toolbar ---------- */
+
+.codexHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.codexTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-stretch: 75%;
+  color: var(--cyan);
+}
+
+.codexStatus { display: flex; align-items: center; gap: 0.75rem; }
+.loadingStatus { color: var(--muted); font-size: 0.9rem; }
+
+.searchRow { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+
+#searchbar {
+  flex: 1 1 auto;
+  max-width: 28rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+#searchbar:focus { border-color: var(--cyan); }
+
+.btn {
+  padding: 0.5rem 1rem;
+  background: var(--panel2);
+  border: 0;
+  box-shadow: inset 0 -2px 0 var(--cyan);
+  font-weight: 600;
+  cursor: pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+.btn:hover { background: var(--line); }
+
+.unreleasedToggle { display: inline-flex; align-items: center; gap: 0.4rem; user-select: none; }
+.unreleasedToggle input { margin: 0; cursor: pointer; }
+
+/* ---------- Filters ---------- */
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 4px;
+  background: var(--panel);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.simpleFilterButton {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.3rem 0.7rem;
+  background: var(--panel2);
+  border: 0;
+  box-shadow: inset 0 -2px 0 var(--cyan);
+  font-stretch: 75%;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.simpleFilterButtonInactive {
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+}
+.simpleFilterButtonInactive .simpleFilterButtonImage { filter: grayscale(1) brightness(0.7); opacity: 0.45; }
+
+.simpleFilterButtonImage { height: 32px; width: auto; }
+
+.advancedFilters p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- Unit grid ---------- */
+
+#selectorField {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  grid-auto-rows: max-content;
+  gap: 6px;
+  height: 330px;
+  overflow-y: auto;
+  padding: 10px;
+  background: var(--panel);
+  clip-path: var(--cut-shape);
+}
+
+.selectorElement {
+  padding: 0.35rem 0.2rem 0.4rem;
+  text-align: center;
+  background: var(--panel2);
+  box-shadow: inset 0 2px 0 var(--rarity, var(--line));
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  cursor: pointer;
+}
+.selectorElement:hover { background: var(--line); }
+.selectorElement br { display: none; }
+
+.unitSelected,
+.unitSelected:hover {
+  background: #173A4E;
+  box-shadow: inset 0 0 0 2px var(--cyan);
+}
+
+.unitIcon { display: block; width: 88px; height: 88px; margin: 0 auto; }
+
+.unitSelectorText {
+  display: block;
+  height: 2.6em;
+  margin-top: 0.2rem;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  font-size: 0.85rem;
+  font-stretch: 75%;
+  line-height: 1.3;
+}
+
+.rarity-1 { --rarity: var(--r-common); }
+.rarity-2 { --rarity: var(--r-uncommon); }
+.rarity-3 { --rarity: var(--r-rare); }
+.rarity-4 { --rarity: var(--r-epic); }
+.rarity-5 { --rarity: var(--r-legendary); }
+
+/* ---------- Selected unit ---------- */
+
+.unitDetail {
+  display: grid;
+  grid-template-columns: minmax(220px, 380px) 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: var(--panel);
+  box-shadow: inset 4px 0 0 var(--rarity, var(--cyan));
+  clip-path: var(--cut-shape);
+}
+
+.unitPortrait {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(67, 211, 227, 0.06) 23px 24px),
+    var(--panel2);
+}
+
+.portraitImg { display: block; max-width: 100%; max-height: 440px; margin: 0 auto; object-fit: contain; }
+
+.unitName {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  font-size: 2rem;
+  font-weight: 800;
+  font-stretch: 62.5%;
+  line-height: 1.1;
+  background: var(--bg);
+  border-top: 2px solid var(--rarity, var(--cyan));
+}
+
+.unitTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+  color: var(--muted);
+}
+
+.inlineIcon { width: 32px; height: 32px; }
+
+.statList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 1rem;
+}
+
+.statList p {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  background: var(--panel2);
+  border-left: 2px solid var(--cyan);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* ---------- Aura, skills, weapons ---------- */
+
+.unitAbilities {
+  padding: 0.5rem 1.25rem;
+  background: var(--panel);
+  clip-path: var(--cut-shape);
+}
+
+.auraRow { padding: 0.75rem 0; font-weight: 600; }
+.auraRow span { display: flex; align-items: center; gap: 0.75rem; }
+.auraRow .skillImg { width: 48px; height: 48px; }
+
+.skillEntry {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.skillImg { width: 80px; height: 80px; flex: none; }
+.weapImg  { width: 40px; height: 80px; flex: none; object-fit: contain; }
+
+.skillText { min-width: 0; max-width: 80ch; }
+.skillText p { margin: 0 0 0.35rem; }
+
+.skillText .skillName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-stretch: 75%;
+  color: var(--cyan);
+}
+
+.skillText .effectsLabel { margin-top: 0.6rem; font-weight: 600; }
+
+.effectLine {
+  padding: 0.3rem 0.6rem;
+  background: var(--panel2);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Footer ---------- */
+
+.siteFooter {
+  padding: 1.25rem clamp(1rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 720px) {
+  .unitDetail { grid-template-columns: 1fr; }
+  .statList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skillImg { width: 56px; height: 56px; }
+}
