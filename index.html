@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap">
-  <!-- Design options: style-dossier.css | style-nightops.css | style-gacha.css -->
+  <!-- Design options: style-dossier.css | style-nightops.css -->
   <link rel="stylesheet" href="style-dossier.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="searchRow">
-          <input type="text" alt="search" id="searchbar">
+          <input type="text" alt="search" id="searchbar" :value="searchQuery" @input="onSearchInput">
           <button class="btn sortToggle" @click="toggleDisplayOrder">{{sortingIsAZ ? "A-Z" : "Id"}}</button>
           <label class="btn unreleasedToggle"><input type="checkbox" :checked="showUnreleased" @change="toggleUnreleased">Unreleased units</label>
         </div>
@@ -107,10 +107,16 @@
             </span>
           </div>
           <div class="statList">
-            <p>HP: {{selectedUnit.hp}}</p>
-            <p>ATK: {{selectedUnit.atk}}</p>
-            <p>DEF: {{selectedUnit.def}}</p>
-            <p>SPD: {{selectedUnit.spd}}</p>
+            <div v-for="key in ['Hp', 'Atk', 'Def', 'Spd']" :key="key" class="statRankRow">
+              <span class="statValue">{{key.toUpperCase()}}: {{selectedUnit[key.toLowerCase()]}}</span>
+              <div v-for="[label, prefix] in [['Overall', 'overallRank'], ['In Role', 'roleRank'], ['In Role & Type', 'typeRoleRank']]" :key="prefix" class="rankBar">
+                <span class="rankBarLabel">{{label}}</span>
+                <div class="rankBarTrack" :style="{ '--rank': selectedUnit[prefix + key][0], '--total': selectedUnit[prefix + key][1] }">
+                  <div class="rankBarFill"></div>
+                  <span class="rankBarText">{{selectedUnit[prefix + key][0]}} / {{selectedUnit[prefix + key][1]}}</span>
+                </div>
+              </div>
+            </div>
             <p>CRIT RATE: {{selectedUnit.crit_rate}}%</p>
             <p>CRIT DMG: {{selectedUnit.crit_dmg}}%</p>
             <p>CRIT RES: {{selectedUnit.crit_res}}%</p>
@@ -273,7 +279,19 @@
         stat:"NA",
       },
       skills:[],
-      weapons:[]
+      weapons:[],
+      overallRankHp: [-1, -1],
+      overallRankAtk: [-1, -1],
+      overallRankDef: [-1, -1],
+      overallRankSpd: [-1, -1],
+      roleRankHp: [-1, -1],
+      roleRankAtk: [-1, -1],
+      roleRankDef: [-1, -1],
+      roleRankSpd: [-1, -1],
+      typeRoleRankHp: [-1, -1],
+      typeRoleRankAtk: [-1, -1],
+      typeRoleRankDef: [-1, -1],
+      typeRoleRankSpd: [-1, -1]
     }
 
     const standardSkill = {
@@ -914,6 +932,10 @@
       };
     }
 
+    function getUnitRankFromMap(rankObj, unitKey) {
+      return [Object.entries(rankObj).reduce((sum, [k, v]) => Number(k) <= unitKey ? sum + v.length : sum, 0), Object.values(rankObj).reduce((sum, arr) => sum+=arr.length, 0)];
+    }
+
     const standardWeapon = {
       id:0,
       unitTarget:0,
@@ -927,25 +949,117 @@
     }
 
     const unitCache = {};
-    const loadingStatus = ref("Init")
-
-    /*function buildLookup(effects, key) {
-      return effects.reduce((acc, effect) => {
-        const value = effect[key];
-        if (value !== undefined && value !== null && value !== "" && value !== "NONE") {
-          acc[value] = ""; // fill in the translated string later
-        }
-        return acc;
-      }, {});
+    const statRanking = {
+      overallRanking: {
+        hpRanking: {},
+        atkRanking: {},
+        defRanking: {},
+        spdRanking: {}
+      },
+      roleRanking: { //1:off, 2:def, 3:sup
+        1: {
+          hpRanking: {},
+          atkRanking: {},
+          defRanking: {},
+          spdRanking: {}
+        },
+        2: {
+          hpRanking: {},
+          atkRanking: {},
+          defRanking: {},
+          spdRanking: {}
+        },
+        3: {
+          hpRanking: {},
+          atkRanking: {},
+          defRanking: {},
+          spdRanking: {}
+        },
+      },
+      typeRoleRanking: {
+        1: { //power
+          1: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          2: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          3: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          }
+        },
+        2: { //technique
+          1: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          2: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          3: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          }
+        },
+        3: { //agility
+          1: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          2: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          3: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          }
+        },
+        4: { //balanced
+          1: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          2: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          },
+          3: {
+            hpRanking: {},
+            atkRanking: {},
+            defRanking: {},
+            spdRanking: {}
+          }
+        },
+      }
     }
-
-    // Optional: dump them sorted, ready to paste into your source file
-    function printLookup(name, lookup) {
-      const keys = Object.keys(lookup).sort();
-      console.log(`const ${name} = {`);
-      keys.forEach(k => console.log(`  "${k}": "",`));
-      console.log(`}`);
-    }*/
+    const loadingStatus = ref("Init")
 
     let battleOptionData = null;
     async function loadData(loadCached = false) {
@@ -1039,8 +1153,40 @@
             unitCache[unit.ID].skills.push(skillYamlToObj(skillYaml, unit.SkillID4));
           }
           //console.log(unitCache[unit.ID]);
+          if(unit.BookIdx !== 0) {
+            (statRanking.overallRanking.hpRanking[unit.HP] ??= []).push(unit.ID);
+            (statRanking.overallRanking.atkRanking[unit.ATK] ??= []).push(unit.ID);
+            (statRanking.overallRanking.defRanking[unit.DEF] ??= []).push(unit.ID);
+            (statRanking.overallRanking.spdRanking[unit.SPD] ??= []).push(unit.ID);
+            (statRanking.roleRanking[unit.ClassType].hpRanking[unit.HP] ??= []).push(unit.ID);
+            (statRanking.roleRanking[unit.ClassType].atkRanking[unit.ATK] ??= []).push(unit.ID);
+            (statRanking.roleRanking[unit.ClassType].defRanking[unit.DEF] ??= []).push(unit.ID);
+            (statRanking.roleRanking[unit.ClassType].spdRanking[unit.SPD] ??= []).push(unit.ID);
+            (statRanking.typeRoleRanking[unit.AttributeType][unit.ClassType].hpRanking[unit.HP] ??= []).push(unit.ID);
+            (statRanking.typeRoleRanking[unit.AttributeType][unit.ClassType].atkRanking[unit.ATK] ??= []).push(unit.ID);
+            (statRanking.typeRoleRanking[unit.AttributeType][unit.ClassType].defRanking[unit.DEF] ??= []).push(unit.ID);
+            (statRanking.typeRoleRanking[unit.AttributeType][unit.ClassType].spdRanking[unit.SPD] ??= []).push(unit.ID);
+          }
           counter++;
         }
+        loadingStatus.value = "Filling in stat rankings..."
+        for(const unit of Object.values(unitCache)) {
+          if(unit.bookIndex !== 0) {
+            unit.overallRankHp = getUnitRankFromMap(statRanking.overallRanking.hpRanking, unit.hp);
+            unit.overallRankAtk = getUnitRankFromMap(statRanking.overallRanking.atkRanking, unit.atk);
+            unit.overallRankDef = getUnitRankFromMap(statRanking.overallRanking.defRanking, unit.def);
+            unit.overallRankSpd = getUnitRankFromMap(statRanking.overallRanking.spdRanking, unit.spd);
+            unit.roleRankHp = getUnitRankFromMap(statRanking.roleRanking[unit.role].hpRanking, unit.hp);
+            unit.roleRankAtk = getUnitRankFromMap(statRanking.roleRanking[unit.role].atkRanking, unit.atk);
+            unit.roleRankDef = getUnitRankFromMap(statRanking.roleRanking[unit.role].defRanking, unit.def);
+            unit.roleRankSpd = getUnitRankFromMap(statRanking.roleRanking[unit.role].spdRanking, unit.spd);
+            unit.typeRoleRankHp = getUnitRankFromMap(statRanking.typeRoleRanking[unit.type][unit.role].hpRanking, unit.hp);
+            unit.typeRoleRankAtk = getUnitRankFromMap(statRanking.typeRoleRanking[unit.type][unit.role].atkRanking, unit.atk);
+            unit.typeRoleRankDef = getUnitRankFromMap(statRanking.typeRoleRanking[unit.type][unit.role].defRanking, unit.def);
+            unit.typeRoleRankSpd = getUnitRankFromMap(statRanking.typeRoleRanking[unit.type][unit.role].spdRanking, unit.spd);
+          }
+        }
+
         loadingStatus.value = "Caching weapons..."
         for(const weapon of weaponData) {
           const tmpWeap = {
@@ -1089,6 +1235,8 @@
         const selectedUnit = reactive({...standardUnit})
         const sortingIsAZ = ref(false)
         const showUnreleased = ref(false)
+        const searchQuery = ref("")
+        const searchIndex = new Map()
         const simpleFilterStates = ref({
           powerFilter:true,
           techniqueFilter:true,
@@ -1236,6 +1384,10 @@
           if(!showUnreleased.value) {
             newDisplay = newDisplay.filter(id => unitCache[id].bookIndex !== 0);
           }
+          const query = searchQuery.value.trim().toLowerCase();
+          if(query) {
+            newDisplay = newDisplay.filter(id => searchIndex.get(id).includes(query));
+          }
           if(sortingIsAZ.value) {
             newDisplay.sort((a,b) => unitCache[a].name.localeCompare(unitCache[b].name));
           }
@@ -1265,6 +1417,21 @@
           applyFilters();
         }
 
+        function onSearchInput(event) {
+          searchQuery.value = event.target.value;
+          applyFilters();
+        }
+
+        function buildSearchIndex() {
+          for(const unit of Object.values(unitCache)) {
+            searchIndex.set(unit.id, [
+              unit.name,
+              ...unit.skills.map(skill => skill.desc),
+              ...unit.weapons.map(weapon => weapon.skill.desc)
+            ].join("\n").toLowerCase());
+          }
+        }
+
         function exportUnitCache() {
           const json = JSON.stringify(unitCache, null, 2)
           const blob = new Blob([json], { type: 'application/json' })
@@ -1282,6 +1449,7 @@
         
         // Fill this page once the shared data has loaded (loadData() itself runs only once)
         dataLoaded.then(() => {
+          buildSearchIndex();
           applyFilters();
           if(Object.keys(unitCache).length > 0) {
             Object.assign(selectedUnit, unitCache[Object.keys(unitCache)[0]]);
@@ -1289,7 +1457,7 @@
           toggleDisplayOrder()
         })
 
-        return { sortingIsAZ, showUnreleased, toggleUnreleased, simpleFilterStates, toggleSimpleFilter, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup,  SKILL_LOOKUP, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit, exportUnitCache }
+        return { sortingIsAZ, showUnreleased, toggleUnreleased, searchQuery, onSearchInput, simpleFilterStates, toggleSimpleFilter, toggleDisplayOrder, typeLookup, roleLookup, traitLookup, rarityLookup,  SKILL_LOOKUP, selectedUnit, displayedUnits, loadingStatus, unitCache, handleImgError, selectNewUnit, exportUnitCache }
       }
     }
 
