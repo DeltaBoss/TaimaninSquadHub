@@ -572,7 +572,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Shadow Arts: Beast Call[-]",
-    "DisplayDesc": "Summons a shadow creature and sends it toward the enemy.\nInflicts [&Color_Cyan]([V3:50201]%)[-] [&DefDown] [&Common_Word_Skill_ActionBefore] at a [&Color_Cyan][R:50201]%[-] chance if the target is a [&Color_GreenYellow]Defense Type[-].\n[&Common_Word_Skill_ValueTurn]: [V2:50201] turn(s)\nGoes into [&Stealth] mode when defeating an enemy with this skill.\n[&Common_Word_Skill_ValueTurn]: [V2:50203] turn(s)"
+    "DisplayDesc": "Summons a shadow creature and sends it toward the enemy.\nGoes into [&Stealth] mode [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:50201] turn(s)\nInflicts [&Color_Cyan]([V3:50202]%)[-] [&DefDown] at a [&Color_Cyan][R:50202]%[-] chance if the target is a [&Color_GreenYellow]Defense Type[-] [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:50202] turn(s)"
   },
   {
     "ID": 503,
@@ -612,13 +612,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "50401",
+    "BOList": "50401/50402",
     "NeedEvolLv": 2,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Mischief Taimanin[-]",
-    "DisplayDesc": "When a [&Common_Word_Skill_CriticalAttack] lands, the target's [&Common_Word_Skill_TurnGauge] reduces by [&Color_Cyan]([V3:50401]%)[-] at a [&Color_Cyan][R:50401]%[-] chance."
+    "DisplayDesc": "When using [&Tbl_UnitSkill_Name_501] while the character is not in [&Stealth] mode, [&Tbl_UnitSkill_Name_503]'s [&Common_Word_Skill_CoolTime] time is reduced by [V2:50401] turn(s).\nWhen using [&Tbl_UnitSkill_Name_503] while the character is in [&Stealth] mode, [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:50402]%)[-]."
   },
   {
     "ID": 512,
@@ -641,7 +641,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_501]> [&Tbl_UnitSkill_Name_502]",
-    "DisplayDesc": "Summons a shadow creature and sends it toward the enemy.\nInflicts [&Color_Cyan]([V3:51201]%)[-] [&DefDown] to the target at a [&Color_Cyan][R:51201]%[-] chance [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:51201] turn(s)\nGoes into [&Stealth] mode when defeating an enemy with this skill.\n[&Common_Word_Skill_ValueTurn]: [V2:51203] turn(s)"
+    "DisplayDesc": "Summons a shadow creature and sends it toward the enemy.\nGoes into [&Stealth] mode [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:51201] turn(s)\nInflicts [&Color_Cyan]([V3:51202]%)[-] [&DefDown] on the target at a [&Color_Cyan][R:51202]%[-] chance [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:51202] turn(s)"
   },
   {
     "ID": 514,
@@ -658,13 +658,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "51401",
+    "BOList": "51401/51402",
     "NeedEvolLv": 2,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_502]> [&Tbl_UnitSkill_Name_504]",
-    "DisplayDesc": "When [&Common_Word_Skill_CriticalAttack] lands, fills the character's [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:51401]%)[-] at a fixed chance of [&Color_Cyan][R:51401]%[-]."
+    "DisplayDesc": "When using [&Tbl_UnitSkill_Name_501] while the character is not in [&Stealth] mode, [&Tbl_UnitSkill_Name_503]'s [&Common_Word_Skill_CoolTime] time is reduced by [V2:50401] turn(s).\nWhen using [&Tbl_UnitSkill_Name_503] while the character is in [&Stealth] mode, the target is inflicted with [&Confuse] at a [&Color_Cyan][R:51402]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:51402] turn(s)"
   },
   {
     "ID": 600,
@@ -3677,7 +3677,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Manmade Demon[-]",
-    "DisplayDesc": "Recovers [&Color_Cyan][V3:260401]%[-] of Max. [&HP] when defeating an enemy.\nWhen defeating an enemy, [&Common_Word_Skill_TurnGauge] fills [&Color_Cyan]([V3:260402]%)[-] at a [&Color_Cyan][R:260402]%[-] chance.\nThe [&Common_Word_Skill_Damage] of all of Noah's skills increase the lower the [&HP]."
+    "DisplayDesc": "Recovers [&Color_Cyan][V3:260401]%[-] of Max. [&HP] when defeating an enemy.\nWhen defeating an enemy, [&Common_Word_Skill_TurnGauge] fills [&Color_Cyan]([V3:260402]%)[-] at a [&Color_Cyan][R:260402]%[-] chance.\nThe [&Common_Word_Skill_Damage] of all Noah's skills increases the lower her [&HP] is."
   },
   {
     "ID": 2613,
@@ -3723,7 +3723,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_2602]> [&Tbl_UnitSkill_Name_2604]",
-    "DisplayDesc": "Recovers [&Color_Cyan][V3:261401]%[-] of Max. [&HP] whenever an enemy dies, and fills [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:261402]%)[-] at a [&Color_Cyan][R:261402]%[-] chance.\nThe [&Common_Word_Skill_Damage] of all of Noah's skills increase the lower the [&HP]."
+    "DisplayDesc": "Recovers [&Color_Cyan][V3:261401]%[-] of Max. [&HP] whenever an enemy dies, and fills [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:261402]%)[-] at a [&Color_Cyan][R:261402]%[-] chance.\nThe [&Common_Word_Skill_Damage] of all Noah's skills increases the lower her [&HP] is."
   },
   {
     "ID": 2700,
@@ -3884,7 +3884,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_2702]> [&Tbl_UnitSkill_Name_2704]",
-    "DisplayDesc": "If the character's [&HP] is [&Color_Cyan]50%[-] or more, [&Common_Word_Skill_Damage] taken decreases by [&Color_Cyan]([V3:271401]%)[-].\n[&Common_Word_Skill_CooltimeIgnore]\n[&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:271402]%[-]/[&Color_Cyan][V3:271403]%[-]/[&Color_Cyan][V3:271404]%[-]/[&Color_Cyan][V3:271405]%[-], depending on the number of enemies afflicted with [&Burn] (1/2/3/4)."
+    "DisplayDesc": "If the character's [&HP] is [&Color_Cyan]50%[-] or more, [&Common_Word_Skill_Damage] taken decreases by [&Color_Cyan]([V3:271401]%)[-].\n[&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:271402]%[-]/[&Color_Cyan][V3:271403]%[-]/[&Color_Cyan][V3:271404]%[-]/[&Color_Cyan][V3:271405]%[-], depending on the number of enemies afflicted with [&Burn] (1/2/3/4)."
   },
   {
     "ID": 2800,
@@ -4597,7 +4597,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Volt Rush[-]",
-    "DisplayDesc": "Spins around and slashes [&Common_Word_Skill_EnemyAll] with blades attached to the back [A:3202] times.\nIf the target is inflicted with [&ElecShock], additionally inflicts them with [&Stun] at a [&Color_Cyan][R:320202]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:320202] turn(s)\nOn [&Common_Word_Skill_ActionLast], if the target is inflicted with [&Stun], reduces the [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:320203]%)[-] at a [&Color_Cyan][R:320203]%[-] chance."
+    "DisplayDesc": "Spins around and slashes [&Common_Word_Skill_EnemyAll] with blades attached on the back [A:3202] time(s).\nEach attack inflicts [&ElecShock] at a [&Color_Cyan][R:320202]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:320202] turn(s)\nIf the target is not afflicted with [&ElecShock], inflicts [&Color_Cyan]([V3:320203]%)[-] [&EvdDown] at a [&Color_Cyan][R:320203]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:320203] turn(s)"
   },
   {
     "ID": 3203,
@@ -4614,13 +4614,13 @@
     "SkillCutFlag": 2,
     "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
     "DmgBase": "[ATK]",
-    "BOList": "320301/320302/320303/320304/320305",
+    "BOList": "320301/320302/320303/320304",
     "NeedEvolLv": 1,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Lightning Art: Chain Volt[-]",
-    "DisplayDesc": "Overcharges both swords with electricity and slashes at the enemy.\nRemoves [V3:320302] [&Common_Word_Skill_Random] [&Buff]s from the target and inflicts [&ElecShock] at a [&Color_Cyan][R:320304]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:320304] turn(s)\nIf the character performs [&Common_Word_Skill_CriticalAttack], absorbs [&Color_Cyan]([V3:320303]%)[-] of the [&Common_Word_Skill_TurnGauge] at a [&Color_Cyan][R:320303]%[-] chance.\nIf the character has [&OverCharge], increases [&Common_Word_Skill_CriticalRate] by [&Color_Cyan]([V3:320305]%)[-]."
+    "DisplayDesc": "Overcharges both swords with electricity and slashes the enemy.\nIf the target is not afflicted with [&ElecShock], inflicts [&ElecShock] at a [&Color_Cyan][R:320302]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:320302] turn(s)\nIf the target is afflicted with [&ElecShock], increases [&Common_Word_Skill_Damage] by [&Color_Cyan]([V3:320303]%)[-].\nIf the character has [&OverCharge], increases [&Common_Word_Skill_Damage] by [&Color_Cyan]([V3:320304]%)[-]."
   },
   {
     "ID": 3204,
@@ -4637,13 +4637,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "320401/320402/320403/320404",
+    "BOList": "320401/320402/320403",
     "NeedEvolLv": 2,
     "BOCondiCheck": "320499",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Volt Taimanin[-]",
-    "DisplayDesc": "When using a basic attack on a target with [&ElecShock], fills the character's [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:320401]%)[-].\nWhen using a basic attack on a target with [&Stun], absorbs [&Color_Cyan]([V3:321303]%)[-] of the [&Common_Word_Skill_TurnGauge].\nAt the [&Common_Word_Skill_TurnStart], gains [&Color_Cyan]([V3:320403]%)[-] [&OverCharge] if the character has [&AtkUp].\nIf the character already has [&OverCharge], this does not refresh its duration.\n[&Common_Word_Skill_ValueTurn]: [V2:320403] turn(s)\nInflicts [&ElecShock] on 2 [&Common_Word_Skill_Random] enemies upon death. This effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:320404] turn(s)"
+    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], if the character has [&AtkUp], gains [&Color_Cyan]([V3:320402]%)[-] [&OverCharge].\nIf the character already has [&OverCharge], this does not reset the [&OverCharge] [&Buff] duration.\n[&Common_Word_Skill_ValueTurn]: [V2:320402] turn(s)\nIf the character is defeated, inflicts [&ElecShock] on 2 [&Common_Word_Skill_Random] enemies.\nThis effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:320403] turn(s)\nIf the character has [&OverCharge], increases [&Common_Word_Skill_CriticalRate] by [&Color_Cyan]([V3:320401]%)[-] on the [&Common_Word_Skill_ActionLast]."
   },
   {
     "ID": 3213,
@@ -4660,13 +4660,13 @@
     "SkillCutFlag": 2,
     "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
     "DmgBase": "[ATK]",
-    "BOList": "321301/321302/321303/321304/321305",
+    "BOList": "321301/321302/321303/321304",
     "NeedEvolLv": 1,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_3201]> [&Tbl_UnitSkill_Name_3203]",
-    "DisplayDesc": "Overcharges both swords with electricity and slashes at the enemy.\nRemoves the target's [V3:320302] [&Common_Word_Skill_Random] [&Buff]s and inflicts [&Stun] at a [&Color_Cyan][R:321304]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:321304] turn(s)\nIf the character performs [&Common_Word_Skill_CriticalAttack], absorbs [&Color_Cyan]([V3:321303]%)[-] of the [&Common_Word_Skill_TurnGauge] at a [&Color_Cyan][R:321303]%[-] chance.\nIf the character has [&OverCharge], increases [&Common_Word_Skill_CriticalRate] by [&Color_Cyan]([V3:321305]%)[-]."
+    "DisplayDesc": "Overcharges both swords with electricity and slashes the enemy.\nIf the target is not afflicted with [&ElecShock], inflicts [&ElecShock] at a [&Color_Cyan][R:321302]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:321302] turn(s)\nIf the target is afflicted with [&ElecShock], increases [&Common_Word_Skill_CriticalDamage] by [&Color_Cyan]([V3:321303]%)[-].\nIf the character has [&OverCharge], increases [&Common_Word_Skill_Damage] by [&Color_Cyan]([V3:321304]%)[-]."
   },
   {
     "ID": 3214,
@@ -4683,13 +4683,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "321401/321402/321403/321404",
+    "BOList": "321401/321402/321403",
     "NeedEvolLv": 2,
     "BOCondiCheck": "321499",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_3202]> [&Tbl_UnitSkill_Name_3204]",
-    "DisplayDesc": "If the target is inflicted with [&ElecShock], [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:321401]%)[-].\nIf the target is inflicted with [&Stun], [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:321402]%)[-].\nOn [&Common_Word_Skill_TurnStart], gains [&Color_Cyan]([V3:321403]%)[-] [&OverCharge] if the character has [&AtkUp].\n[&Common_Word_Skill_ValueTurn]: [V2:321403] turn(s)\nInflicts [&ElecShock] on 2 [&Common_Word_Skill_Random] enemies upon death. This effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:321404] turn(s)"
+    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], if the character has [&AtkUp], gains [&Color_Cyan]([V3:321402]%)[-] [&OverCharge].\nIf the character already has [&OverCharge], this does not reset [&OverCharge] [&Buff] duration.\n[&Common_Word_Skill_ValueTurn]: [V2:321402] turn(s)\nIf the character is defeated, inflicts [&ElecShock] on 2 [&Common_Word_Skill_Random] enemies.\nThis effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:321403] turn(s)\nIf the character has [&OverCharge], fills the [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:321401]%)[-] on the [&Common_Word_Skill_ActionLast]."
   },
   {
     "ID": 3300,
@@ -5612,6 +5612,52 @@
     "DisplayDesc": "Tbl_UnitSkill_Desc_3804"
   },
   {
+    "ID": 3811,
+    "Name": "Tbl_UnitSkill_Name_3811",
+    "Desc": "Tbl_UnitSkill_Desc_3811",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_1",
+    "Icon": "3811",
+    "Turn": 0,
+    "SkillBtnType": 0,
+    "SkillAtkCnt": 1,
+    "SkillAddAtkCnt": 0,
+    "ChgTarFlag": 0,
+    "SkillCamType": 0,
+    "SkillCutFlag": 0,
+    "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
+    "DmgBase": "[ATK]",
+    "BOList": "381101",
+    "NeedEvolLv": 0,
+    "BOCondiCheck": "",
+    "TriggerKeyword": "",
+    "AuraInfo": "",
+    "DisplayName": "Tbl_UnitSkill_Name_3811",
+    "DisplayDesc": "Tbl_UnitSkill_Desc_3811"
+  },
+  {
+    "ID": 3812,
+    "Name": "Tbl_UnitSkill_Name_3812",
+    "Desc": "Tbl_UnitSkill_Desc_3812",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_2",
+    "Icon": "3812",
+    "Turn": 3,
+    "SkillBtnType": 0,
+    "SkillAtkCnt": 1,
+    "SkillAddAtkCnt": 0,
+    "ChgTarFlag": 0,
+    "SkillCamType": 0,
+    "SkillCutFlag": 0,
+    "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
+    "DmgBase": "[ATK]",
+    "BOList": "381201",
+    "NeedEvolLv": 0,
+    "BOCondiCheck": "",
+    "TriggerKeyword": "",
+    "AuraInfo": "",
+    "DisplayName": "Tbl_UnitSkill_Name_3812",
+    "DisplayDesc": "Tbl_UnitSkill_Desc_3812"
+  },
+  {
     "ID": 3900,
     "Name": "Tbl_UnitSkill_Name_ACC",
     "Desc": "Tbl_UnitSkill_Desc_Aura",
@@ -5648,14 +5694,14 @@
     "SkillCamType": 0,
     "SkillCutFlag": 0,
     "SkillLevel": "[D:10]/[P:10]/[D:10]/[P:10]/[D:10]",
-    "DmgBase": "[ATK]/[CostHP]",
+    "DmgBase": "[ATK]/[DEF]",
     "BOList": "390101/390102",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Taimanin Art: Spear[-]",
-    "DisplayDesc": "Using the character's abilities and spear, attacks the enemy a total of 3 times.\nTarget hit is inflicted with [&Color_Cyan]([V3:390102]%)[-] [&Burn] at a [&Color_Cyan][R:390102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:390102] turn(s)\n[&Common_Word_Skill_ATKCOSTHP]"
+    "DisplayDesc": "Using the character's abilities and spear, attacks the enemy a total of 3 times.\n[&Common_Word_Skill_Damage] increases in proportion to the character's DEF.\nInflicts [&Color_Cyan]([V3:390102]%)[-] [&Burn] on the target hit at a [&Color_Cyan][R:390102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:390102] turn(s)\n[&Common_Word_Skill_ATKCOSTHP]"
   },
   {
     "ID": 3902,
@@ -5678,7 +5724,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Reorganize[-]",
-    "DisplayDesc": "Assumes a battle ready stance and gains [&Color_Cyan]([V3:390201]%) [&HealTurn][-] and [&Color_Cyan]([V3:390202]%)[-] [&DmgReflect].\n[&Common_Word_Skill_ValueTurn]: [V2:390201] turn(s)"
+    "DisplayDesc": "Assumes a battle-ready stance and gains [&Color_Cyan]([V3:390201]%)[-] [&AccUp] and [&Color_Cyan]([V3:390202]%)[-] [&SpdUp].\n[&Common_Word_Skill_ValueTurn]: [V2:390202] turn(s)"
   },
   {
     "ID": 3903,
@@ -5694,14 +5740,14 @@
     "SkillCamType": 0,
     "SkillCutFlag": 2,
     "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
-    "DmgBase": "[ATK]",
+    "DmgBase": "[ATK]/[DEF]",
     "BOList": "390301/390302/390303/390304",
     "NeedEvolLv": 1,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Surprise Dust[-]",
-    "DisplayDesc": "Throws a spear imbued with the character's abilities, attacking the enemy 1 time.\nInflicts [&Color_Cyan]([V3:390302]%) [&Burn][-] to the target at a [&Color_Cyan][R:390302]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:390302] turn(s)\nIf the target's [&HP] is [&Color_Cyan]70%[-] or more, performs a [&Color_Cyan]([V3:390303]%)[-] [&Common_Word_Skill_DefPenetrate] attack.\nIf the target's [&HP] is less than [&Color_Cyan]70%[-], reduces [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:390304]%)[-] at a [&Color_Cyan][R:390304]%[-] chance."
+    "DisplayDesc": "Throws a spear imbued with the character's abilities, attacking the enemy 1 time.\nInflicts [&Color_Cyan]([V3:390302]%)[-] [&BurnDmg] on the target at a [&Color_Cyan][R:390302]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:390302] turn(s)\nIf the target's [&HP] is [&Color_Cyan]70%[-] or more, performs a [&Color_Cyan]([V3:390303]%)[-] [&Common_Word_Skill_DefPenetrate] attack.\nIf the target is afflicted with [&Burn], increases the duration of [V3:390304] [&Common_Word_Skill_Random] [&DeBuff](s) the target has by [V2:390304] turn(s)."
   },
   {
     "ID": 3904,
@@ -5724,7 +5770,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Sister Power![-]",
-    "DisplayDesc": "When an ally heals themselves directly, increases restoration by [&Color_Cyan][V3:390401]%[-]."
+    "DisplayDesc": "If the target's [&HP] is [&Color_Cyan]70%[-] or more, increases the damage of [&Burn] on the target by [&Color_Cyan][V3:390401]%[-]."
   },
   {
     "ID": 3911,
@@ -5740,14 +5786,14 @@
     "SkillCamType": 0,
     "SkillCutFlag": 0,
     "SkillLevel": "[D:10]/[P:10]/[D:10]/[P:10]/[D:10]",
-    "DmgBase": "[ATK]/[CostHP]",
-    "BOList": "391101/391102",
+    "DmgBase": "[ATK]/[DEF]",
+    "BOList": "391101/391102/391103",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_3901]> [&Tbl_UnitSkill_Name_3901]",
-    "DisplayDesc": "Using the character's abilities and spear, attacks the enemy a total of 3 times.\n[&Provocation]s the target hit at a [&Color_Cyan][R:391102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:391102] turn(s)\n[&Common_Word_Skill_ATKCOSTHP]"
+    "DisplayDesc": "Using the character's abilities and spear, attacks the enemy a total of 3 times.\nDamage increases in proportion to the character's [&Common_Word_Skill_Damage].\nInflicts [&Color_Cyan]([V3:391102]%)[-] [&Burn] on the target hit at a [&Color_Cyan][R:391102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:391102] turn(s)\nPerforms a [&Color_Cyan]([V3:391103]%)[-] [&Burn] [&Common_Word_Skill_DotBuffBurst] attack on the [&Common_Word_Skill_ActionLast]."
   },
   {
     "ID": 3912,
@@ -5770,7 +5816,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_3902]> [&Tbl_UnitSkill_Name_3902]",
-    "DisplayDesc": "Assumes a battle ready stance and gains an [&Common_Word_Skill_AddTurn], restoring [&Color_Cyan][V3:391201]%[-] of Max. [&HP]."
+    "DisplayDesc": "Assumes a battle-ready stance and gains [&Color_Cyan]([V3:391201]%)[-] [&AccUp] and [&Color_Cyan]([V3:391202]%)[-] [&AtkUp].\n[&Common_Word_Skill_ValueTurn]: [V2:391202] turn(s)"
   },
   {
     "ID": 4000,
@@ -17408,7 +17454,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Staff Pound[-]",
-    "DisplayDesc": "Swings a staff to attack the enemy.\n[&Common_Word_Skill_Damage] increases in proportion when the character's [&HP] gets lower.\nTarget hit is inflicted with [&Color_Cyan]([V3:1350102]%)[-] [&Weaken] at a [&Color_Cyan][R:1350102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:1350102] turn(s)"
+    "DisplayDesc": "Swings a staff to attack the enemy.\n[&Common_Word_Skill_Damage] increases in proportion to [&HP] lost.\nTarget hit is inflicted with [&Color_Cyan]([V3:1350102]%)[-] [&Weaken] at a [&Color_Cyan][R:1350102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:1350102] turn(s)"
   },
   {
     "ID": 13502,
@@ -21962,7 +22008,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Maul[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Launches forward to bite the enemy fiercely.\nTarget hit is inflicted with [&Color_Cyan]([V3:2270102]%)[-] [&CriResDown] at a [&Color_Cyan][R:2270102]%[-] chance. \n[&Common_Word_Skill_ValueTurn]: [V2:2270102] turn(s)"
   },
   {
     "ID": 22801,
@@ -21985,7 +22031,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Maul[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Launches forward to bite the enemy fiercely.\nWhen attacking an enemy with a [&DeBuff], [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:2280102]%)[-]."
   },
   {
     "ID": 22901,
@@ -22008,7 +22054,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Maul[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Launches forward to maul the enemy fiercely.\nPerforms a [&Color_Cyan]([V3:2290102]%)[-] [&Common_Word_Skill_DmgDrainHp]\nattack when attacking."
   },
   {
     "ID": 23001,
@@ -22031,7 +22077,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Infected Barrage Shot[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Raises a transformed arm and fires [A:23001] times at when the enemy."
   },
   {
     "ID": 23002,
@@ -22054,7 +22100,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Infected Charge Shot[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Fires a powerful shot at the enemy.\nInflicts [&Color_Cyan]([V3:2300202]%)[-] [&DefDown] at a [&Color_Cyan][R:2300202]%[-] chance [&Common_Word_Skill_ActionAfter].\n[&Common_Word_Skill_ValueTurn]: [V2:2300202] turn(s)"
   },
   {
     "ID": 23101,
@@ -22077,7 +22123,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Bone Slash[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Swings a sharply transformed arm to attack."
   },
   {
     "ID": 23102,
@@ -22100,7 +22146,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Bone Cleave[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Uses a sharply transformed arm to slash the enemy powerfully.\n[&Common_Word_Skill_Damage] increases in proportion to [&HP] lost.\nIf the target is afflicted with [&DefDown] [&DeBuff], [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:2310202]%)[-]."
   },
   {
     "ID": 23201,
@@ -22123,7 +22169,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Deadly Sequence[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Punches and kicks the enemy [A:23201] time(s).\nInflicts [&Stun] at a [&Color_Cyan][R:2320102]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:2320102] turn(s)"
   },
   {
     "ID": 23202,
@@ -22146,7 +22192,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Deadly Impact[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Throws a heroic punch at the enemy.\nGains [&Color_Cyan]([V3:2320201]%)[-] [&AtkUp] [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:2320201] turn(s)"
   },
   {
     "ID": 23301,
@@ -22169,7 +22215,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Deadly Blow[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Swings punches rapidly to attack [A:23301] time(s)."
   },
   {
     "ID": 23302,
@@ -22192,7 +22238,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Killing Rush[-]",
-    "DisplayDesc": ""
+    "DisplayDesc": "Roughly alternates punches to strike the enemy [A:23302] time(s).\nTarget hit is inflicted with [&Color_Cyan]([V3:2330202]%)[-] [&Poison] at a [&Color_Cyan][R:2330202]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:2330202] turn(s)"
   },
   {
     "ID": 23401,
@@ -25452,13 +25498,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "2580401",
+    "BOList": "2580401/2580402/2580403",
     "NeedEvolLv": 2,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Beachside Savage Hunter[-]",
-    "DisplayDesc": "If the target's [&HP] is below [&Color_Cyan]50%[-], fills [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:2580401]%)[-] at a fixed [&Color_Cyan][R:2580401]%[-] chance per attack."
+    "DisplayDesc": "If the target's [&HP] is below [&Color_Cyan]50%[-], fills [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:2580401]%)[-] at a fixed [&Color_Cyan][R:2580401]%[-] chance per attack.\nIf the target's [&HP] is below [&Color_Cyan]60%[-], [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:2580402]%)[-].\n[&Common_Word_Skill_AtkGap]"
   },
   {
     "ID": 25811,
@@ -25504,7 +25550,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "<[&Tbl_UnitWeapon_Name_25802]> [&Tbl_UnitSkill_Name_25802]",
-    "DisplayDesc": "Fires X-shaped sword aura, then unleashes a massive water stream using Void Art over the enemy's head to attack [A:25802] times.\n[&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:2581203]%[-] of the target's lost [&HP] when attacking.\nIf the target's [&HP] is below [&Color_Cyan]40%[-], removes the target's [&DmgBlockCount]."
+    "DisplayDesc": "Fires X-shaped sword aura, then unleashes a massive water stream using Void Art over the enemy's head to attack [A:25802] time(s).\n[&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:2581203]%[-] of the target's lost [&HP] when attacking.\nIf the target's [&HP] is below [&Color_Cyan]40%[-], removes the target's [&DmgBlockCount] [&Common_Word_Skill_ActionBefore]."
   },
   {
     "ID": 25900,
@@ -26020,12 +26066,12 @@
     "Icon": "26201",
     "Turn": 0,
     "SkillBtnType": 0,
-    "SkillAtkCnt": 1,
+    "SkillAtkCnt": 3,
     "SkillAddAtkCnt": 0,
     "ChgTarFlag": 0,
     "SkillCamType": 0,
     "SkillCutFlag": 0,
-    "SkillLevel": "[B:10]/[D:10]/[B:10]/[B:10]/[B:10]",
+    "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
     "DmgBase": "[ATK]",
     "BOList": "2620101/2620102",
     "NeedEvolLv": 0,
@@ -26043,7 +26089,7 @@
     "Icon": "26202",
     "Turn": 3,
     "SkillBtnType": 0,
-    "SkillAtkCnt": 1,
+    "SkillAtkCnt": 6,
     "SkillAddAtkCnt": 0,
     "ChgTarFlag": 0,
     "SkillCamType": 0,
@@ -26102,6 +26148,52 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "",
+    "DisplayDesc": ""
+  },
+  {
+    "ID": 26211,
+    "Name": "Tbl_UnitSkill_Name_26211",
+    "Desc": "Tbl_UnitSkill_Desc_26211",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_1",
+    "Icon": "26211",
+    "Turn": 0,
+    "SkillBtnType": 0,
+    "SkillAtkCnt": 3,
+    "SkillAddAtkCnt": 0,
+    "ChgTarFlag": 0,
+    "SkillCamType": 0,
+    "SkillCutFlag": 0,
+    "SkillLevel": "[D:10]/[D:10]/[D:10]/[D:10]/[D:10]",
+    "DmgBase": "[ATK]",
+    "BOList": "2621101",
+    "NeedEvolLv": 0,
+    "BOCondiCheck": "",
+    "TriggerKeyword": "",
+    "AuraInfo": "",
+    "DisplayName": "",
+    "DisplayDesc": ""
+  },
+  {
+    "ID": 26212,
+    "Name": "Tbl_UnitSkill_Name_26212",
+    "Desc": "Tbl_UnitSkill_Desc_26212",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_2",
+    "Icon": "26212",
+    "Turn": 3,
+    "SkillBtnType": 0,
+    "SkillAtkCnt": 6,
+    "SkillAddAtkCnt": 0,
+    "ChgTarFlag": 0,
+    "SkillCamType": 0,
+    "SkillCutFlag": 0,
+    "SkillLevel": "[B:10]/[B:10]/[B:10]/[B:10]/[B:10]",
+    "DmgBase": "[ATK]",
+    "BOList": "2621201",
+    "NeedEvolLv": 0,
+    "BOCondiCheck": "",
+    "TriggerKeyword": "",
+    "AuraInfo": "",
+    "DisplayName": "Tbl_UnitSkill_Name_26212",
     "DisplayDesc": ""
   },
   {
@@ -26239,8 +26331,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_26312",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_26312"
+    "DisplayName": "",
+    "DisplayDesc": ""
   },
   {
     "ID": 26314,
@@ -26262,8 +26354,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_26314",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_26314"
+    "DisplayName": "",
+    "DisplayDesc": ""
   },
   {
     "ID": 26400,
@@ -26861,7 +26953,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "Tbl_UnitSkill_Name_26814",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_26814"
+    "DisplayDesc": ""
   },
   {
     "ID": 26900,
@@ -30935,6 +31027,29 @@
     "DisplayDesc": "The Akiyama siblings use their ability to attack the enemy [A:100004] time(s).\nGains [&Stealth] [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:10000401] turn(s)\nIncreases the efficacy of [&SpdUp] by a fixed [&Color_Cyan][V3:10000404]%[-] [&Common_Word_Skill_ActionBefore]."
   },
   {
+    "ID": 100005,
+    "Name": "Tbl_UnitSkill_Name_100005",
+    "Desc": "Tbl_UnitSkill_Desc_100005",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_2",
+    "Icon": "100000",
+    "Turn": 0,
+    "SkillBtnType": 0,
+    "SkillAtkCnt": 3,
+    "SkillAddAtkCnt": 0,
+    "ChgTarFlag": 0,
+    "SkillCamType": 0,
+    "SkillCutFlag": 0,
+    "SkillLevel": "",
+    "DmgBase": "[ATK]/[SPD]",
+    "BOList": "10000501",
+    "NeedEvolLv": 0,
+    "BOCondiCheck": "",
+    "TriggerKeyword": "",
+    "AuraInfo": "",
+    "DisplayName": "Tbl_UnitSkill_Name_100005",
+    "DisplayDesc": "Tbl_UnitSkill_Desc_100005"
+  },
+  {
     "ID": 100006,
     "Name": "Tbl_UnitSkill_Name_100006",
     "Desc": "Tbl_UnitSkill_Desc_100006",
@@ -31345,8 +31460,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_100026",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_100026"
+    "DisplayName": "",
+    "DisplayDesc": "Yuno and Akina alternately attack a single enemy a total of [A:100026] time(s).\nIf the skill user has [&DefUp], inflicts [&Color_Cyan]([V3:10002602]%)[-] [&AtkDown] at a [&Color_Cyan][R:10002602]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:10002602] turn(s)\nIf the target is a [&Color_GreenYellow]boss[-], inflicts [&Color_Cyan]([V3:10002603]%)[-] [&Weaken] on the [&Common_Word_Skill_ActionLast]. \n[&Common_Word_Skill_ValueTurn]: [V2:10002603] turn(s)\nReduces the [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:10002604]%)[-] at a [&Color_Cyan][R:10002604]%[-] chance on the [&Common_Word_Skill_ActionLast]. \n[&Common_Word_Skill_ValueTurn]: [V2:10002604] turn(s)\nGrants [&Color_Cyan]([V3:10002605]%)[-] [&Strengthen] to [&Common_Word_Skill_AllyAll] [&Common_Word_Skill_ActionAfter].\n[&Common_Word_Skill_ValueTurn]: [V2:10002605] turn(s)"
   },
   {
     "ID": 100027,
@@ -35411,19 +35526,19 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100270101",
+    "BOList": "100270101/100270102/100270103",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002701",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002701"
+    "DisplayName": "",
+    "DisplayDesc": "Creates a fireball at the fingertips and fires it at the enemy.\nTarget hit is inflicted with [&Color_Cyan]([V3:100270102]%)[-] [&Burn] at a [&Color_Cyan][R:100270102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100270102] turn(s)\nIf the target is already afflicted with [&Burn], additionally inflicts [&Color_Cyan]([V3:100270103]%)[-] [&Burn].\n[&Common_Word_Skill_ValueTurn]: [V2:100270103] turn(s)"
   },
   {
     "ID": 1002702,
     "Name": "Tbl_UnitSkill_Name_1002702",
     "Desc": "Tbl_UnitSkill_Desc_1002702",
-    "SkillTypeDesc": "Tbl_SkillTypeDesc_3",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_2",
     "Icon": "1002702",
     "Turn": 4,
     "SkillBtnType": 0,
@@ -35433,14 +35548,14 @@
     "SkillCamType": 0,
     "SkillCutFlag": 0,
     "SkillLevel": "",
-    "DmgBase": "",
-    "BOList": "100270201",
+    "DmgBase": "[ATK]",
+    "BOList": "100270201/100270202/100270203",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002702",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002702"
+    "DisplayName": "",
+    "DisplayDesc": "Erupts a pillar of fire beneath [&Common_Word_Skill_EnemyAll]' feet to attack.\nInflicts [&Color_Cyan]([V3:100270201]%)[-] [&BurnDmg] to [&Common_Word_Skill_EnemyAll] at a [&Color_Cyan][R:100270201]%[-] chance [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:100270201] turn(s)\nIf the target is already afflicted with [&Burn], inflicts additional [&Color_Cyan]([V3:100270203]%)[-] [&Burn] at a [&Color_Cyan][R:100270203]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100270203] turn(s)\n\n[Lv 40 Additional Effect]\nAdditionally inflict [&Color_Cyan]([V3:100270002]%)[-] [&Burn] on the targets.\n[&Common_Word_Skill_ValueTurn]: [V2:100270002] turn(s)"
   },
   {
     "ID": 1002703,
@@ -35457,13 +35572,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100270301",
+    "BOList": "100270301/100270302/100270303",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002703",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002703"
+    "DisplayName": "",
+    "DisplayDesc": "Creates a massive fireball and launches it toward [&Common_Word_Skill_EnemyAll].\nPerforms a [&Color_Cyan]([V3:100270303]%)[-] [&Burn] [&Common_Word_Skill_DotBuffBurst] attack to the targets hit.\n\n[Lv 20 Additional Effect]\nIf the target is already afflicted with [&Burn], performs [&Color_Cyan]([V3:100270001]%)[-] [&Common_Word_Skill_DefPenetrate] attack.\n\n[Lv 60 Additional Effect]\nIf the target is already afflicted with [&Burn], inflict [&BuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:100270003] turn(s)"
   },
   {
     "ID": 1002704,
@@ -35482,11 +35597,11 @@
     "DmgBase": "",
     "BOList": "100270401",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "100270499",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002704",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002704"
+    "DisplayName": "",
+    "DisplayDesc": "If the enemy uses [&CriRateUp] [&Buff], inflicts [&Color_Cyan]([V3:100270401]%)[-] [&AtkDown] on [&Common_Word_Skill_EnemyAll].\nThis effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:100270401] turn(s)"
   },
   {
     "ID": 1002705,
@@ -35503,13 +35618,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100270501/100270502",
+    "BOList": "100270501/100270502/100270503",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "100270599",
+    "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002705",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002705"
+    "DisplayName": "",
+    "DisplayDesc": "[&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:100270501]%[-]/[&Color_Cyan][V3:100270502]%[-]/[&Color_Cyan][V3:100270503]%)[-] for each [&Burn] the enemy has (3/4/5)."
   },
   {
     "ID": 1002706,
@@ -35528,11 +35643,11 @@
     "DmgBase": "",
     "BOList": "100270601",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "100270699",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002706",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002706"
+    "DisplayName": "",
+    "DisplayDesc": "At the end of the character's turn, increases the duration of [&Common_Word_Skill_EnemyAll]' [&Burn] by [V2:100270601] turn(s)."
   },
   {
     "ID": 1002707,
@@ -35549,13 +35664,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100270701/100270702",
+    "BOList": "100270701",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002707",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002707"
+    "DisplayName": "",
+    "DisplayDesc": "If the target is not afflicted with [&Burn] during attack, [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:100270701]%)[-].\n\n[Lv 80 Additional Effect]\nPerforms [&Common_Word_Skill_ShieldPenetrate] attack."
   },
   {
     "ID": 1002801,
@@ -35572,13 +35687,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100280101",
+    "BOList": "100280101/100280102/100280103",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002801",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002801"
+    "DisplayName": "",
+    "DisplayDesc": "Manifests a sword of blood under the enemy to attack.\nTarget hit is inflicted with [&Color_Cyan]([V3:100280102]%)[-] [&Bleeding] at a [&Color_Cyan][R:100280102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100280102] turn(s)\nIf the target is afflicted with [&Bleeding], [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:100280103]%)[-]."
   },
   {
     "ID": 1002802,
@@ -35595,13 +35710,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100280201",
+    "BOList": "100280201/100280202/100280203",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002802",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002802"
+    "DisplayName": "",
+    "DisplayDesc": "Manifests 3 swords made of blood and throws them toward the enemy.\nTarget hit is inflicted with [&Color_Cyan]([V3:100280202]%)[-] [&Bleeding] at a [&Color_Cyan][R:100280202]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100280202] turn(s)\nInflicts [&Color_Cyan]([V3:100280203]%)[-] [&BleedingDmg] on the target on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:100280203] turn(s)\n\n[Lv 20 Additional Effect]\nIf the target is already afflicted with [&Bleeding], [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:100280001]%)[-]."
   },
   {
     "ID": 1002803,
@@ -35618,13 +35733,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100280301",
+    "BOList": "100280301/100280302/100280303/100280304",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002803",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002803"
+    "DisplayName": "",
+    "DisplayDesc": "Creates a massive guillotine blade and drops it onto [&Common_Word_Skill_EnemyAll].\nTargets hit are inflicted with [&Color_Cyan]([V3:100280303]%)[-] [&Bleeding].\n[&Common_Word_Skill_ValueTurn]: [V2:100280303] turn(s)\nIf the target is afflicted with [&Bleeding], performs a [&Color_Cyan]([V3:100280304]%)[-] [&Common_Word_Skill_DefPenetrate] attack.\n\n[Lv 80 Additional Effect]\nIf the target is afflicted with [&Bleeding], [&Common_Word_Skill_TurnGauge] reduces by [&Color_Cyan]([V3:100280004]%)[-]."
   },
   {
     "ID": 1002804,
@@ -35646,8 +35761,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002804",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002804"
+    "DisplayName": "",
+    "DisplayDesc": "When hit, [&Common_Word_Skill_CriticalAttack] does not occur. \n\n[Lv 40 Additional Effect]\nOn [&Common_Word_Skill_TurnStart], increases the [&Bleeding] effect on [&Common_Word_Skill_EnemyAll] by [&Color_Cyan][V3:100280002]%[-].\n[&Common_Word_Skill_ValueTurn]: [V2:100280002] turn(s)"
   },
   {
     "ID": 1002805,
@@ -35666,11 +35781,11 @@
     "DmgBase": "",
     "BOList": "100280501/100280502",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "100280599",
+    "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002805",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002805"
+    "DisplayName": "",
+    "DisplayDesc": "When hit, [&Common_Word_Skill_Damage] decreases by [&Color_Cyan][V3:100280501]%[-] for each [&Bleeding] the attacker has. Stacks up to 5 times.\nIf the target is afflicted with [&Bleeding] when attacking, inflicts [&Color_Cyan]([V3:100280502]%)[-] [&HealRateDown] at a [&Color_Cyan][R:100280502]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100280502] turn(s)"
   },
   {
     "ID": 1002806,
@@ -35689,11 +35804,11 @@
     "DmgBase": "",
     "BOList": "100280601",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "100280699",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002806",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002806"
+    "DisplayName": "",
+    "DisplayDesc": "If an effect that directly recovers HP activates at the end of the enemy's turn, performs a [&Color_Cyan]([V3:100280601]%)[-] [&Bleeding] [&Common_Word_Skill_DotBuffBurst] attack."
   },
   {
     "ID": 1002807,
@@ -35715,8 +35830,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002807",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002807"
+    "DisplayName": "",
+    "DisplayDesc": "If the target is afflicted with [&Bleeding], [&Common_Word_Skill_CriticalDamage] increases by [&Color_Cyan]([V3:100280701]%)[-].\nUpon landing [&Common_Word_Skill_CriticalAttack]s, inflicts [&Color_Cyan]([V3:100280702]%)[-] [&Bleeding] on the target.\n[&Common_Word_Skill_ValueTurn]: [V2:100280702] turn(s)\n\n[Lv 60 Additional Effect]\nIf the target is afflicted with [&Bleeding] when attacking, removes [V3:100280003] [&Common_Word_Skill_Random] [&Buff](s) at a [&Color_Cyan][R:100280003]%[-] chance."
   },
   {
     "ID": 1002901,
@@ -35733,19 +35848,19 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100290101",
+    "BOList": "100290101/100290102/100290103",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002901",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002901"
+    "DisplayName": "",
+    "DisplayDesc": "Throws a sharp icicle toward the enemy to attack.\nThe target hit is inflicted with [&Color_Cyan]([V3:100290102]%)[-] [&Frostbite] at a [&Color_Cyan][R:100290102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100290102] turn(s)\nIf the target is afflicted with [&Freeze], increases [&Common_Word_Skill_Damage] by [&Color_Cyan]([V3:100290103]%)[-]."
   },
   {
     "ID": 1002902,
     "Name": "Tbl_UnitSkill_Name_1002902",
     "Desc": "Tbl_UnitSkill_Desc_1002902",
-    "SkillTypeDesc": "Tbl_SkillTypeDesc_3",
+    "SkillTypeDesc": "Tbl_SkillTypeDesc_2",
     "Icon": "1002902",
     "Turn": 4,
     "SkillBtnType": 0,
@@ -35755,14 +35870,14 @@
     "SkillCamType": 0,
     "SkillCutFlag": 0,
     "SkillLevel": "",
-    "DmgBase": "",
-    "BOList": "100290201",
+    "DmgBase": "[ATK]",
+    "BOList": "100290201/100290202/100290203",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002902",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002902"
+    "DisplayName": "",
+    "DisplayDesc": "Gracefully spins and throws an ice pillar toward the enemy to attack [A:1002902] time(s).\nInflicts [&Color_Cyan]([V3:100290202]%)[-] [&Freeze] on the target at a [&Color_Cyan][R:100290202]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:100290202] turn(s)\nIf the target is afflicted with [&Frostbite], performs a [&Color_Cyan]([V3:100290203]%)[-] [&Common_Word_Skill_DefPenetrate] attack.\n\n[Lv 20 Additional Effect]\nIf the target is afflicted with [&Frostbite], [&Common_Word_Skill_Damage] increases by [&Color_Cyan]([V3:100290001]%)[-]."
   },
   {
     "ID": 1002903,
@@ -35779,13 +35894,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100290301",
+    "BOList": "100290301/100290302/100290303/100290304/100290305",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002903",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002903"
+    "DisplayName": "",
+    "DisplayDesc": "Summons a swirling blizzard to attack [&Common_Word_Skill_EnemyAll] [A:1002903] time(s).\nInflicts [&Color_Cyan]([V3:100290302]%)[-] [&DefDown] at a [&Color_Cyan][R:100290302]%[-] chance [&Common_Word_Skill_ActionBefore].\n[&Common_Word_Skill_ValueTurn]: [V2:100290302] turn(s)\nIf the target is afflicted with [&Freeze], removes [&DmgBlockCount] [&Common_Word_Skill_ActionBefore].\nInflicts [&Color_Cyan]([V3:100290305]%)[-] [&Frostbite] on the target [&Common_Word_Skill_ActionAfter]."
   },
   {
     "ID": 1002904,
@@ -35804,11 +35919,11 @@
     "DmgBase": "",
     "BOList": "100290401",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "100290499",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002904",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002904"
+    "DisplayName": "",
+    "DisplayDesc": "Gains [&Color_Cyan][V3:100290401][-] [&BuffTurn_9999] [&DmgBlockCount] at the end of the enemy's turn.\n\n[Lv 40 Additional Effect]\nOn [&Common_Word_Skill_TurnStart], removes 1 [&Common_Word_Skill_Random] [&DeBuff] if there is an enemy afflicted with [&Frostbite]."
   },
   {
     "ID": 1002905,
@@ -35827,11 +35942,11 @@
     "DmgBase": "",
     "BOList": "100290501/100290502",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "100290599",
+    "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002905",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002905"
+    "DisplayName": "",
+    "DisplayDesc": "When hit, inflicts [&Color_Cyan]([V3:100290501]%)[-] [&Frostbite] on the attacker at a [&Color_Cyan][R:100290501]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100290501] turn(s)\nWhen hit, increases the [&Frostbite] effect on the attacker by [&Color_Cyan][V3:100290502]%[-] at a [&Color_Cyan][R:100290502]%[-] chance."
   },
   {
     "ID": 1002906,
@@ -35853,8 +35968,8 @@
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002906",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002906"
+    "DisplayName": "",
+    "DisplayDesc": "Each time [&Freeze] is inflicted on the enemy, [&Tbl_UnitSkill_Name_1002903]'s [&Common_Word_Skill_CoolTime] time is reduced by 1 turn(s)."
   },
   {
     "ID": 1002907,
@@ -35871,13 +35986,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100290701/100290702",
+    "BOList": "100290701",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "Tbl_UnitSkill_Name_1002907",
-    "DisplayDesc": "Tbl_UnitSkill_Desc_1002907"
+    "DisplayName": "",
+    "DisplayDesc": "When attacking an enemy afflicted with [&Freeze], inflicts [&Color_Cyan]([V3:100290701]%)[-] [&SpdDown].\n[&Common_Word_Skill_ValueTurn]: [V2:100290701] turn(s)\n\n[Lv 60 Additional Effect]\nIf there are 3 or more enemies afflicted with [&Frostbite] when attacking, [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:100290003]%)[-].\n\n[Lv 80 Additional Effect]\nIf the target is afflicted with [&Frostbite], [&Common_Word_Skill_CriticalDamage] increases by [&Color_Cyan]([V3:100290004]%)[-]."
   },
   {
     "ID": 1003301,
@@ -35889,18 +36004,18 @@
     "SkillBtnType": 0,
     "SkillAtkCnt": 2,
     "SkillAddAtkCnt": 0,
-    "ChgTarFlag": 0,
+    "ChgTarFlag": 1,
     "SkillCamType": 0,
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "[ATK]",
-    "BOList": "100330101/100330102",
+    "BOList": "100330101/100330102/100330103",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Burning Blade[-]",
-    "DisplayDesc": "Alternately swings blades on both forearms to attack the enemy [A:1003301] time(s).\nInflicts [&Color_Cyan]([V3:100330102]%)[-] [&Burn] to the target hit at a [&Color_Cyan][R:100330102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100330102] turn(s)"
+    "DisplayDesc": "Alternately swings blades on both forearms to attack the enemy [A:1003301] time(s).\nInflicts [&Color_Cyan]([V3:100330102]%)[-] [&Burn] to the target hit at a [&Color_Cyan][R:100330102]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:100330102] turn(s)\nIf there is an enemy afflicted with [&Burn], additionally attacks 1 [&Common_Word_Skill_Random] enemy."
   },
   {
     "ID": 1003302,
@@ -35917,13 +36032,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100330201/100330202",
+    "BOList": "100330201/100330202/100330203",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Silicon Art: Crystalization[-]",
-    "DisplayDesc": "Assumes a combat-ready stance to gain [&Color_Cyan]([V3:100330201]%)[-] [&AccUp].\n[&Common_Word_Skill_ValueTurn]: [V2:100330201] turn(s)\nIf the character's [&HP] is below [&Color_Cyan]50%[-], additionally grants [&Color_Cyan]([V3:100330202]%)[-] [&CriDmgUp].\n[&Common_Word_Skill_ValueTurn]: [V2:100330202] turn(s)"
+    "DisplayDesc": "Assumes a combat-ready stance to gain [&Color_Cyan]([V3:100330201]%)[-] [&AccUp] and [&Color_Cyan]([V3:100330202]%)[-] [&CriRateUp].\n[&Common_Word_Skill_ValueTurn]: [V2:100330201] turn(s)\nIf the character's [&HP] is below [&Color_Cyan]50%[-], additionally grants [&Color_Cyan]([V3:100330203]%)[-] [&CriDmgUp].\n[&Common_Word_Skill_ValueTurn]: [V2:100330203] turn(s)"
   },
   {
     "ID": 1003303,
@@ -36009,13 +36124,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100330601",
+    "BOList": "100330601/100330602/100330603",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Fuuma's Oniwaban Captain[-]",
-    "DisplayDesc": "When attacking, [&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:100330601]%[-] for each [&Burn] the enemy has.\nStacks up to 5."
+    "DisplayDesc": "When attacking, [&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:100330601]%[-] for each [&Burn] the enemy has.\nStacks up to 5.\nIf [&Common_Word_Skill_EnemyAll] have 3 or more [&Burn]s in total when attacking, increases [&Common_Word_Skill_CriticalRate] by [&Color_Cyan]([V3:100330602]%)[-].\nIf there's an enemy afflicted with [&Burn], inflicts [&Color_Cyan]([V3:100330603]%)[-] [&Burn] to 1 [&Common_Word_Skill_Random] enemy at a [&Color_Cyan][R:100330603]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:100330603] turn(s)"
   },
   {
     "ID": 1003307,
@@ -36032,13 +36147,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "100330701/100330702/100330703/100330704",
+    "BOList": "100330701/100330702/100330703/100330704/100330705",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "100330799",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Silicon Art: Scorching Crystal[-]",
-    "DisplayDesc": "When a [&Common_Word_Skill_CriticalAttack] lands, performs a [&Color_Cyan]([V3:100330701]%)[-] [&Burn] [&Common_Word_Skill_DotBuffBurst] attack to [&Common_Word_Skill_EnemyAll]."
+    "DisplayDesc": "When a [&Common_Word_Skill_CriticalAttack] lands, performs a [&Color_Cyan]([V3:100330701]%)[-] [&Burn] [&Common_Word_Skill_DotBuffBurst] attack to [&Common_Word_Skill_EnemyAll].\nIf the character is afflicted with [&Restraint], reduces the character's [&Common_Word_Skill_CoolTime] time of all skills by [V2:100330702] turn(s).\nAdditionally gains [&Color_Cyan]([V3:100330703]%)[-] [&SpdUp].\n[&Common_Word_Skill_ValueTurn]: [V2:100330703] turn(s)"
   },
   {
     "ID": 1000131,
@@ -37767,8 +37882,8 @@
   },
   {
     "ID": 3000001,
-    "Name": "Tbl_UnitSkill_Name_1000000",
-    "Desc": "Tbl_UnitSkill_Desc_1000000",
+    "Name": "Tbl_UnitSkill_Name_3000001",
+    "Desc": "Tbl_UnitSkill_Desc_3000001",
     "SkillTypeDesc": "Tbl_SkillTypeDesc_4",
     "Icon": "1000000",
     "Turn": 0,
@@ -37780,13 +37895,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "300000101/300000102/300000103/300000104/300000105",
+    "BOList": "300000101/300000102/300000103/300000104/300000105/300000106",
     "NeedEvolLv": 0,
-    "BOCondiCheck": "",
+    "BOCondiCheck": "300000199",
     "TriggerKeyword": "",
     "AuraInfo": "",
-    "DisplayName": "[&Color_Cyan]Aura of the Formidable[-]",
-    "DisplayDesc": "Immune to [&Common_Word_Skill_Inability], [&Common_Word_Skill_ForcedTarget] and [&Common_Word_Skill_SkillBlock] [&DeBuff]s.\nAdditionally, [&Common_Word_Skill_TurnGauge] reduction effect doesn't apply.\n[&Burn], [&Poison], and [&HP] based skill damage reduced significantly."
+    "DisplayName": "Aura of the Formidable [Boss Invasion]",
+    "DisplayDesc": "Immune to [&Common_Word_Skill_Inability], [&Common_Word_Skill_ForcedTarget], and [&Common_Word_Skill_SkillBlock] [&DeBuff]s.\nAdditionally, the character cannot be inflicted with [&Common_Word_Skill_TurnGauge] reduction.\n[&Burn], [&Poison], and [&HP] based skill damage is reduced significantly.\nEvery time an enemy makes a move, fills the character's [&Common_Word_Skill_TurnGauge] by [&Color_Cyan]([V3:300000106]%)[-]."
   },
   {
     "ID": 3000601,
@@ -38200,7 +38315,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Dark Lightning[-]",
-    "DisplayDesc": "Strikes the enemy with a powerful lightning bolt to attack.\nRemoves [V3:300200102] [&Common_Word_Skill_Random] [&Buff]s from the target hit.\nInflicts [&ElecShock] on the target hit at a [&Color_Cyan][R:300061203]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:300200103] turn(s)"
+    "DisplayDesc": "Strikes the enemy with a powerful lightning bolt to attack.\nRemoves [V3:300200102] [&Common_Word_Skill_Random] [&Buff]s from the target hit.\nInflicts [&ElecShock] on the target hit at a [&Color_Cyan][R:300200103]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:300200103] turn(s)"
   },
   {
     "ID": 3002002,
@@ -38315,7 +38430,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Red Gust[-]",
-    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], inflicts [&Color_Cyan]([V3:300061301])[-] [&Target] on the enemy with the highest [&ATK].\n[&Common_Word_Skill_ValueTurn]: [V2:300061301] turn(s)\nAdditionally increases the duration of the target's [&SpdDown] by 1 turn."
+    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], inflicts [&Color_Cyan]([V3:300061301])[-] [&Target] on the enemy with the highest [&ATK].\nThis effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:300061301] turn(s)\nAdditionally increases the duration of the target's [&SpdDown] by 1 turn."
   },
   {
     "ID": 3000614,
@@ -38407,7 +38522,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Land of Treason[-]",
-    "DisplayDesc": "Gains [&Color_Cyan]([V3:300151301])[-] [&DmgBlockCount]."
+    "DisplayDesc": "Gains [&Color_Cyan]([V3:300151301])[-] [&DmgBlockCount].\nThis effect ignores [&BuffBlock]."
   },
   {
     "ID": 3001514,
@@ -38499,7 +38614,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Fireball Volley[-]",
-    "DisplayDesc": "Conjures a fireball to attack [&Common_Word_Skill_Random] enemies 4 times.\nInflicts [&Color_Cyan]([V3:300110205]%)[-] [&Bleeding] on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:300110205] turn(s)\nInflicts [&Color_Cyan]([V3:300110206]%)[-] [&BleedingDmg] at a [&Color_Cyan][R:300110206]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:300110206] turn(s)"
+    "DisplayDesc": "Conjures a fireball to attack [&Common_Word_Skill_Random] enemies 4 times.\nEach attack inflicts [&Color_Cyan]([V3:300110205]%)[-] [&Bleeding] at a [&Color_Cyan][R:300110205]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:300110205] turn(s)\nInflicts [&Color_Cyan]([V3:300110206]%)[-] [&BleedingDmg] at a [&Color_Cyan][R:300110206]%[-] chance on the [&Common_Word_Skill_ActionLast].\n[&Common_Word_Skill_ValueTurn]: [V2:300110206] turn(s)"
   },
   {
     "ID": 3001103,
@@ -38562,13 +38677,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "300110501",
+    "BOList": "300110501/300110502",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Flames of Dominance[-]",
-    "DisplayDesc": "If the target is afflicted with [&Bleeding], inflicts [&Color_Cyan]([V3:300110501]%)[-] [&HealRateDown] at a [&Color_Cyan][R:300110501]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:300110501] turn(s)"
+    "DisplayDesc": "If the target is afflicted with [&Bleeding], inflicts [&Color_Cyan]([V3:300110501]%)[-] [&HealRateDown] at a [&Color_Cyan][R:300110501]%[-] chance.\n[&Common_Word_Skill_ValueTurn]: [V2:300110501] turn(s)\nEach attack increases the duration of the target's [&Bleeding] by [V2:300110502] turn(s) at a [&Color_Cyan][R:300110502]%[-] chance."
   },
   {
     "ID": 3001106,
@@ -38585,13 +38700,13 @@
     "SkillCutFlag": 0,
     "SkillLevel": "",
     "DmgBase": "",
-    "BOList": "300110601",
+    "BOList": "300110601/300110602",
     "NeedEvolLv": 0,
     "BOCondiCheck": "",
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Flames of Death[-]",
-    "DisplayDesc": "If [&Common_Word_Skill_EnemyAll] are afflicted with 3 or more [&Bleeding] in total, [&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:300110601]%[-]."
+    "DisplayDesc": "If [&Common_Word_Skill_EnemyAll] are afflicted with 3 or more [&Bleeding] in total, [&Common_Word_Skill_Damage] increases by [&Color_Cyan][V3:300110601]%[-].\nIf [&Common_Word_Skill_EnemyAll] are afflicted with 3 or more [&Bleeding] in total, [&Common_Word_Skill_CriticalRate] increases by [&Color_Cyan]([V3:300110602]%)[-]."
   },
   {
     "ID": 3002011,
@@ -38729,7 +38844,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Red Gust[-]",
-    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], inflicts [&Color_Cyan]([V3:300062301]%)[-] [&Target] on the enemy with the highest [&ATK].\n[&Common_Word_Skill_ValueTurn]: [V2:300062301] turn(s)\nAdditionally increases the duration of the target's [&SpdDown] by 1 turn."
+    "DisplayDesc": "On [&Common_Word_Skill_TurnStart], inflicts [&Color_Cyan]([V3:300062301]%)[-] [&Target] on the enemy with the highest [&ATK].\nThis effect ignores [&DeBuffBlock].\n[&Common_Word_Skill_ValueTurn]: [V2:300062301] turn(s)\nAdditionally increases the duration of the target's [&SpdDown] by 1 turn."
   },
   {
     "ID": 3000624,
@@ -38821,7 +38936,7 @@
     "TriggerKeyword": "",
     "AuraInfo": "",
     "DisplayName": "[&Color_Cyan]Land of Treason[-]",
-    "DisplayDesc": "Gains [&Color_Cyan]([V3:300152301])[-] [&DmgBlockCount]."
+    "DisplayDesc": "Gains [&Color_Cyan]([V3:300152301])[-] [&DmgBlockCount].\nThis effect ignores [&BuffBlock]."
   },
   {
     "ID": 3001524,

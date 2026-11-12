@@ -1404,6 +1404,123 @@
     "BOFuncValue3": 40.0
   },
   {
+    "ID": 5111,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_IsSameAttribute",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 5112,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgDrainHp/Normal",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 8.0
+  },
+  {
+    "ID": 5113,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 7.5
+  },
+  {
+    "ID": 5121,
+    "CheckTimingType": "eBOTiming_OnHitCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_IsSameAttribute",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": -15.0
+  },
+  {
+    "ID": 5122,
+    "CheckTimingType": "eBOTiming_OnHit",
+    "BOFuncType": "eBOFunc_AddBuff/HealTurn",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriHit",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 6.0
+  },
+  {
+    "ID": 5123,
+    "CheckTimingType": "eBOTiming_OnHitCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": -15.0
+  },
+  {
+    "ID": 5131,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_HealRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 20.0
+  },
+  {
+    "ID": 5132,
+    "CheckTimingType": "eBOTiming_OnBuffDeBuffCalc",
+    "BOFuncType": "eBOFunc_AddBuffDeBuffTurn/GroupStatBuff",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 50,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 5133,
+    "CheckTimingType": "eBOTiming_OnBuffDeBuffCalc",
+    "BOFuncType": "eBOFunc_AddBuffDeBuffTurn/GroupStatDeBuff",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 50,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 0.0
+  },
+  {
     "ID": 10001,
     "CheckTimingType": "eBOTiming_CalcAura",
     "BOFuncType": "eBOFunc_SpdRate",
@@ -2017,6 +2134,19 @@
   {
     "ID": 50201,
     "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddBuff/Stealth",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 50202,
+    "CheckTimingType": "eBOTiming_ActionBefore",
     "BOFuncType": "eBOFunc_AddDeBuff/DefDown",
     "BOTarType": "eBOTarget_Enemy/1",
     "BOSelfCondType": "",
@@ -2028,7 +2158,7 @@
     "BOFuncValue3": -50.0
   },
   {
-    "ID": 50202,
+    "ID": 50203,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
     "BOTarType": "eBOTarget_HitTargetList",
@@ -2039,19 +2169,6 @@
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
     "BOFuncValue3": 692.2000122070312
-  },
-  {
-    "ID": 50203,
-    "CheckTimingType": "eBOTiming_ActionAfter",
-    "BOFuncType": "eBOFunc_AddBuff/Stealth",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsKill",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
-    "BOFuncValue3": 0.0
   },
   {
     "ID": 50301,
@@ -2081,19 +2198,45 @@
   },
   {
     "ID": 50401,
-    "CheckTimingType": "eBOTiming_OnAttack",
-    "BOFuncType": "eBOFunc_TurnGaugeDown",
-    "BOTarType": "eBOTarget_HitTarget",
-    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
+    "CheckTimingType": "eBOTiming_OnActionLast",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_HasNotBuff/Stealth&&eBOCond_IsSkill/1",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 10,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": -1,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 50402,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_HasBuff/Stealth&&eBOCond_IsSkill/3",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 15.0
+    "BOFuncValue3": 20.0
   },
   {
     "ID": 51201,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddBuff/Stealth",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 51202,
     "CheckTimingType": "eBOTiming_ActionBefore",
     "BOFuncType": "eBOFunc_AddDeBuff/DefDown",
     "BOTarType": "eBOTarget_Enemy/1",
@@ -2106,7 +2249,7 @@
     "BOFuncValue3": -40.0
   },
   {
-    "ID": 51202,
+    "ID": 51203,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
     "BOTarType": "eBOTarget_HitTargetList",
@@ -2119,30 +2262,30 @@
     "BOFuncValue3": 692.2000122070312
   },
   {
-    "ID": 51203,
-    "CheckTimingType": "eBOTiming_ActionAfter",
-    "BOFuncType": "eBOFunc_AddBuff/Stealth",
+    "ID": 51401,
+    "CheckTimingType": "eBOTiming_OnActionLast",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsKill",
+    "BOSelfCondType": "eBOCond_HasNotBuff/Stealth&&eBOCond_IsSkill/1",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
+    "BOFuncValue2": -1,
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 51401,
-    "CheckTimingType": "eBOTiming_OnAttack",
-    "BOFuncType": "eBOFunc_TurnGaugeUp",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
+    "ID": 51402,
+    "CheckTimingType": "eBOTiming_OnActionLast",
+    "BOFuncType": "eBOFunc_AddDeBuff/Confuse",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "eBOCond_HasBuff/Stealth&&eBOCond_IsSkill/3",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": -25,
+    "BOFuncRate": 25,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 20.0
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 0.0
   },
   {
     "ID": 60001,
@@ -7347,28 +7490,28 @@
   {
     "ID": 320202,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_AddDeBuff/Stun",
+    "BOFuncType": "eBOFunc_AddDeBuff/ElecShock",
     "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
-    "BOTarCondType": "eBOCond_HasDeBuff/ElecShock",
+    "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 5,
+    "BOFuncRate": 10,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 1,
+    "BOFuncValue2": 2,
     "BOFuncValue3": 0.0
   },
   {
     "ID": 320203,
     "CheckTimingType": "eBOTiming_ActionLast",
-    "BOFuncType": "eBOFunc_TurnGaugeDown",
+    "BOFuncType": "eBOFunc_AddDeBuff/EvdDown",
     "BOTarType": "eBOTarget_HitTargetList",
     "BOSelfCondType": "",
-    "BOTarCondType": "eBOCond_HasDeBuff/Stun",
+    "BOTarCondType": "eBOCond_HasNotDeBuff/ElecShock",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 50,
+    "BOFuncRate": 90,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 15.0
+    "BOFuncValue2": 2,
+    "BOFuncValue3": -19.5
   },
   {
     "ID": 320301,
@@ -7381,50 +7524,50 @@
     "BOFuncRate": 115,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 835.9000244140625
+    "BOFuncValue3": 900.2000122070312
   },
   {
     "ID": 320302,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_BuffClear/Rnd",
-    "BOTarType": "eBOTarget_HitTarget",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 1.0
-  },
-  {
-    "ID": 320303,
-    "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_TurnGaugeDrain",
-    "BOTarType": "eBOTarget_HitTarget",
-    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 60,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 12.5
-  },
-  {
-    "ID": 320304,
-    "CheckTimingType": "eBOTiming_ActionLast",
     "BOFuncType": "eBOFunc_AddDeBuff/ElecShock",
-    "BOTarType": "eBOTarget_HitTargetList",
+    "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
-    "BOTarCondType": "",
+    "BOTarCondType": "eBOCond_HasNotDeBuff/ElecShock",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 30,
+    "BOFuncRate": 35,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 320305,
+    "ID": 320303,
     "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/ElecShock",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 45.0
+  },
+  {
+    "ID": 320304,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_HasBuff/OverCharge",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 45.0
+  },
+  {
+    "ID": 320401,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
     "BOFuncType": "eBOFunc_CriRate",
     "BOTarType": "NONE",
     "BOSelfCondType": "eBOCond_HasBuff/OverCharge",
@@ -7433,36 +7576,10 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 37.5
-  },
-  {
-    "ID": 320401,
-    "CheckTimingType": "eBOTiming_OnAttack",
-    "BOFuncType": "eBOFunc_TurnGaugeUp",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsSkill/1",
-    "BOTarCondType": "eBOCond_HasDeBuff/ElecShock",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 20.0
+    "BOFuncValue3": 10.0
   },
   {
     "ID": 320402,
-    "CheckTimingType": "eBOTiming_OnAttack",
-    "BOFuncType": "eBOFunc_TurnGaugeDrain",
-    "BOTarType": "eBOTarget_HitTarget",
-    "BOSelfCondType": "eBOCond_IsSkill/1",
-    "BOTarCondType": "eBOCond_HasDeBuff/Stun",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 12.5
-  },
-  {
-    "ID": 320403,
     "CheckTimingType": "eBOTiming_TurnStart",
     "BOFuncType": "eBOFunc_AddBuff/OverCharge",
     "BOTarType": "eBOTarget_Self",
@@ -7475,7 +7592,7 @@
     "BOFuncValue3": 30.0
   },
   {
-    "ID": 320404,
+    "ID": 320403,
     "CheckTimingType": "eBOTiming_ActionBefore",
     "BOFuncType": "eBOFunc_AddDeBuff/ElecShock",
     "BOTarType": "eBOTarget_EnemyRnd/2",
@@ -7511,64 +7628,25 @@
     "BOFuncRate": 115,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 835.9000244140625
+    "BOFuncValue3": 900.2000122070312
   },
   {
     "ID": 321302,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_BuffClear/Rnd",
+    "BOFuncType": "eBOFunc_AddDeBuff/ElecShock",
     "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
-    "BOTarCondType": "",
+    "BOTarCondType": "eBOCond_HasNotDeBuff/ElecShock",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
+    "BOFuncRate": 35,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 1.0
-  },
-  {
-    "ID": 321303,
-    "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_TurnGaugeDrain",
-    "BOTarType": "eBOTarget_HitTarget",
-    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 60,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 12.5
-  },
-  {
-    "ID": 321304,
-    "CheckTimingType": "eBOTiming_ActionLast",
-    "BOFuncType": "eBOFunc_AddDeBuff/Stun",
-    "BOTarType": "eBOTarget_HitTargetList",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 20,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 1,
+    "BOFuncValue2": 2,
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 321305,
+    "ID": 321303,
     "CheckTimingType": "eBOTiming_OnActionCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/OverCharge",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 37.5
-  },
-  {
-    "ID": 321401,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOFuncType": "eBOFunc_CriDmg",
     "BOTarType": "NONE",
     "BOSelfCondType": "",
     "BOTarCondType": "eBOCond_HasDeBuff/ElecShock",
@@ -7576,23 +7654,36 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
+    "BOFuncValue3": 65.0
   },
   {
-    "ID": 321402,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
+    "ID": 321304,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
     "BOTarType": "NONE",
-    "BOSelfCondType": "",
-    "BOTarCondType": "eBOCond_HasDeBuff/Stun",
+    "BOSelfCondType": "eBOCond_HasBuff/OverCharge",
+    "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
+    "BOFuncValue3": 45.0
   },
   {
-    "ID": 321403,
+    "ID": 321401,
+    "CheckTimingType": "eBOTiming_OnActionLast",
+    "BOFuncType": "eBOFunc_TurnGaugeUp",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_HasBuff/OverCharge",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 20.0
+  },
+  {
+    "ID": 321402,
     "CheckTimingType": "eBOTiming_TurnStart",
     "BOFuncType": "eBOFunc_AddBuff/OverCharge",
     "BOTarType": "eBOTarget_Self",
@@ -7605,7 +7696,7 @@
     "BOFuncValue3": 30.0
   },
   {
-    "ID": 321404,
+    "ID": 321403,
     "CheckTimingType": "eBOTiming_ActionBefore",
     "BOFuncType": "eBOFunc_AddDeBuff/ElecShock",
     "BOTarType": "eBOTarget_EnemyRnd/2",
@@ -8879,6 +8970,32 @@
     "BOFuncValue3": 15.0
   },
   {
+    "ID": 381101,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 525.0
+  },
+  {
+    "ID": 381201,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 769.0999755859375
+  },
+  {
     "ID": 390001,
     "CheckTimingType": "eBOTiming_CalcAura",
     "BOFuncType": "eBOFunc_Acc",
@@ -8901,8 +9018,8 @@
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 6,
-    "BOFuncValue3": 134.0
+    "BOFuncValue2": 84,
+    "BOFuncValue3": 126.0
   },
   {
     "ID": 390102,
@@ -8920,20 +9037,7 @@
   {
     "ID": 390201,
     "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_AddBuff/HealTurn",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 3,
-    "BOFuncValue3": 5.0
-  },
-  {
-    "ID": 390202,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_AddBuff/DmgReflect",
+    "BOFuncType": "eBOFunc_AddBuff/AccUp",
     "BOTarType": "eBOTarget_Self",
     "BOSelfCondType": "",
     "BOTarCondType": "",
@@ -8941,7 +9045,20 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 10.0
+    "BOFuncValue3": 25.0
+  },
+  {
+    "ID": 390202,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_AddBuff/SpdUp",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 19.5
   },
   {
     "ID": 390301,
@@ -8953,21 +9070,21 @@
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 115,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 782.7999877929688
+    "BOFuncValue2": 391,
+    "BOFuncValue3": 587.9000244140625
   },
   {
     "ID": 390302,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOFuncType": "eBOFunc_AddDeBuff/BurnDmg",
     "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 80,
+    "BOFuncRate": 99,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 3,
-    "BOFuncValue3": 3.5
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 50.0
   },
   {
     "ID": 390303,
@@ -8985,28 +9102,28 @@
   {
     "ID": 390304,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_TurnGaugeDown",
+    "BOFuncType": "eBOFunc_DeBuffTurn/Rnd",
     "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
-    "BOTarCondType": "eBOCond_LessHP/70",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 85,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 15.0
-  },
-  {
-    "ID": 390401,
-    "CheckTimingType": "eBOTiming_OnHitCalc",
-    "BOFuncType": "eBOFunc_HealRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 25.0
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 1.0
+  },
+  {
+    "ID": 390401,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_DeBuffValue/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_MoreHP/70",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 20.0
   },
   {
     "ID": 391101,
@@ -9018,47 +9135,60 @@
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 6,
-    "BOFuncValue3": 134.0
+    "BOFuncValue2": 78,
+    "BOFuncValue3": 119.5999984741211
   },
   {
     "ID": 391102,
     "CheckTimingType": "eBOTiming_OnAction",
-    "BOFuncType": "eBOFunc_AddDeBuff/Provocation",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
     "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 5,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
-    "BOFuncValue3": 0.0
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 3.5
+  },
+  {
+    "ID": 391103,
+    "CheckTimingType": "eBOTiming_ActionLast",
+    "BOFuncType": "eBOFunc_DotBuffBurst/Burn",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 30.0
   },
   {
     "ID": 391201,
     "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_Heal/MaxHp",
+    "BOFuncType": "eBOFunc_AddBuff/AccUp",
     "BOTarType": "eBOTarget_Self",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 18.0
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 25.0
   },
   {
     "ID": 391202,
-    "CheckTimingType": "eBOTiming_ActionAfter",
-    "BOFuncType": "eBOFunc_AddTurn",
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_AddBuff/AtkUp",
     "BOTarType": "eBOTarget_Self",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 0.0
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 40.0
   },
   {
     "ID": 400001,
@@ -11184,7 +11314,7 @@
     "CheckTimingType": "eBOTiming_OnDeBuff",
     "BOFuncType": "eBOFunc_DeBuffClear/Rnd",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
+    "BOSelfCondType": "eBOCond_IsNotCoolTime/4",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
@@ -32864,6 +32994,32 @@
     "BOFuncValue3": 15.0
   },
   {
+    "ID": 2580402,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_LessHP/60",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 10.0
+  },
+  {
+    "ID": 2580403,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRateByStatGap/ATK",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1000,
+    "BOFuncValue3": 0.05000000074505806
+  },
+  {
     "ID": 2581101,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
@@ -32891,22 +33047,9 @@
   },
   {
     "ID": 2581201,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_Attack",
-    "BOTarType": "eBOTarget_Enemy/1",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 100,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 138.39999389648438
-  },
-  {
-    "ID": 2581202,
-    "CheckTimingType": "eBOTiming_OnAction",
+    "CheckTimingType": "eBOTiming_ActionBefore",
     "BOFuncType": "eBOFunc_BuffClear/DmgBlockCount",
-    "BOTarType": "eBOTarget_HitTarget",
+    "BOTarType": "eBOTarget_Enemy/1",
     "BOSelfCondType": "",
     "BOTarCondType": "eBOCond_LessHP/40",
     "BOIgnoreCoolTime": 0,
@@ -32914,6 +33057,19 @@
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
     "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 2581202,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 138.39999389648438
   },
   {
     "ID": 2581203,
@@ -33667,7 +33823,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 504.0
+    "BOFuncValue3": 168.0
   },
   {
     "ID": 2620102,
@@ -33693,7 +33849,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 692.2000122070312
+    "BOFuncValue3": 115.4000015258789
   },
   {
     "ID": 2620202,
@@ -33719,7 +33875,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 14.0
+    "BOFuncValue3": 2.0
   },
   {
     "ID": 2620301,
@@ -33772,6 +33928,32 @@
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
     "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 2621101,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 175.0
+  },
+  {
+    "ID": 2621201,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 128.1999969482422
   },
   {
     "ID": 2630001,
@@ -35933,7 +36115,7 @@
   },
   {
     "ID": 2751203,
-    "CheckTimingType": "eBOTiming_OnAction",
+    "CheckTimingType": "eBOTiming_ActionLast",
     "BOFuncType": "eBOFunc_DeBuffClear/Rnd",
     "BOTarType": "eBOTarget_Ally/All",
     "BOSelfCondType": "",
@@ -40649,6 +40831,19 @@
     "BOFuncValue1": 0,
     "BOFuncValue2": 1160,
     "BOFuncValue3": 204.8000030517578
+  },
+  {
+    "ID": 10000501,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 762,
+    "BOFuncValue3": 134.60000610351562
   },
   {
     "ID": 10000601,
@@ -48438,33 +48633,111 @@
     "BOFuncValue3": 25.0
   },
   {
-    "ID": 100270101,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_Attack",
-    "BOTarType": "eBOTarget_Enemy/All",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
+    "ID": 100270001,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DefPenetrate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_IsSkill/3",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 100,
+    "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 269.1000061035156
+    "BOFuncValue3": 50.0
   },
   {
-    "ID": 100270201,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_AddBuff/AtkUp",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
+    "ID": 100270002,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "eBOCond_IsSkill/2",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 3,
+    "BOFuncValue3": 5.0
+  },
+  {
+    "ID": 100270003,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_AddDeBuff/BuffBlock",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "eBOCond_IsSkill/3",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100270004,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_ShieldPenetrate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 100.0
+  },
+  {
+    "ID": 100270101,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 525.0
+  },
+  {
+    "ID": 100270102,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 75,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 5.0
+  },
+  {
+    "ID": 100270103,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 5.0
+  },
+  {
+    "ID": 100270201,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddDeBuff/BurnDmg",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 90,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
     "BOFuncValue3": 50.0
   },
   {
-    "ID": 100270301,
+    "ID": 100270202,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
     "BOTarType": "eBOTarget_Enemy/All",
@@ -48474,53 +48747,79 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 571.2000122070312
+    "BOFuncValue3": 479.5
   },
   {
-    "ID": 100270401,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/Shield",
+    "ID": 100270203,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Burn",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 99,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 5.0
+  },
+  {
+    "ID": 100270301,
+    "CheckTimingType": "eBOTiming_RoundStart",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
     "BOTarType": "eBOTarget_Self",
     "BOSelfCondType": "",
     "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
+    "BOIgnoreCoolTime": 1,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
-    "BOFuncValue3": 39.0
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 0.0
   },
   {
-    "ID": 100270501,
-    "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_DeBuffClear/SpdDown",
-    "BOTarType": "eBOTarget_Self",
+    "ID": 100270302,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 623.2000122070312
+  },
+  {
+    "ID": 100270303,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_DotBuffBurst/Burn",
+    "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 0.0
+    "BOFuncValue3": 150.0
   },
   {
-    "ID": 100270502,
+    "ID": 100270401,
     "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_AddDeBuff/Target",
-    "BOTarType": "eBOTarget_TurnOwnerUnit",
+    "BOFuncType": "eBOFunc_AddDeBuff/AtkDown",
+    "BOTarType": "eBOTarget_Enemy/All",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 1,
-    "BOFuncValue2": 9999,
-    "BOFuncValue3": 100.0
+    "BOFuncValue2": 2,
+    "BOFuncValue3": -90.0
   },
   {
-    "ID": 100270599,
+    "ID": 100270499,
     "CheckTimingType": "eBOTiming_EtcActionAfter",
-    "BOFuncType": "eBOFunc_ActionSkill/5",
+    "BOFuncType": "eBOFunc_ActionSkill/4",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsSelfReceiveDeBuff/SpdDown",
+    "BOSelfCondType": "eBOCond_IsEnemyUseBuff/CriRateUp",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
@@ -48529,56 +48828,173 @@
     "BOFuncValue3": 0.0
   },
   {
+    "ID": 100270501,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt3/burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 10.0
+  },
+  {
+    "ID": 100270502,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt4/burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100270503,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt5/burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 25.0
+  },
+  {
     "ID": 100270601,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/HealTurn",
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_DeBuffTurn/Burn",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100270699,
+    "CheckTimingType": "eBOTiming_PostActionAfter",
+    "BOFuncType": "eBOFunc_ActionSkill/6",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt4/Poison",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100270701,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasNotDeBuff/Burn",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 10.0
+  },
+  {
+    "ID": 100280001,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_IsSkill/2",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 20.0
+  },
+  {
+    "ID": 100280002,
+    "CheckTimingType": "eBOTiming_TurnStart",
+    "BOFuncType": "eBOFunc_DeBuffValue/Bleeding",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 5.0
+    "BOFuncValue3": 50.0
   },
   {
-    "ID": 100270701,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlock",
-    "BOTarCondType": "",
+    "ID": 100280003,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_BuffClear/Rnd",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 50,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 1.0
+  },
+  {
+    "ID": 100280004,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_TurnGaugeDown",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
-  },
-  {
-    "ID": 100270702,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlockCount",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
+    "BOFuncValue3": 15.0
   },
   {
     "ID": 100280101,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
-    "BOTarType": "eBOTarget_Enemy/All",
+    "BOTarType": "eBOTarget_Enemy/1",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 269.1000061035156
+    "BOFuncValue3": 525.0
+  },
+  {
+    "ID": 100280102,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Bleeding",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 75,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100280103,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 10.0
   },
   {
     "ID": 100280201,
@@ -48594,7 +49010,46 @@
     "BOFuncValue3": 311.8999938964844
   },
   {
+    "ID": 100280202,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Bleeding",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 40,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100280203,
+    "CheckTimingType": "eBOTiming_ActionLast",
+    "BOFuncType": "eBOFunc_AddDeBuff/BleedingDmg",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 50.0
+  },
+  {
     "ID": 100280301,
+    "CheckTimingType": "eBOTiming_RoundStart",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 1,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100280302,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
     "BOTarType": "eBOTarget_Enemy/All",
@@ -48604,183 +49059,339 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 571.2000122070312
+    "BOFuncValue3": 623.2000122070312
   },
   {
-    "ID": 100280401,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/DefUp",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
-    "BOFuncValue3": 80.0
-  },
-  {
-    "ID": 100280501,
-    "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_DeBuffClear/SpdDown",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 0.0
-  },
-  {
-    "ID": 100280502,
-    "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_AddDeBuff/Target",
-    "BOTarType": "eBOTarget_TurnOwnerUnit",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 1,
-    "BOFuncValue2": 9999,
-    "BOFuncValue3": 100.0
-  },
-  {
-    "ID": 100280599,
-    "CheckTimingType": "eBOTiming_EtcActionAfter",
-    "BOFuncType": "eBOFunc_ActionSkill/5",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsSelfReceiveDeBuff/SpdDown",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 0.0
-  },
-  {
-    "ID": 100280601,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/HealTurn",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt4/Poison",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 2,
-    "BOFuncValue3": 5.0
-  },
-  {
-    "ID": 100280701,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlock",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
-  },
-  {
-    "ID": 100280702,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlockCount",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
-  },
-  {
-    "ID": 100290101,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_Attack",
-    "BOTarType": "eBOTarget_Enemy/All",
-    "BOSelfCondType": "",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 100,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 269.1000061035156
-  },
-  {
-    "ID": 100290201,
-    "CheckTimingType": "eBOTiming_Action",
-    "BOFuncType": "eBOFunc_AddBuff/AtkUp",
-    "BOTarType": "eBOTarget_Self",
+    "ID": 100280303,
+    "CheckTimingType": "eBOTiming_ActionLast",
+    "BOFuncType": "eBOFunc_AddDeBuff/Bleeding",
+    "BOTarType": "eBOTarget_HitTargetList",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 3,
-    "BOFuncValue3": 50.0
+    "BOFuncValue3": 10.0
   },
   {
-    "ID": 100290301,
+    "ID": 100280304,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DefPenetrate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 100.0
+  },
+  {
+    "ID": 100280401,
+    "CheckTimingType": "eBOTiming_OnHitCalc",
+    "BOFuncType": "eBOFunc_CriRes",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 9999.0
+  },
+  {
+    "ID": 100280501,
+    "CheckTimingType": "eBOTiming_OnHitCalc",
+    "BOFuncType": "eBOFunc_DmgRateDeBuffCnt/Bleeding",
+    "BOTarType": "eBOTarget_Attacker",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 5,
+    "BOFuncValue3": -15.0
+  },
+  {
+    "ID": 100280502,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_AddDeBuff/HealRateDown",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 45,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 60.0
+  },
+  {
+    "ID": 100280601,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_DotBuffBurst/Bleeding",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 100.0
+  },
+  {
+    "ID": 100280699,
+    "CheckTimingType": "eBOTiming_EtcActionAfter",
+    "BOFuncType": "eBOFunc_ActionSkill/6",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsEnemyOnHeal",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100280701,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriDmg",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Bleeding",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 20.0
+  },
+  {
+    "ID": 100280702,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_AddDeBuff/Bleeding",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "eBOCond_IsDmgTypeByJudge/CriAtk",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100290001,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Frostbite",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100290002,
+    "CheckTimingType": "eBOTiming_TurnStart",
+    "BOFuncType": "eBOFunc_DeBuffClear/Rnd",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsEnemyHasBuff/Frostbite",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 1.0
+  },
+  {
+    "ID": 100290003,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt3/Frostbite",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 25.0
+  },
+  {
+    "ID": 100290004,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriDmg",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Frostbite",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 35.0
+  },
+  {
+    "ID": 100290101,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
-    "BOTarType": "eBOTarget_Enemy/All",
+    "BOTarType": "eBOTarget_Enemy/1",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 571.2000122070312
+    "BOFuncValue3": 525.0
   },
   {
-    "ID": 100290401,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/Shield",
-    "BOTarType": "eBOTarget_Self",
+    "ID": 100290102,
+    "CheckTimingType": "eBOTiming_OnAction",
+    "BOFuncType": "eBOFunc_AddDeBuff/Frostbite",
+    "BOTarType": "eBOTarget_HitTarget",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
+    "BOFuncRate": 75,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 39.0
+    "BOFuncValue3": 37.5
   },
   {
-    "ID": 100290501,
-    "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_DeBuffClear/SpdDown",
-    "BOTarType": "eBOTarget_Self",
+    "ID": 100290103,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DmgRate/Normal",
+    "BOTarType": "NONE",
     "BOSelfCondType": "",
-    "BOTarCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Freeze",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 0.0
+    "BOFuncValue3": 25.0
   },
   {
-    "ID": 100290502,
-    "CheckTimingType": "eBOTiming_ActionBefore",
-    "BOFuncType": "eBOFunc_AddDeBuff/Target",
-    "BOTarType": "eBOTarget_TurnOwnerUnit",
+    "ID": 100290201,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_Enemy/1",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 935.5999755859375
+  },
+  {
+    "ID": 100290202,
+    "CheckTimingType": "eBOTiming_ActionLast",
+    "BOFuncType": "eBOFunc_AddDeBuff/Freeze",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 40,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 25.0
+  },
+  {
+    "ID": 100290203,
+    "CheckTimingType": "eBOTiming_OnActionCalc",
+    "BOFuncType": "eBOFunc_DefPenetrate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Frostbite",
+    "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
-    "BOFuncValue1": 1,
-    "BOFuncValue2": 9999,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
     "BOFuncValue3": 100.0
   },
   {
-    "ID": 100290599,
-    "CheckTimingType": "eBOTiming_EtcActionAfter",
-    "BOFuncType": "eBOFunc_ActionSkill/5",
+    "ID": 100290301,
+    "CheckTimingType": "eBOTiming_RoundStart",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_IsSelfReceiveDeBuff/SpdDown",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 1,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100290302,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddDeBuff/DefDown",
+    "BOTarType": "eBOTarget_Enemy/All",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 99,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": -30.0
+  },
+  {
+    "ID": 100290303,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_BuffClear/DmgBlockCount",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Freeze",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100290304,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 623.2000122070312
+  },
+  {
+    "ID": 100290305,
+    "CheckTimingType": "eBOTiming_ActionAfter",
+    "BOFuncType": "eBOFunc_AddDeBuff/Frostbite",
+    "BOTarType": "eBOTarget_HitTargetList",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 30.0
+  },
+  {
+    "ID": 100290401,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddBuff/DmgBlockCount",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 1.0
+  },
+  {
+    "ID": 100290499,
+    "CheckTimingType": "eBOTiming_EtcActionAfter",
+    "BOFuncType": "eBOFunc_ActionSkill/4",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsEnemyTurn",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
@@ -48789,43 +49400,56 @@
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 100290601,
-    "CheckTimingType": "eBOTiming_TurnStart",
-    "BOFuncType": "eBOFunc_AddBuff/HealTurn",
-    "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt4/Poison",
+    "ID": 100290501,
+    "CheckTimingType": "eBOTiming_OnHit",
+    "BOFuncType": "eBOFunc_AddDeBuff/Frostbite",
+    "BOTarType": "eBOTarget_Attacker",
+    "BOSelfCondType": "",
     "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 40,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 25.0
+  },
+  {
+    "ID": 100290502,
+    "CheckTimingType": "eBOTiming_OnHit",
+    "BOFuncType": "eBOFunc_DeBuffValue/Frostbite",
+    "BOTarType": "eBOTarget_Attacker",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Frostbite",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 40,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 10.0
+  },
+  {
+    "ID": 100290601,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/3",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_IsAddBuffDebuff/Freeze",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": -1,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100290701,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_AddDeBuff/SpdDown",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "eBOCond_HasDeBuff/Freeze",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 5.0
-  },
-  {
-    "ID": 100290701,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlock",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
-  },
-  {
-    "ID": 100290702,
-    "CheckTimingType": "eBOTiming_OnAttackCalc",
-    "BOFuncType": "eBOFunc_CriRate",
-    "BOTarType": "NONE",
-    "BOSelfCondType": "eBOCond_HasBuff/DmgBlockCount",
-    "BOTarCondType": "",
-    "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
-    "BOFuncValue1": 0,
-    "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
+    "BOFuncValue3": -19.5
   },
   {
     "ID": 100330101,
@@ -48838,7 +49462,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 262.5
+    "BOFuncValue3": 137.89999389648438
   },
   {
     "ID": 100330102,
@@ -48848,10 +49472,23 @@
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 5,
+    "BOFuncRate": 45,
     "BOFuncValue1": 0,
     "BOFuncValue2": 3,
     "BOFuncValue3": 3.5
+  },
+  {
+    "ID": 100330103,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_Attack/1",
+    "BOTarType": "eBOTarget_EnemyRnd/1",
+    "BOSelfCondType": "eBOCond_IsEnemyHasBuff/Burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 100,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 137.89999389648438
   },
   {
     "ID": 100330201,
@@ -48868,6 +49505,19 @@
   },
   {
     "ID": 100330202,
+    "CheckTimingType": "eBOTiming_Action",
+    "BOFuncType": "eBOFunc_AddBuff/CriRateUp",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 32.5
+  },
+  {
+    "ID": 100330203,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_AddBuff/CriDmgUp",
     "BOTarType": "eBOTarget_Self",
@@ -48903,7 +49553,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 103.9000015258789
+    "BOFuncValue3": 124.69999694824219
   },
   {
     "ID": 100330303,
@@ -48916,7 +49566,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 45.0
+    "BOFuncValue3": 50.0
   },
   {
     "ID": 100330401,
@@ -48994,7 +49644,33 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 5,
-    "BOFuncValue3": 12.5
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100330602,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt3/Burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 5,
+    "BOFuncValue3": 15.0
+  },
+  {
+    "ID": 100330603,
+    "CheckTimingType": "eBOTiming_OnActionLast",
+    "BOFuncType": "eBOFunc_AddDeBuff/Burn",
+    "BOTarType": "eBOTarget_EnemyRnd/1",
+    "BOSelfCondType": "eBOCond_IsEnemyHasBuff/Burn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 45,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 3,
+    "BOFuncValue3": 3.5
   },
   {
     "ID": 100330701,
@@ -49011,6 +49687,32 @@
   },
   {
     "ID": 100330702,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_CoolTimeTurn/All",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": -1,
+    "BOFuncValue3": 0.0
+  },
+  {
+    "ID": 100330703,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_AddBuff/SpdUp",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 2,
+    "BOFuncValue3": 30.0
+  },
+  {
+    "ID": 100330704,
     "CheckTimingType": "eBOTiming_RoundStart",
     "BOFuncType": "eBOFunc_CoolTimeTurn/2",
     "BOTarType": "eBOTarget_Self",
@@ -49023,7 +49725,7 @@
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 100330703,
+    "ID": 100330705,
     "CheckTimingType": "eBOTiming_RoundStart",
     "BOFuncType": "eBOFunc_CoolTimeTurn/3",
     "BOTarType": "eBOTarget_Self",
@@ -49036,16 +49738,16 @@
     "BOFuncValue3": 0.0
   },
   {
-    "ID": 100330704,
-    "CheckTimingType": "eBOTiming_RoundStart",
-    "BOFuncType": "eBOFunc_CoolTimeTurn/6",
+    "ID": 100330799,
+    "CheckTimingType": "eBOTiming_EtcActionAfter",
+    "BOFuncType": "eBOFunc_ActionSkill/7",
     "BOTarType": "eBOTarget_Self",
-    "BOSelfCondType": "",
+    "BOSelfCondType": "eBOCond_IsSelfReceiveDeBuff/Restraint",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
-    "BOFuncValue2": 6,
+    "BOFuncValue2": 0,
     "BOFuncValue3": 0.0
   },
   {
@@ -51116,6 +51818,32 @@
     "BOFuncValue3": 1.0
   },
   {
+    "ID": 300000106,
+    "CheckTimingType": "eBOTiming_ActionBefore",
+    "BOFuncType": "eBOFunc_TurnGaugeUp",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 30.0
+  },
+  {
+    "ID": 300000199,
+    "CheckTimingType": "eBOTiming_EtcActionAfter",
+    "BOFuncType": "eBOFunc_ActionSkill/8",
+    "BOTarType": "eBOTarget_Self",
+    "BOSelfCondType": "eBOCond_IsEnemyTurn",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 0.0
+  },
+  {
     "ID": 300060101,
     "CheckTimingType": "eBOTiming_Action",
     "BOFuncType": "eBOFunc_Attack",
@@ -51711,7 +52439,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 525.0
+    "BOFuncValue3": 630.0
   },
   {
     "ID": 300200102,
@@ -51763,7 +52491,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 2,
-    "BOFuncValue3": 40.0
+    "BOFuncValue3": 90.0
   },
   {
     "ID": 300200301,
@@ -51789,7 +52517,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 525.0
+    "BOFuncValue3": 682.5
   },
   {
     "ID": 300061102,
@@ -51815,7 +52543,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 85.5
+    "BOFuncValue3": 128.3000030517578
   },
   {
     "ID": 300061202,
@@ -51919,7 +52647,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 525.0
+    "BOFuncValue3": 630.0
   },
   {
     "ID": 300151201,
@@ -51932,7 +52660,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 153.8000030517578
+    "BOFuncValue3": 215.3000030517578
   },
   {
     "ID": 300151202,
@@ -51984,7 +52712,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": -10.0
+    "BOFuncValue3": -5.0
   },
   {
     "ID": 300151403,
@@ -51997,7 +52725,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": -15.0
+    "BOFuncValue3": -5.0
   },
   {
     "ID": 300151501,
@@ -52010,7 +52738,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 10.0
+    "BOFuncValue3": 15.0
   },
   {
     "ID": 300110101,
@@ -52023,7 +52751,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 525.0
+    "BOFuncValue3": 630.0
   },
   {
     "ID": 300110102,
@@ -52049,7 +52777,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 96.19999694824219
+    "BOFuncValue3": 173.10000610351562
   },
   {
     "ID": 300110202,
@@ -52062,7 +52790,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 96.19999694824219
+    "BOFuncValue3": 173.10000610351562
   },
   {
     "ID": 300110203,
@@ -52075,7 +52803,7 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 96.19999694824219
+    "BOFuncValue3": 173.10000610351562
   },
   {
     "ID": 300110204,
@@ -52088,17 +52816,17 @@
     "BOFuncRate": 100,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 96.19999694824219
+    "BOFuncValue3": 173.10000610351562
   },
   {
     "ID": 300110205,
-    "CheckTimingType": "eBOTiming_ActionLast",
+    "CheckTimingType": "eBOTiming_OnAction",
     "BOFuncType": "eBOFunc_AddDeBuff/Bleeding",
     "BOTarType": "eBOTarget_HitTargetList",
     "BOSelfCondType": "",
     "BOTarCondType": "",
     "BOIgnoreCoolTime": 0,
-    "BOFuncRate": 0,
+    "BOFuncRate": 45,
     "BOFuncValue1": 0,
     "BOFuncValue2": 3,
     "BOFuncValue3": 10.0
@@ -52127,7 +52855,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 3,
-    "BOFuncValue3": 5.0
+    "BOFuncValue3": 20.0
   },
   {
     "ID": 300110401,
@@ -52156,6 +52884,19 @@
     "BOFuncValue3": 75.0
   },
   {
+    "ID": 300110502,
+    "CheckTimingType": "eBOTiming_OnAttack",
+    "BOFuncType": "eBOFunc_DeBuffTurn/Bleeding",
+    "BOTarType": "eBOTarget_HitTarget",
+    "BOSelfCondType": "",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 20,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 1,
+    "BOFuncValue3": 0.0
+  },
+  {
     "ID": 300110601,
     "CheckTimingType": "eBOTiming_OnAttackCalc",
     "BOFuncType": "eBOFunc_DmgRate/Normal",
@@ -52166,7 +52907,20 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": 7.5
+    "BOFuncValue3": 10.0
+  },
+  {
+    "ID": 300110602,
+    "CheckTimingType": "eBOTiming_OnAttackCalc",
+    "BOFuncType": "eBOFunc_CriRate",
+    "BOTarType": "NONE",
+    "BOSelfCondType": "eBOCond_EnemyHasBuffMoreCnt3/Bleeding",
+    "BOTarCondType": "",
+    "BOIgnoreCoolTime": 0,
+    "BOFuncRate": 0,
+    "BOFuncValue1": 0,
+    "BOFuncValue2": 0,
+    "BOFuncValue3": 15.0
   },
   {
     "ID": 300201101,
@@ -52452,7 +53206,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": -10.0
+    "BOFuncValue3": -5.0
   },
   {
     "ID": 300152403,
@@ -52465,7 +53219,7 @@
     "BOFuncRate": 0,
     "BOFuncValue1": 0,
     "BOFuncValue2": 0,
-    "BOFuncValue3": -15.0
+    "BOFuncValue3": -5.0
   },
   {
     "ID": 300152501,

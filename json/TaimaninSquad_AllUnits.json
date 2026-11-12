@@ -1386,10 +1386,10 @@
     "EvolReqID": 3526,
     "BuyPrice": 500000,
     "BTLPower": 8950,
-    "BTLRate": 313831,
-    "HP": 22196,
-    "ATK": 1360,
-    "DEF": 1109,
+    "BTLRate": 304228,
+    "HP": 21480,
+    "ATK": 1503,
+    "DEF": 1002,
     "SPD": 90,
     "CRATE": 50,
     "CDMG": 575,
@@ -11330,10 +11330,10 @@
     "EvolReqID": 3523,
     "BuyPrice": 500000,
     "BTLPower": 8950,
-    "BTLRate": 333532,
+    "BTLRate": 334522,
     "HP": 23628,
-    "ATK": 1253,
-    "DEF": 1145,
+    "ATK": 1611,
+    "DEF": 787,
     "SPD": 84,
     "CRATE": 50,
     "CDMG": 575,
@@ -11525,7 +11525,7 @@
     "SkillID3": 26203,
     "SkillID4": 26204,
     "DisplayName": "[Holy Night] Igawa Asagi",
-    "DisplayDesc": "Igawa Asagi [Christmas]"
+    "DisplayDesc": "The leader of all Taimanins, a group of ninjas who fight for justice. Serves as the headmistress of Gosha Academy, the educational institute for Taimanins.\n\nUtilizes master swordsmanship and superhuman physical capabilities, in addition to her ninja art that allows her to move at a speed beyond human perception. She has awakened her true power during a certain mission. Her weapon of choice is a ninja katana.\n\nUser of the supernatural ninja art, Hawk Art. The art heightens her senses and physical capabilities for one second, allowing her to move as if six seconds have passed. She perceives the world in slow motion while using her ninja art; others perceive her as moving at the speed of light. Since her ninja art greatly exhausts her, she cannot use it multiple times at once.\n\nEven on Christmas Eve, she was silently buried in paperwork—until Sakura barged in decked out in a Santa suit, dragging her into a \"surprise event\" that ended with her half-forced into a Santa outfit of her own.\n\nThough swept along by her younger sister's spirit, she visits the hardworking individuals who continue to work without rest even on Christmas Eve, offering them warm and encouraging words befitting the leader. As she laid aside her usual strictness to offer a gentle smile, her presence became the greatest Christmas gift of all to those worn out by their exhausting daily routines."
   },
   {
     "ID": 263,
@@ -11569,7 +11569,7 @@
     "SkillID3": 26303,
     "SkillID4": 26304,
     "DisplayName": "[Holy Night] Igawa Sakura",
-    "DisplayDesc": "Igawa Sakura [Christmas]"
+    "DisplayDesc": "Asagi's younger sister. Always bright and friendly. A gorgeous young girl who gives off a cheerful vibe. Born with a rare ninja art just like her sister, she is a ninja who uses \"Shadow Art\". She became a Taimanin much to her sister's objection because she also wanted to fight for justice like her sister, Asagi. Sakura has helped her sister in multiple missions, and although she's not noticeable, she has made a name for herself as an exemplary Taimanin.\n\nUser of the supernatural ninja art, \"Shadow Art\". It gives the user the ability to meld into shadow or teleport between shadows. She is also capable of shaping shadows into animals like sharks or bears, or using the shadow itself as a bladed weapon. She uses dual-wielding ninja daggers as her main weapon.\n\nSakura ambitiously prepared a surprise event for Christmas Eve. Ambushing Asagi and Murasaki while they were silently buried in paperwork, she forced them into Santa and Christmas tree costumes before darting across Gosha with her signature energetic stride.\n\nTo cheer on those still hard at work on the holiday, fulfilling their duties, she uses the Art of Shadow Concealment to emerge without a sound from the dark—startling them first, only to hand over a heartfelt surprise gift."
   },
   {
     "ID": 264,
@@ -11613,7 +11613,7 @@
     "SkillID3": 26403,
     "SkillID4": 26404,
     "DisplayName": "[Holy Night] Yatsu Murasaki",
-    "DisplayDesc": "Yatsu Murasaki [Christmas]"
+    "DisplayDesc": "Taimanin, a teacher at Gosha Academy. She is from a family of the lower ninja faction that serves Asagi as their master. Her brother, Yatsu Kuro, is also active as a Taimanin. She is expected to become the next Asagi, the captain of the new generation Taimanins.\n\nIt's hard to know from her cold appearance, but she is kind and thoughtful. She has strong feelings towards Asagi, which seem more than simple admiration, so she becomes much softer in front of her. She likes cats, but unfortunately, cats are afraid of her.\n\nUser of the supernatural ninja art, \"Awakened Immortal\", which allows her to become immortal with superhuman restoration abilities. Unless her heart and brain are destroyed simultaneously, she will remain immortal. Furthermore, her immortal body has unimaginable power and agility, which allows her to perform powerful hand-to-hand combat and to swing her giant axe without breaking a sweat.\n\nEven on Christmas Eve, she was silently buried in paperwork alongside Asagi—until Sakura barged in decked out in a Santa suit, dragging her into a \"surprise event\" that somehow ended with her shoved into a Christmas tree costume.\n\nAlthough she reacted indifferently toward Sakura's sudden proposition, seeing Asagi semi-forced into a Santa outfit by Sakura convinced her to join in reluctantly. Though she grumbled the whole way about how ridiculous her outfit was compared to Asagi's, she still roamed across Gosha to bring a small yet special moment of respite to those hard at work."
   },
   {
     "ID": 265,
@@ -11789,7 +11789,7 @@
     "SkillID3": 26803,
     "SkillID4": 26804,
     "DisplayName": "[Fire God] Kamimura Maika",
-    "DisplayDesc": "Kamimura Maika [Future]"
+    "DisplayDesc": "A glimpse of a future that may one day come to pass.\n\nThe rough, delinquent girl of the past has braved countless brushes with death, blossoming into an alluring big-sister figure radiating seasoned composure and maturity.\n\nLeaving behind the days when she was known as the 'Scorching Fire' while spewing uncontrollable, super-heated fire, she has achieved absolute mastery over thermal power capable of incinerating everything in its path, earning her the title of the 'Fire God Taimanin'."
   },
   {
     "ID": 269,
